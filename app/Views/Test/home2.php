@@ -54,7 +54,6 @@
             <a href="<?= base_url('test/logout')?>" class="text-blue-800 text-2xl hover:text-blue-600">
                 <i class="fa-solid fa-delete-left"></i>
             </a>
-        
         </div>
         <div>
             <div class="border border-black flex justify-end text-6xl font-normal px-20">
