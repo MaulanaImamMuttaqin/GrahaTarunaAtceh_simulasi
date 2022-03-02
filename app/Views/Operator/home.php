@@ -7,7 +7,6 @@
     <p>This part is inside a .container class.</p>
     <p>The .container class provides a responsive fixed width container.</p>
     <p>Resize the browser window to see that the container width will change at different breakpoints.</p>
-    <p><?= $data['name']?></p>
     </div>
 
 <?= $this->endSection()?>

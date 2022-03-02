@@ -37,14 +37,14 @@ class AuthTest extends Controller
         if(!empty($data)){
             if(!$data['is_finish']){
                 $this->session->set($data);
-                return redirect()->to(site_url("test/index/{$data['test_id']}"));
+                return redirect()->to(base_url("test/index/{$data['test_id']}"));
             }else{
                 $this->session->setFlashdata('msg', 'Anda Sudah menyelesaikan Test Ini, silahkan hubungi Operator');
-                return redirect()->to('/authtest');
+                return redirect()->to('authtest');
             }
         }else{
             $this->session->setFlashdata('msg', 'User ID atau Token yang anda Masukkan tidak terdaftar');
-            return redirect()->to('/authtest');
+            return redirect()->to('authtest');
         }
     }
 
@@ -53,7 +53,7 @@ class AuthTest extends Controller
     {
         $this->session = session();
         $this->session->destroy();
-        return redirect()->to('Auth/');
+        return redirect()->to(base_url('authtest'));
      
     }
 }

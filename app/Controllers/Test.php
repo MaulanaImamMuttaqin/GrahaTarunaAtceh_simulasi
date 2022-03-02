@@ -22,7 +22,7 @@ class Test extends BaseController
             $data['data']['result_test_id'] = $this->session->get('id');
             return view("Test/home2", $data);
         }else{
-            return redirect()->to("/authtest");
+            return redirect()->to(base_url("authtest"));
         }
     }
 }

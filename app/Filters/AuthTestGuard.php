@@ -9,7 +9,7 @@ class AuthTestGuard implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         if (!session()->get('user_id')){
-            return redirect()->to('/authtest');
+            return redirect()->to(base_url('authtest'));
         }
     }
     

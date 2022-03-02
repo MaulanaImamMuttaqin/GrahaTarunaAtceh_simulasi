@@ -5,9 +5,11 @@ let participant_list;
 
 
 
-const set_test_id = (id) => {
+function set_test_id(id) {
+    console.log("test id ", id)
     test_id = id
     $("#modal_test_id").html(`id: ${id}`)
+    toggleModal("pesertaModal", true)
 }
 const Upload = () => {
     //Reference the FileUpload element.
@@ -78,8 +80,10 @@ const uploadData = () => {
 const upload = (data) => {
     let formData = new FormData()
     formData.append('data', JSON.stringify(data))
+    $("#loading").toggleClass("hidden")
+
     $.ajax({
-        url: `http://localhost:8080/operator/add_participant/`,
+        url: `http://localhost:8080/operatorApi/add_participant/`,
         type: "POST",
         cache: false,
         data: formData,
@@ -88,6 +92,9 @@ const upload = (data) => {
         dataType: "JSON",
         success: function (data) {
             console.log(data)
+            render_message("Peserta berhasil ditambahkan untuk test dengan ID: " + test_id)
+            toggleModal("pesertaModal", false)
+            $("#loading").toggleClass("hidden")
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log("error")

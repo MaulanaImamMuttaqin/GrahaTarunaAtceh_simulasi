@@ -39,18 +39,18 @@ class Auth extends Controller
                         'name' => $data['name'],
                         'username' => $data['username'],
                     ],
-                    'isLoggedIn' => TRUE
+                    'isLoggedIn' => true
                 ];
                 $this->session->set($ses_data);
-                return redirect()->to('/operator');
+                return redirect()->to(base_url('operator'));
             
             }else{
                 $this->session->setFlashdata('msg', 'UserName atau Password tidak terdaftar');
-                return redirect()->to('Auth/');
-            }
+                return redirect()->to(base_url('Auth'));
+            } 
         }else{
             $this->session->setFlashdata('msg', 'UserName atau Password tidak terdaftar');
-            return redirect()->to('Auth/');
+            return redirect()->to(base_url('Auth'));
         }
     }
 
@@ -59,7 +59,7 @@ class Auth extends Controller
     {
         $this->session = session();
         $this->session->destroy();
-        return redirect()->to('Auth/');
+        return redirect()->to(base_url('Auth'));
      
     }
 }

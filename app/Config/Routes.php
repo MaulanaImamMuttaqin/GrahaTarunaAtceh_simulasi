@@ -17,7 +17,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('Operator');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -35,10 +35,47 @@ $routes->get('/', 'Operator::index', ['filter' => 'authGuard']);
 
 $routes->group('operator',['filter' => 'authGuard'], function($routes){
     $routes->get("/", "Operator::index");
+    $routes->get("test_list/", "Operator::test_list");
+    $routes->get("users/", "Operator::users");
 });
+
+
 $routes->group('test',['filter' => 'authTestGuard'], function($routes){
-    $routes->get("/(:any)", "Test::index");
+    $routes->get("/index/(:any)", "Test::index");
 });
+$routes->group('operatorApi',['filter' => 'authGuard'], function($routes){
+    $routes->get('test_table_list/', 'OperatorApi::test_table_list');
+    $routes->post('add_test/', 'OperatorApi::add_test');
+    $routes->delete('delete_test/', 'OperatorApi::delete_test');
+    $routes->post('add_participant/', 'OperatorApi::add_participant');
+});
+
+$routes->group('testApi',['filter' => 'authTestGuard'], function($routes){
+    $routes->get('submit_result/', 'TestApi::submit_result');
+});
+
+// $routes->group('/', ['filter' => 'authTestGuard'], function($routes){
+//     $routes->get("/(:any)", "Test::index");
+//     $routes->group('TestApi', function($routes){
+//         $routes->get('submit_result', 'TestApi::submit_result');
+//     });
+// });
+
+// $routes->group('/', ['filter' => 'authGuard'], function($routes){
+//     $routes->get('/', 'Operator::index');
+//     $routes->group('OperatorApi', function($routes){
+//         $routes->get('test_table_list', 'OperatorApi::test_table_list');
+//         $routes->get('add_test', 'OperatorApi::add_test');
+//         $routes->get('delete_test', 'OperatorApi::delete_test');
+//         $routes->get('add_participant', 'OperatorApi::add_participant');
+//     });
+//     $routes->group('operator', function($routes){
+//         $routes->get("/", "Operator::index");
+//         $routes->get("test_list", "Operator::test_list");
+//         $routes->get("users", "Operator::users");
+//     });
+// });
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

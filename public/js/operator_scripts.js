@@ -19,7 +19,7 @@ $(function () {
 
         formData.append("test_id", Math.floor(100000000 + Math.random() * 900000000))
         $.ajax({
-            url: "http://localhost:8080/operator/add_test",
+            url: "http://localhost:8080/operatorApi/add_test",
             type: "POST",
             cache: false,
             data: formData,
@@ -53,7 +53,7 @@ const deleteRow = id => {
     if (conf) {
         $("#loading").toggleClass("hidden")
         $.ajax({
-            url: `http://localhost:8080/operator/delete_test/${id}`,
+            url: `http://localhost:8080/operatorApi/delete_test/${id}`,
             type: "DELETE",
             success: function (data) {
                 console.log(data)

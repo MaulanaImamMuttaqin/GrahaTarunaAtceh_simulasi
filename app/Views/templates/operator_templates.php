@@ -17,7 +17,7 @@
     <!-- Dropdown menu -->
             <div id="profieDropdownInfirmation" class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                 <div class="py-3 px-4 text-gray-900 dark:text-white">
-                    <span class="block text-sm"><?= $data['name']?></span>
+                    <span class="block text-sm"></span>
                 </div>
                 <ul class="py-1" aria-labelledby="profileDropdown">
                     <li>

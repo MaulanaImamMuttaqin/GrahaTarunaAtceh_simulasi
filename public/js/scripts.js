@@ -114,10 +114,10 @@ const renderQuestionResult = (index, key, prop) => {
 
 const renderChoicesContainer = (choices) => {
     let choicesContainer = `
-        <div class="flex flex-col text-center font-semibold">
+        <div class="flex flex-col text-center font-semibold ">
+            <p>${choices}</p>
             <input class="questionChoices hover:cursor-pointer" type="radio" id="answer" name="answer"
                 value="">
-            <p>${choices}</p>
         </div>
     `
     $("#choices").append($(choicesContainer))
@@ -127,8 +127,8 @@ const renderChoicesContainer = (choices) => {
 const renderNumberContainers = (choices) => {
     let numberContainer = `
         <div class="numbers-container">
-            <p class="numbers ">0</p>
-            <p>${choices}</p>
+            <h1 class="numbers ">0</h1>
+            <h1 class="">${choices}</h1>
         </div>
     `
     $("#soal").append($(numberContainer))
@@ -149,8 +149,6 @@ const numbersGenerator = ({ question_total, number_digits }) => {
 }
 
 
-
-
 // fungsi untuk memulai test
 const startTest = () => {
 
@@ -166,9 +164,10 @@ const startTest = () => {
     if (!started) {
         startTimer()
     }
-
-    $("#pertanyaan").removeClass("hidden")
     $("#start-test").addClass("hidden")
+    $("#soal").removeClass("hidden")
+    $("#pertanyaan").removeClass("hidden")
+
 }
 
 
@@ -186,6 +185,7 @@ const TestFinish = () => {
     renderNthNumbers(question_list.length)
     $("#message").removeClass("hidden")
     $("#pertanyaan").addClass("hidden")
+    $("#soal").addClass("hidden")
     resetNumberContainerAndChoices()
     renderResult(score)
 
@@ -201,7 +201,7 @@ const uploadResult = () => {
     formData.append('result', JSON.stringify(score))
 
     $.ajax({
-        url: `http://localhost:8080/test/submit_result/`,
+        url: `http://localhost:8080/testApi/submit_result/`,
         type: "POST",
         cache: false,
         data: formData,
