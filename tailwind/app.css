@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.center{
+    @apply flex justify-center items-center
+}
+.numbers-container{
+    @apply h-32 w-20 border border-gray-400 rounded-lg overflow-hidden text-center
+}
+.numbers{
+    @apply text-6xl border-b border-gray-400 h-4/5 center font-semibold
+}
+
+.soal{
+    @apply text-xl font-semibold text-gray-600
+}
+.total, .correct, .wrong{
+    @apply text-sm font-bold text-white p-1 px-3 m-1 rounded-lg
+}
+
+.total{
+    @apply bg-blue-600
+}
+.correct{
+    @apply bg-green-600
+}
+.wrong{
+    @apply bg-red-600
+}
+.items-center-v{
+    @apply flex flex-col justify-center
+}
+.items-center-h{
+    @apply flex flex-col items-center
+}
