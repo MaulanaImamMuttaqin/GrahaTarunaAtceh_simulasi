@@ -97,7 +97,7 @@ const upload = (data) => {
             $("#loading").toggleClass("hidden")
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            console.log("error")
+            console.log(errorThrown)
         }
     });
 }

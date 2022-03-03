@@ -40,11 +40,7 @@ const preTestConfiguration = () => {
     } else {
         testStatus = JSON.parse(getTestStatus())
     }
-    if (!TestConfiguration.auto) {
-        TestConfiguration.number_digits = question_list[0].split("").length
-        question_list = shuffle(question_list, TestConfiguration.question_total)
-        console.log(question_list)
-    }
+    TestConfiguration.number_digits = question_list[0].split("").length
     // merender html container buat angka dan pilihan jawaban
     setNumberContainerAndChoices(TestConfiguration)
     duration = TestConfiguration.duration;
@@ -54,8 +50,15 @@ const preTestConfiguration = () => {
     } else {
 
         storeScore(score)
-        if (TestConfiguration.auto) question_list = numbersGenerator(TestConfiguration)
+        if (TestConfiguration.auto) {
+            question_list = numbersGenerator(TestConfiguration)
+        }
+        else if (!TestConfiguration.auto) {
 
+            console.log(TestConfiguration.number_digits)
+            question_list = shuffle(question_list, TestConfiguration.question_total)
+            console.log(question_list)
+        }
         testStatus.question_list = question_list
 
         timer = duration
@@ -101,6 +104,7 @@ const resetNumberContainerAndChoices = () => {
 }
 
 const setNumberContainerAndChoices = ({ number_digits }) => {
+    console.log("rendering ; ", number_digits)
     for (let i = 0; i < number_digits; i++) {
         renderNumberContainers((i + 10).toString(36))
         renderChoicesContainer((i + 10).toString(36))
@@ -303,7 +307,7 @@ const setQuestion = () => {
 const setNumbers = () => {
     // mencetak angka dari soal ke html dan menset nilai optionsnya
     $(".numbers").each((i, obj) => {
-
+        console.log(question_list[0])
         let value = question_list[nth_question].split("")
         obj.innerHTML = value[i]
     })
