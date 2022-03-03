@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Mar 2022 pada 07.21
+-- Waktu pembuatan: 03 Mar 2022 pada 08.11
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.9
 
@@ -20,6 +20,61 @@ SET time_zone = "+00:00";
 --
 -- Database: `simulasi-cat`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `admin_user`
+--
+
+CREATE TABLE `admin_user` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `admin_user`
+--
+
+INSERT INTO `admin_user` (`id`, `name`, `username`, `password`) VALUES
+(6, 'Graha Taruna Atceh', 'Admin_GTA', '$2y$10$P9dGEcmq9vJfKLLnjefXseUrBV2opd5f7CWdRRuKXvsOVQfP40A5m'),
+(7, 'Maulana Imam Muttaqin', 'MaulanaImamMuttaqin', '$2y$10$8BbjjePf0mUFiT.9eiVukuevGgMxDCL9IIXeJUSHBLz9gtOkuwMrq');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `test`
+--
+
+CREATE TABLE `test` (
+  `id` int(11) NOT NULL,
+  `test_id` varchar(255) NOT NULL,
+  `question_total` int(255) NOT NULL,
+  `number_digits` int(20) NOT NULL,
+  `duration` int(11) NOT NULL,
+  `test_start_at` datetime DEFAULT NULL,
+  `test_end_at` datetime DEFAULT NULL,
+  `is_open` tinyint(1) NOT NULL,
+  `total_participant` int(255) NOT NULL,
+  `description` text NOT NULL,
+  `auto` tinyint(1) DEFAULT NULL,
+  `questions_list` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '[]'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `test`
+--
+
+INSERT INTO `test` (`id`, `test_id`, `question_total`, `number_digits`, `duration`, `test_start_at`, `test_end_at`, `is_open`, `total_participant`, `description`, `auto`, `questions_list`) VALUES
+(2, '123123123', 2, 5, 15, NULL, NULL, 0, 0, '', 1, '[]'),
+(7, '873199419', 4, 4, 4, '2022-02-27 01:01:00', '2022-02-27 01:02:00', 0, 0, '', 1, '[]'),
+(19, '549700025', 10, 5, 70, '2022-02-28 20:11:00', '2022-02-28 20:11:00', 0, 0, '', 1, '[]'),
+(21, '946314300', 3, 5, 4, '2022-03-02 16:25:00', '2022-03-02 16:25:00', 0, 0, '', 1, '[]'),
+(22, '671446500', 3, 5, 15, '2022-03-02 16:40:00', '2022-03-03 16:40:00', 0, 0, '', 1, '[]'),
+(43, '563603801', 4, 0, 10, '2022-03-03 08:40:00', '2022-03-04 08:40:00', 0, 0, '', 0, '[\"32541\",\"63547\",\"92014\",\"85746\",\"29380\",\"80192\",\"75843\"]'),
+(44, '203293503', 5, 0, 10, '2022-03-03 08:40:00', '2022-03-05 08:40:00', 0, 0, '', 0, '[\"32541\",\"63547\",\"92014\",\"85746\",\"29380\",\"80192\",\"75843\",\"32541\",\"63547\",\"92014\",\"85746\",\"29380\",\"80192\",\"75843\",\"75841\",\"15347\",\"95643\",\"45623\",\"78652\",\"43567\",\"23453\",\"23654\",\"12323\",\"12384\",\"32541\",\"63547\",\"92014\",\"85746\",\"29380\",\"80192\",\"75843\",\"75841\",\"15347\",\"95643\",\"45623\",\"78652\",\"43567\",\"23453\",\"23654\",\"12323\",\"12384\"]');
 
 -- --------------------------------------------------------
 
@@ -85,9 +140,36 @@ INSERT INTO `test_participant` (`id`, `user_id`, `name`, `test_id`, `is_start`, 
 (56, '1804105010025', 'Shaquel Rizki Ramadhan na', '203293503', 0, 0, NULL),
 (57, '1804105010007', 'Wahyu Pratama', '203293503', 0, 0, NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tes_result`
+--
+
+CREATE TABLE `tes_result` (
+  `id` int(11) NOT NULL,
+  `user_id` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `test_id` varchar(100) NOT NULL,
+  `result` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `admin_user`
+--
+ALTER TABLE `admin_user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `test`
+--
+ALTER TABLE `test`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `test_id` (`test_id`);
 
 --
 -- Indeks untuk tabel `test_participant`
@@ -96,14 +178,38 @@ ALTER TABLE `test_participant`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `tes_result`
+--
+ALTER TABLE `tes_result`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
+
+--
+-- AUTO_INCREMENT untuk tabel `admin_user`
+--
+ALTER TABLE `admin_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT untuk tabel `test`
+--
+ALTER TABLE `test`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT untuk tabel `test_participant`
 --
 ALTER TABLE `test_participant`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
+-- AUTO_INCREMENT untuk tabel `tes_result`
+--
+ALTER TABLE `tes_result`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
