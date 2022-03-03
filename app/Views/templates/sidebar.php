@@ -28,13 +28,13 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <a href="<?= base_url('operator/settings')?>" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <i class="fa-solid fa-gear"></i>
                 <span class="flex-1 ml-3 whitespace-nowrap">Settings</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <a href="<?= base_url("Auth/logoutAuth")?>"  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                 <span class="flex-1 ml-3 whitespace-nowrap">Sign Out</span>
                 </a>

@@ -54,4 +54,9 @@ class Operator extends BaseController
         return view('operator/users');
         
     }
+
+    public function settings(){
+    
+        return view('operator/settings');
+    }
 }

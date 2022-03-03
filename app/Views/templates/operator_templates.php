@@ -5,6 +5,7 @@
 
 <div class="h-screen flex relative">
         <div id="profile" class="absolute z-10 top-0 right-0 p-5 gap-4 flex flex-col items-end ">
+            
             <button 
                 id="profileDropdown" 
                 data-dropdown-toggle="profieDropdownInfirmation" 
@@ -17,7 +18,9 @@
     <!-- Dropdown menu -->
             <div id="profieDropdownInfirmation" class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                 <div class="py-3 px-4 text-gray-900 dark:text-white">
-                    <span class="block text-sm"></span>
+                    <span class="block text-sm">
+                        <?= session()->get('data')['name'] ?>
+                    </span>
                 </div>
                 <ul class="py-1" aria-labelledby="profileDropdown">
                     <li>

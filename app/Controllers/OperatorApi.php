@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Models\TestModel;
 use App\Models\ParticipantModel;
 use CodeIgniter\API\ResponseTrait;
+use App\Models\AdminUser;
 
 class OperatorApi extends BaseController
 {
@@ -137,6 +138,48 @@ class OperatorApi extends BaseController
             return $this->fail('failed', 400);
         }catch(Exception $e){
             return $this->fail($e, 400);
+        }
+    }
+
+
+    public function change_password($id = null){
+        if ($this->request->getMethod() == "post"){
+            helper(['form']);
+            $adminUser = new AdminUser();
+            $data = $adminUser->where('id', $id)->first();
+
+            $rules = [
+                'new_password'      => 'required|min_length[4]|max_length[50]',
+                'new_password2'  => 'matches[new_password]'
+            ];
+            $old_password = $this->request->getVar('password');
+            $new_password = $this->request->getVar('new_password');
+            
+            
+            if($this->validate($rules)){
+                if($data){
+                    $pass = $data['password'];
+                    $authenticatePassword = password_verify($old_password, $pass);
+                    if($authenticatePassword){
+                        $new_data = [
+                            'password' => password_hash($new_password, PASSWORD_DEFAULT)
+                        ];
+                        $adminUser->update($id,$new_data);
+                        $this->session->setFlashdata('msg', 'Password berhasil di update');
+                        return redirect()->to(base_url('operator/settings'));
+
+                    }else{
+                        $this->session->setFlashdata('msg', 'Password Salah');
+                        return redirect()->to(base_url('operator/settings'));
+                    } 
+                }else{
+                    $this->session->setFlashdata('msg', 'Id tidak Terdaftar');
+                    return redirect()->to(base_url('operator/settings'));
+                }
+            }else{
+                $data['validation'] = $this->validator;
+                return view('operator/settings', $data);
+            }
         }
     }
 }
