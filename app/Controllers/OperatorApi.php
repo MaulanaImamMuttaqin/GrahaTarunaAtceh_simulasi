@@ -41,7 +41,8 @@ class OperatorApi extends BaseController
             'number_digits' => $this->request->getVar('digit'),
             'duration' => $this->request->getVar('duration'),
             'test_start_at' =>$this->request->getVar('test_start_at'),
-            'test_end_at' => $this->request->getVar('test_end_at')
+            'test_end_at' => $this->request->getVar('test_end_at'),
+            'auto' => $this->request->getVar('auto')
         ];
         
         $model->insert($data);
@@ -60,6 +61,40 @@ class OperatorApi extends BaseController
         return $this->respondCreated($response);
     }
 
+    public function add_test_manual() {
+        if ($this->request->getMethod() != "post"){
+            $error = [
+                'message' => 'method not allowed'
+            ];
+            return $this->fail($errors, 405);
+        }
+
+        $model = new TestModel();
+        $data = [
+            'test_id' =>$this->request->getVar('test_id'),
+            'questions_list' => $this->request->getVar('questions_list'),
+            'duration' => $this->request->getVar('duration'),
+            'question_total' => $this->request->getVar('question_total'),
+            'test_start_at' =>$this->request->getVar('test_start_at'),
+            'test_end_at' => $this->request->getVar('test_end_at'),
+            'auto' => $this->request->getVar('auto')
+        ];
+        
+        $model->insert($data);
+
+        $table['data'] = $model->orderBy('id', 'DESC')->findAll();
+
+        $response = [
+            'status'   => 201,
+            'error'    => null,
+            'data' => $data,
+            'html' => view("Widgets/test_table", $table),
+            'messages' => [
+                'success' => 'Employee created successfully'
+            ]
+        ];
+        return $this->respondCreated($response);
+    }
     public function delete_test($id = null){
         if ($this->request->getMethod() != "delete"){
             $error = [

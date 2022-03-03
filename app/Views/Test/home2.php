@@ -48,6 +48,7 @@
 
 <?= $this->section("additional-scripts")?>
 
+    
     <script>
         let TestConfiguration = {
             duration: "<?= $data['duration']?>",
@@ -57,8 +58,11 @@
             test_end_at: "<?= $data['test_end_at']?>",
             test_id: "<?= $data['test_id']?>",
             test_start_at: "<?= $data['test_start_at']?>",
-            result_test_id : "<?= $data['result_test_id']?>"
+            result_test_id : "<?= $data['result_test_id']?>",
+            auto: "<?= $data['auto']?>" === "0" ? false : true
         }
+
+        let question_list = JSON.parse('<?= $data['questions_list']?>')
     </script>
 
     <script src="<?= base_url('js/scripts.js')?>"></script>

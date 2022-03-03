@@ -95,7 +95,7 @@
             
         </div>
 
-
+        
     </div>
 
 <?= $this->endSection()?>
@@ -114,6 +114,7 @@
             test_start_at: "<?= $data['test_start_at']?>",
             result_test_id : "<?= $data['result_test_id']?>"
         }
+        
     </script>
 
     <script src="<?= base_url('js/scripts.js')?>"></script>

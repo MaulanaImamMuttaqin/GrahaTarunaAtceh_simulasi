@@ -1,4 +1,3 @@
-let question_list = []
 let nth_question = 0
 let currentQuestion = ''
 let started = false
@@ -41,7 +40,11 @@ const preTestConfiguration = () => {
     } else {
         testStatus = JSON.parse(getTestStatus())
     }
-
+    if (!TestConfiguration.auto) {
+        TestConfiguration.number_digits = question_list[0].split("").length
+        question_list = shuffle(question_list, TestConfiguration.question_total)
+        console.log(question_list)
+    }
     // merender html container buat angka dan pilihan jawaban
     setNumberContainerAndChoices(TestConfiguration)
     duration = TestConfiguration.duration;
@@ -51,7 +54,8 @@ const preTestConfiguration = () => {
     } else {
 
         storeScore(score)
-        question_list = numbersGenerator(TestConfiguration)
+        if (TestConfiguration.auto) question_list = numbersGenerator(TestConfiguration)
+
         testStatus.question_list = question_list
 
         timer = duration
@@ -60,6 +64,25 @@ const preTestConfiguration = () => {
     }
 
 }
+
+function shuffle(array, left) {
+    let currentIndex = array.length, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+    }
+    array.splice(left, array.length - left);
+    return array;
+}
+
 
 const continueTest = () => {
     nth_question = testStatus.nth_question

@@ -7,5 +7,5 @@ class TestModel extends Model
 {
     protected $table = 'test';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['test_id', 'question_total', 'number_digits', 'duration', 'test_start_at', 'test_end_at'];
+    protected $allowedFields = ['test_id', 'question_total', 'number_digits', 'duration', 'test_start_at', 'test_end_at', 'isOpen', 'description', 'description', 'auto', 'questions_list'];
 }
