@@ -16,18 +16,18 @@
             </button>
             
     <!-- Dropdown menu -->
-            <div id="profieDropdownInfirmation" class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+            <div id="profieDropdownInfirmation" class="hidden z-10 w-52 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                 <div class="py-3 px-4 text-gray-900 dark:text-white">
-                    <span class="block text-sm">
+                    <span class="block text-sm font-bold">
                         <?= session()->get('data')['name'] ?>
                     </span>
                 </div>
                 <ul class="py-1" aria-labelledby="profileDropdown">
                     <li>
-                        <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+                        <a href="<?= base_url('operator/')?>" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
                     </li>
                     <li>
-                        <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Ganti Password</a>
+                        <a href="<?= base_url('operator/settings')?>" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Ganti Password</a>
                     </li>
                 </ul>
                 <div class="py-1">

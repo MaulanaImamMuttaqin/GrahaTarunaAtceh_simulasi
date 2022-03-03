@@ -79,7 +79,6 @@ $(function () {
 
 
 
-
     $("#toggle-otomatis").on("click", function () {
         $("#add_manual_test_form").toggleClass("hidden")
         $("#add_test_form").toggleClass("hidden")
@@ -95,6 +94,10 @@ $(function () {
         $("#toggle-manual").toggleClass("hidden")
     })
 })
+
+const openDetailModal = (id) => {
+    toggleModal("detailModal", true)
+}
 
 const readQuestionFile = () => {
     console.log(Upload("fileQuestionUpload"))

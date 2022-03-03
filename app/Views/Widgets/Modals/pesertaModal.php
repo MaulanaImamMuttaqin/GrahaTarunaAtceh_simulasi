@@ -1,8 +1,7 @@
-<div id="pesertaModal" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center h-modal md:h-full md:inset-0">
+<div id="pesertaModal" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center h-modal md:h-full md:inset-0 ">
             <div class="relative px-4 w-full max-w-2xl h-full md:h-auto">
-
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-
+                    
                     <div class="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600">
                         <h3 class="text-xl font-semibold text-gray-900 lg:text-2xl dark:text-white">
                         Tambah Peserta <small id="modal_test_id" class="text-sm text-gray-500"></small>
@@ -13,8 +12,6 @@
                     </div>
 
                     <div class="p-6 space-y-6">
-
-
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="fileUpload">Upload file</label>
                         <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"  id="fileUpload" type="file">
                         <button  onclick="Upload()"  type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Export</button>

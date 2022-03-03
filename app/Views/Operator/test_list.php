@@ -35,6 +35,7 @@
     </button>
     </div>
     
+    
 
     <div class="flex flex-col  max-h-96 overflow-hidden">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -85,6 +86,7 @@
 
     
     <?= $this->include("Widgets/Modals/addModal")?>
+    <?= $this->include("Widgets/Modals/detailModal")?>
     <div id="pesertaModal" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center h-modal md:h-full md:inset-0">
             <div class="relative px-4 w-full max-w-2xl h-full md:h-auto">
 

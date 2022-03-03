@@ -3,7 +3,10 @@
 
         
         <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            <?= $row['test_id']?>
+            
+            <a class="hover:cursor-pointer hover:underline" onclick="openDetailModal(<?= $row['id']?>)">
+                <?= $row['test_id']?>
+            </a>
         </td>
         <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
         <?= $row['question_total']?>
