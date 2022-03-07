@@ -23,8 +23,8 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'http://localhost:8080/';
-    // public $baseURL = 'http://GrahaTarunaAtceh.com';  //pake virtualhost
+    // public $baseURL = 'http://localhost:8080/';
+    public $baseURL = 'http://GrahaTarunaAtceh.com';  //pake virtualhost
     /**
      * --------------------------------------------------------------------------
      * Index File
