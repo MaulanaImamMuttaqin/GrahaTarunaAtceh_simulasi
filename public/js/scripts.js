@@ -40,7 +40,11 @@ const preTestConfiguration = () => {
     } else {
         testStatus = JSON.parse(getTestStatus())
     }
-    TestConfiguration.number_digits = question_list[0].split("").length
+    // console.log(TestConfiguration)
+    if (!TestConfiguration.auto) {
+
+        TestConfiguration.number_digits = question_list[0].split("").length
+    }
     // merender html container buat angka dan pilihan jawaban
     setNumberContainerAndChoices(TestConfiguration)
     duration = TestConfiguration.duration;

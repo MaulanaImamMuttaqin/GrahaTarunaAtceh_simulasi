@@ -19,7 +19,7 @@ $(function () {
         let formData = new FormData(this)
 
         formData.append("test_id", Math.floor(100000000 + Math.random() * 900000000))
-        formData.append("auto", true)
+        formData.append("auto", 1)
         $.ajax({
             url: `${base_url}/operatorApi/add_test`,
             type: "POST",
@@ -51,7 +51,7 @@ $(function () {
         formData.append("question_total", $("#manual-soal").val())
         formData.append("duration", $("#manual-durasi").val())
         formData.append("test_id", Math.floor(100000000 + Math.random() * 900000000))
-        formData.append("auto", false)
+        formData.append("auto", 0)
         console.log($("#dmanual-urasi").val())
         console.log(JSON.stringify(questionRow))
         $("#loading").toggleClass("hidden")

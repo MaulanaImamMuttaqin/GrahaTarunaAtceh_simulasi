@@ -83,7 +83,7 @@ const upload = (data) => {
     $("#loading").toggleClass("hidden")
 
     $.ajax({
-        url: `${base_url}/operatorApi/add_participant/`,
+        url: `${base_url}/operatorApi/add_participant`,
         type: "POST",
         cache: false,
         data: formData,

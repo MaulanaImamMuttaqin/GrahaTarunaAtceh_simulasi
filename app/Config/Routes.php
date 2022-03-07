@@ -41,6 +41,7 @@ $routes->group('operator',['filter' => 'authGuard'], function($routes){
 
 
 $routes->group('test',['filter' => 'authTestGuard'], function($routes){
+    $routes->get("/", "Test::index");
     $routes->get("/index/(:any)", "Test::index");
 });
 $routes->group('operatorApi',['filter' => 'authGuard'], function($routes){
