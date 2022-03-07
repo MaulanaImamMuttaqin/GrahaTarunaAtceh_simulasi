@@ -228,7 +228,7 @@ const uploadResult = () => {
     formData.append('result', JSON.stringify(score))
 
     $.ajax({
-        url: `http://localhost:8080/testApi/submit_result/`,
+        url: `${base_url}/testApi/submit_result/`,
         type: "POST",
         cache: false,
         data: formData,
