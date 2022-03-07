@@ -4,9 +4,8 @@
 
 <div class="h-full w-full flex flex-col p-10">
 
-    <div id="title" class="h-16 rounded-lg  flex items-center px-2 bg-gray-800">
-        <h1 class="text-3xl font-semibold text-gray-300 px">Pengaturan</h1>
-    </div>
+    
+    <?= view_cell('\App\Libraries\Widget::title_header', ['title'=> 'Pengaturan'])?>
 
 
     <div class=" flex items-center justify-between py-2 mt-5">

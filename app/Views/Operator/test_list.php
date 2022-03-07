@@ -4,11 +4,8 @@
 
 <div class="h-full w-full flex flex-col p-10">
     
+    <?= view_cell('\App\Libraries\Widget::title_header', ['title'=> 'Daftar Tes'])?>
     
-    <div id="title" class="h-16 rounded-lg  flex items-center px-2 bg-gray-800">
-        <h1 class="text-3xl font-semibold text-gray-300 px">Daftar Tes</h1>
-    </div>
-
 
     <div class=" flex items-center justify-between py-2 mt-5">
     <div class="flex">
@@ -35,7 +32,7 @@
     </button>
     </div>
     
-    
+
 
     <div class="flex flex-col  max-h-96 overflow-hidden">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -43,7 +40,7 @@
                 <div class="overflow-hidden  shadow-md sm:rounded-lg">
                     
                     <table class="min-w-full">
-                        <thead class="bg-gray-50 dark:bg-gray-700">
+                        <thead class="bg-gray-200 dark:bg-gray-700">
                             <tr>
                                 <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                                     Test ID

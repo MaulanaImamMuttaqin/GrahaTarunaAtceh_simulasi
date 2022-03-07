@@ -9,7 +9,7 @@
             <button 
                 id="profileDropdown" 
                 data-dropdown-toggle="profieDropdownInfirmation" 
-                class="h-14 w-14 text-white bg-gray-700  focus:ring-4  rounded-full text-xl  text-center inline-flex items-center justify-center" 
+                class="h-14 w-14 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4  rounded-full text-xl  text-center inline-flex items-center justify-center" 
                 type="button"
                 >
                 <i class="fa-solid fa-user "></i>
@@ -18,7 +18,7 @@
     <!-- Dropdown menu -->
             <div id="profieDropdownInfirmation" class="hidden z-10 w-52 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                 <div class="py-3 px-4 text-gray-900 dark:text-white">
-                    <span class="block text-sm font-bold">
+                    <span class="block text-sm font-bold text-gray-600">
                         <?= session()->get('data')['name'] ?>
                     </span>
                 </div>

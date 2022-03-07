@@ -5,6 +5,11 @@ class Widget
 
     public function test_list(array $params)
     {
-        return view('widgets/test_table', $params);
+        return view('widgets/view_cells/test_table', $params);
+    }
+
+    public function title_header(array $params)
+    {
+        return view('widgets/view_cells//headers', $params);
     }
 }

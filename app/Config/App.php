@@ -10,7 +10,7 @@ class App extends BaseConfig
      * --------------------------------------------------------------------------
      * Base Site URL
      * --------------------------------------------------------------------------
-     *
+     *x x
      * URL to your CodeIgniter root. Typically this will be your base URL,
      * WITH a trailing slash:
      *
@@ -23,7 +23,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'http://localhost:8080/';
+    public $baseURL = 'http://localhost/GrahaTarunaAtceh';
 
     /**
      * --------------------------------------------------------------------------
