@@ -65,7 +65,7 @@ $(function () {
             dataType: "JSON",
             success: function (data) {
                 $("tbody").html(data.html)
-                render_message(`Data berhasil ditambahkan dengan id: ${data.test_id}`)
+                render_message(`Data berhasil ditambahkan dengan id: ${data.data.test_id}`)
                 $("#add_manual_test_form").trigger("reset");
                 toggleModal('addModal', false)
                 $("#loading").toggleClass("hidden")

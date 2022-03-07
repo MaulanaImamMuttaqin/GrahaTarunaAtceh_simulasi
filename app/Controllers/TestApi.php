@@ -21,7 +21,7 @@ class TestApi extends BaseController
             $error = [
                 'message' => 'method not allowed'
             ];
-            return $this->fail($errors, 405);
+            return $this->fail($error, 405);
         }
 
         $model = new ParticipantModel();

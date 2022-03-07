@@ -40,22 +40,23 @@ const preTestConfiguration = () => {
     } else {
         testStatus = JSON.parse(getTestStatus())
     }
-    // console.log(TestConfiguration)
-    if (!TestConfiguration.auto) {
 
+    if (!TestConfiguration.auto) {
         TestConfiguration.number_digits = question_list[0].split("").length
     }
     // merender html container buat angka dan pilihan jawaban
     setNumberContainerAndChoices(TestConfiguration)
     duration = TestConfiguration.duration;
-    if (testStatus.isStart) {
-        continueTest();
 
+    if (testStatus.isStart) {
+        console.log("test is start")
+        continueTest();
     } else {
 
         storeScore(score)
         if (TestConfiguration.auto) {
             question_list = numbersGenerator(TestConfiguration)
+            console.log(question_list)
         }
         else if (!TestConfiguration.auto) {
 
@@ -92,6 +93,7 @@ function shuffle(array, left) {
 
 
 const continueTest = () => {
+    console.log("continue test")
     nth_question = testStatus.nth_question
     score = JSON.parse(getScore())
     question_list = testStatus.question_list
@@ -108,7 +110,7 @@ const resetNumberContainerAndChoices = () => {
 }
 
 const setNumberContainerAndChoices = ({ number_digits }) => {
-    console.log("rendering ; ", number_digits)
+    console.log("rendering ", number_digits)
     for (let i = 0; i < number_digits; i++) {
         renderNumberContainers((i + 10).toString(36))
         renderChoicesContainer((i + 10).toString(36))
@@ -232,7 +234,7 @@ const uploadResult = () => {
     formData.append('result', JSON.stringify(score))
 
     $.ajax({
-        url: `${base_url}/testApi/submit_result/`,
+        url: `${base_url}/testApi/submit_result`,
         type: "POST",
         cache: false,
         data: formData,
