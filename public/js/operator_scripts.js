@@ -21,7 +21,7 @@ $(function () {
         formData.append("test_id", Math.floor(100000000 + Math.random() * 900000000))
         formData.append("auto", true)
         $.ajax({
-            url: "http://localhost:8080/operatorApi/add_test",
+            url: `${base_url}/operatorApi/add_test`,
             type: "POST",
             cache: false,
             data: formData,
@@ -30,13 +30,14 @@ $(function () {
             dataType: "JSON",
             success: function (data) {
                 $("tbody").html(data.html)
-                render_message("Data berhasil ditambahkan.")
-                $(this).trigger("reset");
+                render_message(`Data berhasil ditambahkan dengan id: ${data.data.test_id}`)
+                $("#add_test_form").trigger("reset");
                 toggleModal('addModal', false)
                 $("#loading").toggleClass("hidden")
+                console.log(data)
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                console.log("error")
+                console.log(jqXHR, textStatus, errorThrown)
                 $("#loading").toggleClass("hidden")
             }
         });
@@ -55,7 +56,7 @@ $(function () {
         console.log(JSON.stringify(questionRow))
         $("#loading").toggleClass("hidden")
         $.ajax({
-            url: "http://localhost:8080/operatorApi/add_test_manual",
+            url: `${base_url}/operatorApi/add_test_manual`,
             type: "POST",
             cache: false,
             data: formData,
@@ -64,8 +65,8 @@ $(function () {
             dataType: "JSON",
             success: function (data) {
                 $("tbody").html(data.html)
-                render_message("Data berhasil ditambahkan.")
-                $(this).trigger("reset");
+                render_message(`Data berhasil ditambahkan dengan id: ${data.test_id}`)
+                $("#add_manual_test_form").trigger("reset");
                 toggleModal('addModal', false)
                 $("#loading").toggleClass("hidden")
             },
@@ -114,12 +115,12 @@ const deleteRow = id => {
     if (conf) {
         $("#loading").toggleClass("hidden")
         $.ajax({
-            url: `http://localhost:8080/operatorApi/delete_test/${id}`,
+            url: `${base_url}/operatorApi/delete_test/${id}`,
             type: "DELETE",
             success: function (data) {
                 console.log(data)
                 $("tbody").html(data.html)
-                render_message("Tes berhasil dihapus.")
+                render_message(`Tes berhasil dihapus.`)
                 $("#loading").toggleClass("hidden")
             },
             error: function (jqXHR, textStatus, errorThrown) {

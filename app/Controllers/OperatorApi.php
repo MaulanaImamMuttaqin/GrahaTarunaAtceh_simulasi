@@ -22,7 +22,7 @@ class OperatorApi extends BaseController
     public function test_table_list(){
         $model = new TestModel();
         $data['data'] = $model->orderBy('id', 'DESC')->findAll();
-        return view("Widgets/test_table", $data);
+        return view("Widgets/View_Cells/test_table", $data);
     }
 
     public function add_test()
@@ -48,13 +48,13 @@ class OperatorApi extends BaseController
         
         $model->insert($data);
 
-        $table['data'] = $model->orderBy('id', 'DESC')->findAll();
+        $table = $model->orderBy('id', 'DESC')->findAll();
 
         $response = [
             'status'   => 201,
             'error'    => null,
             'data' => $data,
-            'html' => view("Widgets/test_table", $table),
+            'html' => view("Widgets/View_Cells/test_table", ['data' => $table]),
             'messages' => [
                 'success' => 'Employee created successfully'
             ]
@@ -89,7 +89,7 @@ class OperatorApi extends BaseController
             'status'   => 201,
             'error'    => null,
             'data' => $data,
-            'html' => view("Widgets/test_table", $table),
+            'html' => view("Widgets/View_Cells/test_table", $table),
             'messages' => [
                 'success' => 'Employee created successfully'
             ]
@@ -112,7 +112,7 @@ class OperatorApi extends BaseController
             $response = [
                 'status'   => 200,
                 'error'    => null,
-                'html' => view("Widgets/test_table", $table),
+                'html' => view("Widgets/View_Cells/test_table", $table),
                 'messages' => [
                     'success' => 'row successfully deleted'
                 ]
