@@ -44,7 +44,7 @@ $routes->group('test',['filter' => 'authTestGuard'], function($routes){
     $routes->get("/", "Test::index");
     $routes->get("/index/(:any)", "Test::index");
 });
-$routes->group('operatorApi',['filter' => 'authGuard'], function($routes){
+$routes->group('operatorApi',['filter' => 'authGuardApi'], function($routes){
     $routes->get('test_table_list/', 'OperatorApi::test_table_list');
     $routes->post('add_test/', 'OperatorApi::add_test');
     $routes->delete('delete_test/', 'OperatorApi::delete_test');

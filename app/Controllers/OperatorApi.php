@@ -182,4 +182,30 @@ class OperatorApi extends BaseController
             }
         }
     }
+
+    public function get_test_detail($test_id = null){
+        if ($this->request->getMethod() != "get"){
+            $error = [
+                'message' => 'method not allowed'
+            ];
+            return $this->fail($errors, 405);
+        }
+
+        $model = new TestModel();
+        $participant_model = new ParticipantModel();
+        $data = $model->where('test_id', $test_id)->first();
+        $participant_list = $participant_model->where('test_id', $test_id)->findAll();
+        if($data){
+            $response = [
+                'status'   => 200,
+                'error'    => null,
+                'data' => $data,
+                'participant_list' => $participant_list,
+            ];
+            return $this->respondDeleted($response);
+        }else{
+            return $this->failNotFound('No row found');
+        }
+    }
+
 }

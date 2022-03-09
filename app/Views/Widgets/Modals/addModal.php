@@ -64,7 +64,7 @@
                             <div id="dropdown-input-manual" >
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="fileQuestionUpload">Upload file</label>
                                 <input class="mb-3 manual-input block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"  id="fileQuestionUpload" type="file" required>
-                                <div  onclick="UploadQuestionsFile()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:cursor-pointer">Export</div>
+                                <div  onclick="UploadQuestionsFile()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:cursor-pointer">Import</div>
                             </div>
                             <div class="mb-6">
                                 <label for="soal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Jumlah Soal </label>

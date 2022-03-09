@@ -3,8 +3,8 @@
 
         
         <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            
-            <a class="hover:cursor-pointer hover:underline" onclick="openDetailModal(<?= $row['id']?>)">
+
+            <a class="hover:cursor-pointer hover:underline" onclick="openDetailModal(<?= $row['test_id']?>)">
                 <?= $row['test_id']?>
             </a>
         </td>

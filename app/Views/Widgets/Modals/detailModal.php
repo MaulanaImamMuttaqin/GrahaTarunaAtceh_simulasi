@@ -15,66 +15,125 @@
                     </svg>
                 </div>
                 </div>
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="detailModal">
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" onclick="closeDetailModal()">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
                 </button>
             </div>
             <!-- Modal body -->
-            <div class="p-6 space-y-4">
-                <div class="grid grid-cols-2 gap-4">
+            <div class= "p-6 ">
+                <div class="space-y-4">
+    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="h-16 py-1 px-4 mb-1 text-sm  text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800 flex items-center gap-5" role="alert">
+                            <div>
+                                <i class="fa-solid fa-key"></i>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                ID : <div id="detail_test_id" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div> 
+                            </div>
+                        </div>
+                        <div class="h-16 py-1 px-4 mb-1 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800  flex items-center gap-5" role="alert">
+                            <div>
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div id="detail_total_participant" class="h-6 w-6  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div> Peserta
+                            </div>
+                        </div>
+                        <div class="h-16 py-1 px-4 mb-1 text-sm  text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800 flex items-center gap-5" role="alert">
+                            <div>
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div id="detail_duration" class="h-6 w-6  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  Detik per angka
+                            </div>
+                        </div>
+                        
+                        <div class="h-16 py-1 px-4 mb-1 text-sm  text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800 flex items-center gap-5" role="alert">
+                            <div>
+                            <i class="fa-solid fa-list-ol"></i>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div id="detail_question_total" class="h-6 w-6  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  Angka Pertanyaan
+                            </div>
+                        </div>
+                    </div>
+    
                     <div class="h-16 py-1 px-4 mb-1 text-sm  text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800 flex items-center gap-5" role="alert">
                         <div>
-                            <i class="fa-solid fa-key"></i>
+                        <i class="fa-solid fa-calendar"></i>
                         </div>
                         <div class="flex items-center gap-3">
-                            ID : <div class=" h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold">475837465</div> 
-                        </div>
-                    </div>
-                    <div class="h-16 py-1 px-4 mb-1 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800  flex items-center gap-5" role="alert">
-                        <div>
-                            <i class="fa-solid fa-users"></i>
+                            dimulai dari <div id="detail_test_start_at" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  
                         </div>
                         <div class="flex items-center gap-3">
-                            <div class=" h-6 w-6  center text-white rounded-lg text-sm bg-blue-500 font-semibold">5</div> Peserta
+                            hingga <div id="detail_test_end_at" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  
                         </div>
                     </div>
-                    <div class="h-16 py-1 px-4 mb-1 text-sm  text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800 flex items-center gap-5" role="alert">
-                        <div>
-                            <i class="fa-solid fa-clock"></i>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class=" h-6 w-6  center text-white rounded-lg text-sm bg-blue-500 font-semibold">60</div>  Detik per angka
-                        </div>
-                    </div>
-                    
-                    <div class="h-16 py-1 px-4 mb-1 text-sm  text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800 flex items-center gap-5" role="alert">
-                        <div>
-                        <i class="fa-solid fa-list-ol"></i>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class=" h-6 w-6  center text-white rounded-lg text-sm bg-blue-500 font-semibold">10</div>  Angka Pertanyaan
-                        </div>
-                    </div>
-                    
-                    
                 </div>
-                <div class="h-16 py-1 px-4 mb-1 text-sm  text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800 flex items-center gap-5" role="alert">
-                    <div>
-                    <i class="fa-solid fa-calendar"></i>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        dimulai pada <div class=" h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold">2022-03-03 14:41:00</div>  
-                    </div>
-                    <div class="flex items-center gap-3">
-                        hingga <div class=" h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold">2022-03-03 14:41:00</div>  
-                    </div>
+                <div class="flex items-center p-6 justify-center">
+                    <button onclick="toggleParticipantListTable()" type="button" class="flex items-center gap-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Daftar Peserta
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
                 </div>
                     
             </div>
+
+
             <!-- Modal footer -->
             <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
-                <button data-modal-toggle="detailModal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tutup</button>
+                <button onclick="closeDetailModal()"type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tutup</button>
             </div>
+        </div>
+    </div>
+    <div id="participant_list_table" class="hidden bg-white p-3 rounded-lg">
+        <div class="flex flex-col">
+            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
+                    <div class="overflow-scroll h-[300px] w-[600px]   shadow-md sm:rounded-lg border border-gray-600">
+                        <table class="min-w-full">
+                            <thead class="bg-gray-50 dark:bg-gray-700">
+                                <tr>
+                                    <th scope="col" class="p-3 text-center text-xs font-medium tracking-wider  text-gray-700 uppercase dark:text-gray-400">
+                                        No
+                                    </th>
+                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        User ID
+                                    </th>
+                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        Nama
+                                    </th>
+                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        Hasil
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="participant_list_table_body">
+                                <!-- Product 1 -->
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="participant_result_modal" class="hidden bg-white p-3 rounded-lg h-[300px] w-[600px]">
+        <div class="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600">
+            <div class="flex gap-5 items-center">
+                <h3 class="text-lg font-semibold text-gray-900 lg:text-2xl dark:text-white">
+                    Hasil Tes
+                </h3>
+            </div>
+            <button onclick="closeParticipantResultModal()" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                <div class="h-5 w-5 center">
+                    <i class="fa-solid fa-chevron-left"></i>            
+                </div>    
+            </button>
+        </div>
+        <div id="participant_test_result" class="p-3">
+
         </div>
     </div>
 </div>
