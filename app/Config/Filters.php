@@ -30,6 +30,7 @@ class Filters extends BaseConfig
 		'honeypot' => \CodeIgniter\Filters\Honeypot::class,
 		'authGuard' => \App\Filters\AuthGuard::class,
         'authTestGuard' => \App\Filters\AuthTestGuard::class,
+        'authGuardApi'  => \App\Filters\AuthGuardApi::class
 	];
     /**
      * List of filter aliases that are always
