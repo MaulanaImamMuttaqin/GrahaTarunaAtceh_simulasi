@@ -1,7 +1,7 @@
 #-------------------------
 # Operating Specific Junk Files
 #-------------------------
-
+node_modules/
 # OS X
 .DS_Store
 .AppleDouble
