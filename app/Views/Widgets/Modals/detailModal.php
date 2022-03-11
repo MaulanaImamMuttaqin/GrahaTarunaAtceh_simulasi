@@ -8,7 +8,7 @@
                         <h3 class="text-xl font-semibold text-gray-900 lg:text-2xl dark:text-white">
                             Detail Tes
                         </h3>
-                        
+
                         <div id="modal-loading" class="text-center hidden">
                             <svg role="status" class="inline mr-2 w-4 h-4 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
@@ -17,9 +17,14 @@
                         </div>
                         
                     </div>
-                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" onclick="closeDetailModal()">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
-                    </button>
+                    <div class="flex gap-5">
+                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" onclick="editDetailMode(this)">
+                            <i class="fa-solid fa-pen-to-square"></i>                        
+                        </button>
+                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" onclick="closeDetailModal()">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+                        </button>
+                    </div>
                 </div>
                 <!-- Modal body -->
                 <div class= "p-6 ">
@@ -56,7 +61,7 @@
                                     <i class="fa-solid fa-clock"></i>
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    <div id="detail_duration" class="h-6 w-6  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  Detik per angka
+                                    <div id="detail_duration" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  Detik per angka
                                 </div>
                             </div>
                             
@@ -65,7 +70,7 @@
                                 <i class="fa-solid fa-list-ol"></i>
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    <div id="detail_question_total" class="h-6 w-6  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  Angka Pertanyaan
+                                    <div id="detail_question_total" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  Angka Pertanyaan
                                 </div>
                             </div>
                         </div>
@@ -75,10 +80,10 @@
                             <i class="fa-solid fa-calendar"></i>
                             </div>
                             <div class="flex items-center gap-3">
-                                dimulai dari <div id="detail_test_start_at" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  
+                                dimulai dari <div id="detail_test_start_at" class="h-6  px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  
                             </div>
                             <div class="flex items-center gap-3">
-                                hingga <div id="detail_test_end_at" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  
+                                hingga <div id="detail_test_end_at" class="h-6  px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  
                             </div>
                         </div>
                     </div>
@@ -87,13 +92,10 @@
                             Daftar Peserta
                             <i class="fa-solid fa-chevron-right"></i>
                         </button>
-                        <!-- <div>
-                            <button onclick="copyTestURL()" data-tooltip-target="tooltip-copy-url" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Copty Tes URL</button>
-                            <div id="tooltip-copy-url" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
-                                Tooltip content
-                                <div class="tooltip-arrow" data-popper-arrow></div>
-                            </div>
-                        </div> -->
+                        <button id="update-detail-test-button" onclick="updateDetailTest()" type="button" class="hidden flex items-center gap-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
                     </div>
                         
                 </div>

@@ -525,6 +525,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .m-1 {
   margin: 0.25rem;
 }
+.m-2 {
+  margin: 0.5rem;
+}
 .my-5 {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
@@ -548,6 +551,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+}
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .mb-5 {
   margin-bottom: 1.25rem;
@@ -749,6 +756,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .w-\[94\%\] {
   width: 94%;
+}
+.w-16 {
+  width: 4rem;
+}
+.w-28 {
+  width: 7rem;
+}
+.w-36 {
+  width: 9rem;
+}
+.w-40 {
+  width: 10rem;
 }
 .min-w-full {
   min-width: 100%;
@@ -1109,6 +1128,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .p-3 {
   padding: 0.75rem;
 }
+.p-0 {
+  padding: 0px;
+}
 .py-2\.5 {
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
@@ -1171,6 +1193,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .pl-5 {
   padding-left: 1.25rem;
+}
+.pl-0 {
+  padding-left: 0px;
+}
+.pl-2 {
+  padding-left: 0.5rem;
 }
 .text-left {
   text-align: left;
@@ -1305,6 +1333,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-blue-600 {
   --tw-text-opacity: 1;
   color: rgb(28 100 242 / var(--tw-text-opacity));
+}
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;

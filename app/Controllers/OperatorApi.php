@@ -236,4 +236,34 @@ class OperatorApi extends BaseController
             return $this->fail(["message"=> "error"], 400);
         }
     }
+    
+    public function update_test_detail(){
+        if ($this->request->getMethod() != "post"){
+            $error = [
+                'message' => 'method not allowed'
+            ];
+            return $this->fail($error, 405);
+        }
+
+        $model = new TestModel();
+
+        $id = $this->request->getVar('id');
+
+        $data = [
+            'question_total' => $this->request->getVar('question_total'),
+            'duration' => $this->request->getVar('duration'),
+            'test_start_at' => $this->request->getVar('test_start_at'),
+            'test_end_at' =>$this->request->getVar('test_end_at'),
+        ];
+        
+
+        $update = $model->update($id, $data);
+        
+        $new_data['data'] = $model->orderBy('id', 'DESC')->findAll();
+        if($update){
+            return $this->respond(["html" => view("Widgets/View_Cells/test_table", $new_data)], 200);
+        }else{
+            return $this->fail(["message"=> "error"], 400);
+        }
+    }
 }

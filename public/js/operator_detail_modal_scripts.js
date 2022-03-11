@@ -3,6 +3,51 @@ let participant_results = []
 let detail_data = {}
 let result_index = 0;
 
+const editDetailMode = (el) => {
+    if (!$(el).hasClass("edit")) {
+        $(`#detail_question_total`).html(`<input id="edit_question_total" type='number' class='rounded-lg border border-gray-200 w-16 text-black h-full' value='${detail_data.question_total}'>`)
+        $(`#detail_duration`).html(`<input id="edit_duration" type='number' class='rounded-lg border border-gray-200 w-16 text-black h-full' value='${detail_data.duration}'>`)
+        $(`#detail_test_start_at`).html(`<input id="edit_test_start_at" type='datetime-local' class='rounded-lg border border-gray-200 w-40 text-xs px-0 pl-2 text-black h-full' value='${detail_data.test_start_at.replace(" ", "T")}'>`)
+        $(`#detail_test_end_at`).html(`<input id="edit_test_end_at" type='datetime-local' class='rounded-lg border border-gray-200 w-40 text-xs px-0 pl-2 text-black h-full' value='${detail_data.test_end_at.replace(" ", "T")}'>`)
+        $(el).addClass("edit")
+        $("#update-detail-test-button").removeClass("hidden")
+
+    } else {
+        $(el).removeClass("edit")
+        renderDetailData(detail_data)
+        $("#update-detail-test-button").addClass("hidden")
+    }
+}
+
+const updateDetailTest = () => {
+    let formData = new FormData();
+
+    formData.append("id", detail_data.id)
+    formData.append("question_total", $(`#edit_question_total`).val())
+    formData.append("duration", $(`#edit_duration`).val())
+    formData.append("test_start_at", $(`#edit_test_start_at`).val())
+    formData.append("test_end_at", $(`#edit_test_end_at`).val())
+
+    $.ajax({
+        url: `${base_url}/operatorApi/update_test_detail`,
+        type: "POST",
+        cache: false,
+        data: formData,
+        processData: false,
+        contentType: false,
+        dataType: "JSON",
+        success: function (data) {
+            render_message(`Tes '${detail_data.test_id}' berhasil diupdate`)
+            $("#test_list_table tbody").html(data.html)
+            closeDetailModal()
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log("error")
+            $("#modal-loading").toggleClass("hidden")
+        }
+    });
+}
+
 const deleteParticipantsTestResult = () => {
     let delete_is_confirmed = confirm("Anda Yaking menghapus Data ini, Peserta Harus mengulangi Tes Ini")
     let data = participant_results[result_index]
@@ -48,6 +93,7 @@ const closeDetailModal = () => {
     detail_data = {}
     renderDetailData(detail_data)
     toggleModal("detailModal", false)
+    editDetailMode($(".edit"))
 }
 const openDetailModal = (id) => {
     toggleModal("detailModal", true)
