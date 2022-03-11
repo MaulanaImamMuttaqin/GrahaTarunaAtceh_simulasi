@@ -96,7 +96,8 @@ class OperatorApi extends BaseController
         ];
         return $this->respondCreated($response);
     }
-    public function delete_test($id = null){
+
+    public function delete_test($test_id = null){
         if ($this->request->getMethod() != "delete"){
             $error = [
                 'message' => 'method not allowed'
@@ -105,10 +106,11 @@ class OperatorApi extends BaseController
         }
 
         $model = new TestModel();
-        $data = $model->where('id', $id)->delete($id);
+        $participant_model = new ParticipantModel();
+        $data = $model->where('test_id', $test_id)->delete();
         $table['data'] = $model->orderBy('id', 'DESC')->findAll();
         if($data){
-            $model->delete($id);
+            $participant_model->where('test_id', $test_id)->delete();
             $response = [
                 'status'   => 200,
                 'error'    => null,
@@ -129,6 +131,7 @@ class OperatorApi extends BaseController
         }
 
         $model = new ParticipantModel();
+        $test_model = new TestModel();
         $data = json_decode($this->request->getVar('data'));
         
         try {
@@ -193,8 +196,11 @@ class OperatorApi extends BaseController
 
         $model = new TestModel();
         $participant_model = new ParticipantModel();
-        $data = $model->where('test_id', $test_id)->first();
+
         $participant_list = $participant_model->where('test_id', $test_id)->findAll();
+        $data = $model->where('test_id', $test_id)->first();
+        $data["total_participant"] = count($participant_list);
+
         if($data){
             $response = [
                 'status'   => 200,
@@ -207,5 +213,27 @@ class OperatorApi extends BaseController
             return $this->failNotFound('No row found');
         }
     }
+    public function delete_participant_result(){
+        if ($this->request->getMethod() != "post"){
+            $error = [
+                'message' => 'method not allowed'
+            ];
+            return $this->fail($error, 405);
+        }
 
+        $model = new ParticipantModel();
+        $id = $this->request->getVar('result_test_id');
+
+        $data = [
+            'result' =>null,
+            'is_start' => 0,
+            'is_finish' => 0,
+        ];
+        $update = $model->update($id, $data);
+        if($update){
+            return $this->respond(["message" => "data berhasil di hapus"], 200);
+        }else{
+            return $this->fail(["message"=> "error"], 400);
+        }
+    }
 }

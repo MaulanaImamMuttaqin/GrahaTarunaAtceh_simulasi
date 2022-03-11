@@ -4,14 +4,14 @@ module.exports = {
     "./app/Views/**/*.php",
     "./app/Views/**/**/*.php",
     "./app/Views/**/**/**/*.php",
-    "./public/js/**/*.js"
+    "./public/js/**/*.js",
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     screens: {
       'mobile': '320px',
       'tablet': '640px',
       // => @media (min-width: 640px) { ... }
-
       'laptop': '1024px',
       // => @media (min-width: 1024px) { ... }
 
@@ -19,5 +19,7 @@ module.exports = {
       // => @media (min-width: 1280px) { ... }
     },
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 }

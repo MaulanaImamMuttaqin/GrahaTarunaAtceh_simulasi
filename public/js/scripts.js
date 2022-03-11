@@ -19,7 +19,7 @@ let score = {
         wrong: 0,
         correct: 0
     },
-    detail: {}
+    detail: []
 }
 
 
@@ -32,6 +32,9 @@ $(document).ready(() => {
         this.addEventListener("mouseup", onClickRadioButton)
     })
 });
+
+
+
 
 // fungsi untuk mengatur konfigurasi awal dari test
 const preTestConfiguration = () => {
@@ -56,6 +59,16 @@ const preTestConfiguration = () => {
         storeScore(score)
         if (TestConfiguration.auto) {
             question_list = numbersGenerator(TestConfiguration)
+            question_list.forEach(q => {
+                score.detail.push({
+                    question_number: q,
+                    total: 0,
+                    wrong: 0,
+                    correct: 0,
+                    tot_diff: null,
+                    stability: null
+                })
+            })
             console.log(question_list)
         }
         else if (!TestConfiguration.auto) {
@@ -118,32 +131,34 @@ const setNumberContainerAndChoices = ({ number_digits }) => {
 }
 
 const renderResult = (data) => {
-    let detail = data.detail
-    $(".all-total").html(data.overall.total)
-    $(".all-correct").html(data.overall.correct)
-    $(".all-wrong").html(data.overall.wrong)
-    $("#tot_answered").html(`${Object.keys(detail).length} dari ${question_list.length} soal terjawab`)
-
-    Object.entries(detail).forEach(([key, value], index) => {
-        renderQuestionResult(index, key, value)
-
-    })
+    $("#final_result").html(data.test_final_score.final_result)
 }
+// const renderResult = (data) => {
+//     let detail = data.detail
+//     $(".all-total").html(data.overall.total)
+//     $(".all-correct").html(data.overall.correct)
+//     $(".all-wrong").html(data.overall.wrong)
+//     $("#tot_answered").html(`${Object.keys(detail).length} dari ${question_list.length} soal terjawab`)
 
-const renderQuestionResult = (index, key, prop) => {
-    let detail = `
-    <div class="flex items-center">
-        <div class="min-w-[100px]">
-            <span class="soal">${key}</span>
-        </div>
-        <span class="mx-2"><i class="fa-solid fa-arrow-right"></i></span>
-        <span class="total">${prop.total}</span>/
-        <span class="correct">${prop.correct}</span>/
-        <span class="wrong">${prop.wrong}</span>
-    </div>
-    `
-    $(".detail").append($(detail))
-}
+//     detail.forEach((d, index) => {
+//         renderQuestionResult(index, d)
+//     })
+// }
+
+// const renderQuestionResult = (index, d) => {
+//     let detail = `
+//     <div class="flex items-center">
+//         <div class="min-w-[100px]">
+//             <span class="soal">${d.question_number}</span>
+//         </div>
+//         <span class="mx-2"><i class="fa-solid fa-arrow-right"></i></span>
+//         <span class="total">${d.total}</span>/
+//         <span class="correct">${d.correct}</span>/
+//         <span class="wrong">${d.wrong}</span>
+//     </div>
+//     `
+//     $(".detail").append($(detail))
+// }
 
 const renderChoicesContainer = (choices) => {
     let choicesContainer = `
@@ -220,14 +235,47 @@ const TestFinish = () => {
     $("#pertanyaan").addClass("hidden")
     $("#soal").addClass("hidden")
     resetNumberContainerAndChoices()
-    renderResult(score)
 
+    calculateTestResult(score)
+    renderResult(score)
     toggleModal('resultModal', true)
 
     uploadResult()
+    console.log(score)
 }
 
+const calculateTestResult = (data) => {
 
+    let tot_diff_total = data.detail.reduce((total, each) => {
+        return total + each.tot_diff
+    }, 0)
+
+    let total_ketahanan = data.detail.reduce((total, each) => {
+        return total + each.stability
+    }, 0)
+
+    let ketahanan = parseFloat((total_ketahanan / (data.detail.length - 1)).toFixed(2))
+    let ketahanan_final = parseFloat((ketahanan * 0.3).toFixed(2))
+    let ketelitian = 100 - (data.overall.wrong * 5)
+    let ketelitian_final = parseFloat((ketelitian * 0.35).toFixed(2))
+    let kecepatan = parseFloat(((data.overall.total / 400) * 100).toFixed(2))
+    let kecepatan_final = parseFloat((kecepatan * 0.35).toFixed(2))
+    let final_result = (ketahanan_final + ketelitian_final + kecepatan_final).toFixed(2)
+
+    score["test_final_score"] = {
+        ketahanan,
+        ketelitian,
+        kecepatan,
+        kecepatan_final,
+        ketelitian_final,
+        ketahanan_final,
+        final_result
+    }
+
+    score.overall.tot_diff_total = tot_diff_total
+    score.overall.total_ketahanan = total_ketahanan
+
+}
 const uploadResult = () => {
     let formData = new FormData()
     formData.append('result_test_id', TestConfiguration.result_test_id)
@@ -253,29 +301,38 @@ const uploadResult = () => {
 
 // fungsi untuk memberikan event listener ke radio button
 const onClickRadioButton = (e) => {
-    let initial_score = {
-        total: 0,
-        wrong: 0,
-        correct: 0
-    }
+    // let initial_score = {
+    //     total: 0,
+    //     wrong: 0,
+    //     correct: 0,
+    //     tot_diff: null,
+    //     stability: null
+    // }
 
 
     let value = e.target.value
     if (value === undefined || value === "") return null
 
-    if (!score.detail[question_list[nth_question]]) score.detail[question_list[nth_question]] = initial_score
+    // if (!score.detail[question_list[nth_question]]) score.detail[question_list[nth_question]] = initial_score
 
     if (!currentQuestion.includes(value)) {
-        score.detail[question_list[nth_question]].correct++
+        score.detail[nth_question].correct++
         score.overall.correct++
     } else {
-        score.detail[question_list[nth_question]].wrong++
+        score.detail[nth_question].wrong++
         score.overall.wrong++
     }
 
-    score.detail[question_list[nth_question]].total++
+
+
+
+    score.detail[nth_question].total++
     score.overall.total++
 
+    if (nth_question > 0) {
+        score.detail[nth_question].tot_diff = score.detail[nth_question - 1].total - score.detail[nth_question].total
+        score.detail[nth_question].stability = 100 - (Math.abs(score.detail[nth_question].tot_diff) * 5)
+    }
 
     e.target.checked = false
     storeScore(score)
@@ -336,7 +393,10 @@ const startTimer = () => {
             nth_question
         }
         storeTestStatus(testStatus)
-        if (timer < 0) renderNewNumbers()
+        if (timer < 0) {
+            renderNewNumbers()
+
+        }
         renderTimer(timer)
 
     }, 1000)

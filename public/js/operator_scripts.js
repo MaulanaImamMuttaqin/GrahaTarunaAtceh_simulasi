@@ -1,5 +1,5 @@
 let questionRow = [];
-let participant_results = []
+
 $(function () {
     $("#nav_controller").on("click", (obj) => {
         $("#navbar").toggleClass("w-1/5").toggleClass("w-[6%]")
@@ -96,103 +96,8 @@ $(function () {
         $("#toggle-manual").toggleClass("hidden")
     })
 })
-const closeDetailModal = () => {
-    toggleModal("detailModal", false)
-    $("#participant_result_modal").addClass("hidden")
-    $("#participant_list_table").addClass("hidden")
-    $("#participant_test_result").html("")
-    participant_results = []
-}
-const openDetailModal = (id) => {
-    toggleModal("detailModal", true)
-    $("#modal-loading").toggleClass("hidden")
-    renderDetailData("reset")
-    $.ajax({
-        url: `${base_url}/operatorApi/get_test_detail/${id}`,
-        type: "GET",
-        success: function (data) {
-            console.log(data)
-            renderDetailData(data.data)
-            renderDetailTable(data.participant_list)
-            $("#modal-loading").toggleClass("hidden")
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log("error")
-            $("#modal-loading").toggleClass("hidden")
-        }
-    });
-}
 
 
-const renderDetailData = (data) => {
-    if (data === "reset") {
-        data = {
-            id: "",
-            test_id: "",
-            question_total: "",
-            number_digits: "",
-            duration: "",
-            test_start_at: "",
-            test_end_at: "",
-            is_open: "",
-            total_participant: "",
-            description: "",
-            auto: "",
-            questions_list: ""
-        }
-    }
-    Object.entries(data).forEach(([key, value], index) => {
-        $(`#detail_${key}`).html(value)
-    })
-}
-
-const renderDetailTable = (data) => {
-    $("#participant_list_table_body").html("")
-    data.forEach((row, index) => {
-        participant_results.push(row.result)
-        render_participant_list_detail(index, row.user_id, row.name, row.result)
-    })
-}
-
-const render_participant_list_detail = (index, userId, name, result) => {
-    let element = `
-    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <td class="py-4 text-center text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            ${index + 1}
-        </td>
-        <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-            ${userId}
-        </td>
-        <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-            ${name}
-        </td>
-        <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-            ${result ?
-            `<button onclick="showParticipantResult(${index})"  class="text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-4 py-2 text-center">Hasil</button>`
-            : 'N/A'
-        }
-        </td>
-    </tr>
-    `
-    $("#participant_list_table_body").append($(element))
-}
-
-const showParticipantResult = (index) => {
-    console.log(participant_results[index])
-    $("#participant_result_modal").removeClass("hidden")
-    $("#participant_list_table").addClass("hidden")
-    $("#participant_test_result").html(participant_results[index])
-}
-
-const toggleParticipantListTable = () => {
-    $("#participant_list_table").toggleClass("hidden")
-}
-
-const closeParticipantResultModal = () => {
-    $("#participant_result_modal").addClass("hidden")
-    $("#participant_list_table").removeClass("hidden")
-    $("#participant_test_result").html("")
-}
 
 const readQuestionFile = () => {
     console.log(Upload("fileQuestionUpload"))

@@ -30,21 +30,21 @@ class AuthTest extends Controller
 
         $user_data = [
             'test_id' => $token,
-            'user_id'=> $user_id    
+            'user_id'=> $user_id   
         ];
         $data = $model->where($user_data)->first();
         
         if(!empty($data)){
             if(!$data['is_finish']){
-                $this->session->set($data);
+                $this->session->set(['participant_data'=>$data]);
                 return redirect()->to(base_url("test/index/{$data['test_id']}"));
             }else{
                 $this->session->setFlashdata('msg', 'Anda Sudah menyelesaikan Test Ini, silahkan hubungi Operator');
-                return redirect()->to('authtest');
+                return redirect()->to(base_url('authtest'));
             }
         }else{
             $this->session->setFlashdata('msg', 'User ID atau Token yang anda Masukkan tidak terdaftar');
-            return redirect()->to('authtest');
+            return redirect()->to(base_url('authtest'));
         }
     }
 

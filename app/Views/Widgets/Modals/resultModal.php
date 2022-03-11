@@ -16,7 +16,17 @@
                 </div>
                 <!-- Modal body -->
                 <div class="p-6 space-y-6">
-                    <div class="overall">
+                    <div class="flex flex-col justify-center items-center gap-5">
+                        <div class="text-lg font-semibold uppercase ">
+                            <h1><?= session()->get('participant_data')['name']?></h1>
+                        </div>
+                        <p>Hasil Test Anda Adalah:</p>
+                        <div class="h-[150px] p-2 border border-gray-200 rounded-lg center text-6xl">
+                            <h1 id="final_result"></h1>
+                        </div>
+                    </div>
+
+                    <!-- <div class="overall">
                         <div class="flex justify-evenly p-2">
                             <div class="h-[100px] w-[130px] relative p-1 flex flex-col rounded-lg shadow-sm border border-gray bg-blue-600 text-white">
                                 <p class="text-sm absolute">Terjawab</p>
@@ -39,7 +49,7 @@
                         <div class="pl-5 mt-3 detail">
                         
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>

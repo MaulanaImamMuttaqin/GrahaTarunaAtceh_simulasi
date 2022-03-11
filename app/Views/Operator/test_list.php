@@ -155,6 +155,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
     <script src="<?= base_url('js/operator_scripts.js')?>"></script>
+    <script src="<?= base_url('js/operator_detail_modal_scripts.js')?>"></script>
+    
     <script src="<?= base_url('js/xlsx_scripts.js')?>"></script>
 
 <?= $this->endSection()?>
