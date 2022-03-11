@@ -47,8 +47,7 @@ class AuthTest extends Controller
             return redirect()->to(base_url('authtest'));
         }
     }
-
-
+    
     public function logoutAuth()
     {
         $this->session = session();

@@ -256,12 +256,33 @@ class OperatorApi extends BaseController
             'test_end_at' =>$this->request->getVar('test_end_at'),
         ];
         
+        
 
         $update = $model->update($id, $data);
-        
+
         $new_data['data'] = $model->orderBy('id', 'DESC')->findAll();
         if($update){
             return $this->respond(["html" => view("Widgets/View_Cells/test_table", $new_data)], 200);
+        }else{
+            return $this->fail(["message"=> "error"], 400);
+        }
+    }
+
+    
+    public function delete_participant(){
+        if ($this->request->getMethod() != "post"){
+            $error = [
+                'message' => 'method not allowed'
+            ];
+            return $this->fail($error, 405);
+        }
+
+        $model = new ParticipantModel();
+        $id = $this->request->getVar('result_test_id');
+
+        $delete = $model->where('id', $id)->delete();
+        if($delete){
+            return $this->respondDeleted(["message" => "data berhasil di hapus"]);
         }else{
             return $this->fail(["message"=> "error"], 400);
         }
