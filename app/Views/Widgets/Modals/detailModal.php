@@ -109,7 +109,7 @@
             <div class="flex flex-col">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
-                        <div class="overflow-scroll h-[300px] w-[600px]   shadow-md sm:rounded-lg border border-gray-600">
+                        <div class="overflow-scroll h-[300px] w-[600px]   shadow-md sm:rounded-lg border border-gray-300">
                             <table class="min-w-full">
                                 <thead class="bg-gray-50 dark:bg-gray-700">
                                     <tr>
@@ -158,7 +158,7 @@
                 </div>
             </div>
             <div id="participant_test_result" class="p-3 flex flex-col gap-3 ">
-                <div class="border border-black flex justify-between items-center p-3">
+                <div class="border border-gray-200 flex justify-between items-center p-3">
                     <div>
                         <div class="flex  gap-1 ">
                             <p class="w-20">Nama</p>
@@ -171,13 +171,13 @@
                             <p id="participant_result_id">1804105010004</p>
                         </div>
                     </div>
-                    <div class="flex border border-black text-2xl p-3">
+                    <div class="flex border border-gray-200 text-2xl p-3">
                         <p class="border-r border-gray-200 p-2">Nilai</p>
                         <p class="p-2" id="participant_result_final_result">65.44</p>
                     </div>
                 </div>
 
-                <div class="border border-black p-3">
+                <div class="border border-gray-200 p-3">
                     <div class="text-center">
                         <p>Resume Hasil Pengerjaan</p>
                     </div>
@@ -232,7 +232,7 @@
                     </div>
                 </div>
 
-                <div class="border border-black p-3">
+                <div class="border border-gray-200 p-3">
                     <div class="text-center">
                         <p>Faktor Penilaian</p>
                     </div>

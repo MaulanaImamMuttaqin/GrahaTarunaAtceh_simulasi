@@ -5,7 +5,6 @@ module.exports = {
     "./app/Views/**/**/*.php",
     "./app/Views/**/**/**/*.php",
     "./public/js/**/*.js",
-    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     screens: {
@@ -19,7 +18,4 @@ module.exports = {
       // => @media (min-width: 1280px) { ... }
     },
   },
-  plugins: [
-    require('flowbite/plugin')
-  ],
 }

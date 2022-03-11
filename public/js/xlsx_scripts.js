@@ -1,10 +1,6 @@
 let test_id;
 let participant_list;
 
-
-
-
-
 function set_test_id(id) {
     console.log("test id ", id)
     test_id = id
