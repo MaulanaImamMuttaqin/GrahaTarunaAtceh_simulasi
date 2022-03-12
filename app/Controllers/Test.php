@@ -19,6 +19,7 @@ class Test extends BaseController
     {   
         
         if(!$this->session->has('participant_data')){
+            $this->session->setFlashdata('test_id', $id);
             return redirect()->to(base_url("authtest"));
         }
 

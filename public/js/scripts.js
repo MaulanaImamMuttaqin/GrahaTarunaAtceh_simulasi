@@ -28,8 +28,12 @@ $(document).ready(() => {
     // mengatur soal
     preTestConfiguration()
     // kasih event ke radio button kalau ditekan
-    $("input[name='answer']").each(() => {
-        this.addEventListener("mouseup", onClickRadioButton)
+    // $("input[name='answer']").each(() => {
+
+    //     this.addEventListener("mouseup", onClickRadioButton)
+    // })
+    $('input[name="answer"]').each(function () {
+        $(this).on("click", function () { onClickRadioButton(this) })
     })
 });
 
@@ -165,7 +169,7 @@ const renderChoicesContainer = (choices) => {
     let choicesContainer = `
         <div class="flex flex-col text-center font-semibold ">
             <p>${choices}</p>
-            <input class="questionChoices hover:cursor-pointer" type="radio" id="answer" name="answer"
+            <input class="questionChoices hover:cursor-pointer hover:bg-blue-300 focus:ring-0" type="radio" id="answer" name="answer"
                 value="">
         </div>
     `
@@ -259,7 +263,7 @@ const calculateTestResult = (data) => {
     let ketahanan_final = parseFloat((ketahanan * 0.3).toFixed(2))
     let ketelitian = 100 - (data.overall.wrong * 5)
     let ketelitian_final = parseFloat((ketelitian * 0.35).toFixed(2))
-    let kecepatan = parseFloat(((data.overall.total / 400) * 100).toFixed(2))
+    let kecepatan = parseFloat(((data.overall.total / (40 * data.detail.length)) * 100).toFixed(2))
     let kecepatan_final = parseFloat((kecepatan * 0.35).toFixed(2))
     let final_result = (ketahanan_final + ketelitian_final + kecepatan_final).toFixed(2)
 
@@ -301,17 +305,10 @@ const uploadResult = () => {
 
 
 // fungsi untuk memberikan event listener ke radio button
-const onClickRadioButton = (e) => {
-    // let initial_score = {
-    //     total: 0,
-    //     wrong: 0,
-    //     correct: 0,
-    //     tot_diff: null,
-    //     stability: null
-    // }
+const onClickRadioButton = function (el) {
+    let value = el.value
 
 
-    let value = e.target.value
     if (value === undefined || value === "") return null
 
     // if (!score.detail[question_list[nth_question]]) score.detail[question_list[nth_question]] = initial_score
@@ -335,8 +332,14 @@ const onClickRadioButton = (e) => {
         score.detail[nth_question].stability = 100 - (Math.abs(score.detail[nth_question].tot_diff) * 5)
     }
 
-    e.target.checked = false
+
+
     storeScore(score)
+    $(el).prop("checked", false)
+    if (score.detail[nth_question].total >= 40) {
+        renderNewNumbers()
+        return;
+    }
     setQuestion()
 
     // acak pertanyaan yang baru
@@ -354,6 +357,7 @@ const getScore = () => {
 const storeTestStatus = (data) => {
     localStorage.setItem("test_status", JSON.stringify(data))
 }
+
 const getTestStatus = () => {
     return localStorage.getItem("test_status")
 }

@@ -265,7 +265,7 @@ const renderParticipantTestResult = () => {
     $("#participant_result_accuracy_final").html(data.result.test_final_score.ketelitian_final)
     $("#participant_result_endurance").html(data.result.test_final_score.ketahanan)
     $("#participant_result_endurance_final").html(data.result.test_final_score.ketahanan_final)
-    $("#participant_result_factor_total").html(data.result.test_final_score.ketahanan + data.result.test_final_score.ketelitian + data.result.test_final_score.kecepatan)
+    $("#participant_result_factor_total").html((data.result.test_final_score.ketahanan + data.result.test_final_score.ketelitian + data.result.test_final_score.kecepatan).toFixed(2))
     $("#participant_result_final_result_total").html(data.result.test_final_score.final_result)
     $("#participant_result_total_answered").html(data.result.overall.total)
     $("#participant_result_total_wrong").html(data.result.overall.wrong)
