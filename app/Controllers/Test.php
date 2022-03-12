@@ -23,7 +23,7 @@ class Test extends BaseController
         }
 
         if(!($this->session->get('participant_data')['test_id'] == $id) ){
-            return redirect()->to(base_url("authtest"));
+            $allowed = false;
         }
 
 
@@ -44,7 +44,6 @@ class Test extends BaseController
         $test_end_at = $test_end->getTimestamp();
         $test_start_at = $test_start->getTimestamp();
         $time_now = $now->getTimestamp();
-
 
         $allowed = true;
 
@@ -67,7 +66,5 @@ class Test extends BaseController
             return redirect()->to(base_url("authtest"));
         }
         return view("Test/home2", $data);
-        
-        
     }
 }
