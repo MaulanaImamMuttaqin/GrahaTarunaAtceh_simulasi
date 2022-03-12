@@ -4,7 +4,32 @@ let detail_data = {}
 let result_index = 0;
 
 
+const exportToSpreadSheet = () => {
+    let data_to_export = [];
+    participant_results.forEach((d, i) => {
+        let data = {
+            No: i + 1,
+            ID: d.user_id,
+            Nama: d.name,
+            Hasil: d.result ? d.result.test_final_score.final_result : 'N/A'
+        }
+        data_to_export.push(data)
+    })
+
+    let binaryWS = XLSX.utils.json_to_sheet(data_to_export);
+
+    // Create a new Workbook
+    var wb = XLSX.utils.book_new()
+
+    // Name your sheet
+    XLSX.utils.book_append_sheet(wb, binaryWS, 'Hasil Tes')
+
+    // export your excel
+    XLSX.writeFile(wb, 'Hasil Tes Kecermatan.xlsx');
+}
+
 const toTestPage = () => {
+    console.log(`${base_url}/test/index/${detail_data.test_id}`)
     window.open(`${base_url}/test/index/${detail_data.test_id}`);
 }
 
@@ -177,7 +202,7 @@ const render_participant_list_detail = (index, userId, name, result) => {
         </td>
         <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
             ${name !== '-' ?
-            `<button onclick="deleteParticipant(${index})"  class="text-white bg-red-500 hover:bg-red-800  font-medium rounded-lg text-sm px-4 py-2 text-center">
+            `<button onclick="deleteParticipant(${index - 1})"  class="text-white bg-red-500 hover:bg-red-800  font-medium rounded-lg text-sm px-4 py-2 text-center">
                     <i class="fa-solid fa-trash-can"></i>  
                 </button>`
             : 'N/A'
