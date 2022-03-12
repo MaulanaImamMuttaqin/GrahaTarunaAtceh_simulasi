@@ -1,7 +1,7 @@
 <div id="addModal" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center h-modal md:h-full md:inset-0">
             <div class="relative px-4 w-full max-w-2xl h-full md:h-auto">
 
-                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700  h-[600px] overflow-y-auto">
 
                     <div class="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600">
                         <div class="flex gap-5 items-center">
@@ -19,14 +19,16 @@
                             <i class="fa-solid fa-xmark"></i>
                         </button>
                     </div>
-                    <button id="toggle-manual" type="button" class=" flex gap-5 items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" >
-                        <i class="fa-solid fa-chevron-down"></i>
-                        <span class="text-sm font-normal">Atur Soal Secara Otomatis</span>
-                    </button>
-                    <button id="toggle-otomatis" type="button" class="hidden flex gap-5 items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" >
-                        <i class="fa-solid fa-chevron-down"></i>
-                        <span class="text-sm font-normal"> Masukkan Soal Secara Manual</span>
-                    </button>
+                    <div class="px-5">
+                        <button id="toggle-manual" type="button" class=" flex gap-5 items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" >
+                            <i class="fa-solid fa-chevron-down"></i>
+                            <span class="text-sm font-normal">Atur Soal Secara Otomatis</span>
+                        </button>
+                        <button id="toggle-otomatis" type="button" class="hidden flex gap-5 items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" >
+                            <i class="fa-solid fa-chevron-down"></i>
+                            <span class="text-sm font-normal"> Masukkan Soal Secara Manual</span>
+                        </button>
+                    </div>
                     <form id="add_test_form" action="javascript:void(0)">
                         <div class="p-6 space-y-6">
                             <div class="mb-6">
@@ -64,7 +66,15 @@
                             <div id="dropdown-input-manual" >
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="fileQuestionUpload">Upload file</label>
                                 <input class="mb-3 manual-input block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"  id="fileQuestionUpload" type="file" required>
-                                <div  onclick="UploadQuestionsFile()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:cursor-pointer">Import</div>
+                                <div class="flex gap-5">
+                                    <div  onclick="UploadQuestionsFile()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:cursor-pointer">Import</div>
+                                    <div class="text-gray-800 leading-none flex items-center" id="fileQuestionUpload_result">
+                                        <small>
+                                        </small>
+                                    </div>
+                                </div>
+                                
+                                
                             </div>
                             <div class="mb-6">
                                 <label for="soal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Jumlah Soal </label>

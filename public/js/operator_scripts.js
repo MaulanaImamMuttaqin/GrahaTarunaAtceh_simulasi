@@ -179,9 +179,10 @@ const ProcessExcelsQuestion = (data) => {
 
     //Read all rows from First Sheet into an JSON array.
     var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
-    alert("data berhasil dimasukkan")
+
     excelRows.forEach(r => {
         questionRow.push(r["soal"])
     })
 
+    $("#fileQuestionUpload_result small").html(questionRow.join(", "))
 };  

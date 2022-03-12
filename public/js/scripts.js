@@ -59,16 +59,7 @@ const preTestConfiguration = () => {
         storeScore(score)
         if (TestConfiguration.auto) {
             question_list = numbersGenerator(TestConfiguration)
-            question_list.forEach(q => {
-                score.detail.push({
-                    question_number: q,
-                    total: 0,
-                    wrong: 0,
-                    correct: 0,
-                    tot_diff: null,
-                    stability: null
-                })
-            })
+
             console.log(question_list)
         }
         else if (!TestConfiguration.auto) {
@@ -77,6 +68,16 @@ const preTestConfiguration = () => {
             question_list = shuffle(question_list, TestConfiguration.question_total)
             console.log(question_list)
         }
+        question_list.forEach(q => {
+            score.detail.push({
+                question_number: q,
+                total: 0,
+                wrong: 0,
+                correct: 0,
+                tot_diff: null,
+                stability: null
+            })
+        })
         testStatus.question_list = question_list
 
         timer = duration

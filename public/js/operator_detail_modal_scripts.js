@@ -115,13 +115,16 @@ const openDetailModal = (id) => {
 }
 
 
-const renderDetailData = ({ test_id, question_total, duration, total_participant, test_start_at, test_end_at }) => {
+const renderDetailData = ({ test_id, question_total, duration, total_participant, test_start_at, test_end_at, auto, number_digits }) => {
     $(`#detail_test_id`).html(test_id ? test_id : '')
     $(`#detail_question_total`).html(question_total ? question_total : '')
     $(`#detail_duration`).html(duration ? duration : '')
-    $(`#detail_total_participant`).html(total_participant ? total_participant : '')
+    $(`#detail_total_participant`).html(total_participant ? total_participant : '0')
     $(`#detail_test_start_at`).html(test_start_at ? test_start_at : '')
     $(`#detail_test_end_at`).html(test_end_at ? test_end_at : '')
+    $(`#detail_mode`).html(auto == 1 ? "Auto" : "Manual")
+    $(`#detail_number_digits`).html(number_digits > 0 ? number_digits : '?')
+    console.log(auto)
 }
 
 const renderDetailTable = (data) => {
@@ -131,10 +134,13 @@ const renderDetailTable = (data) => {
         data.forEach((row, index) => {
             row.result = JSON.parse(row.result)
             participant_results.push(row)
-            render_participant_list_detail(index, row.user_id, row.name, row.result)
+            render_participant_list_detail(index + 1, row.user_id, row.name, row.result)
         })
-        return;
+    } else {
+        render_participant_list_detail("-", "-", "-", null)
     }
+
+    console.log(participant_results)
 }
 
 
@@ -144,7 +150,7 @@ const render_participant_list_detail = (index, userId, name, result) => {
     let element = `
     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <td class="py-4 text-center text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            ${index + 1}
+            ${index}
         </td>
         <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
             ${userId}
@@ -154,16 +160,17 @@ const render_participant_list_detail = (index, userId, name, result) => {
         </td>
         <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
             ${result ?
-            `<button onclick="showParticipantResult(${index})"  class="text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-4 py-2 text-center">Hasil</button>`
+            `<button onclick="showParticipantResult(${index - 1})"  class="text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-4 py-2 text-center">Hasil</button>`
             : 'N/A'
         }
         </td>
         <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-            <button onclick="deleteParticipant(${index})"  class="text-white bg-red-500 hover:bg-red-800  font-medium rounded-lg text-sm px-4 py-2 text-center">
-                <i class="fa-solid fa-trash-can"></i>  
-            </button>
-            
-        
+            ${name !== '-' ?
+            `<button onclick="deleteParticipant(${index})"  class="text-white bg-red-500 hover:bg-red-800  font-medium rounded-lg text-sm px-4 py-2 text-center">
+                    <i class="fa-solid fa-trash-can"></i>  
+                </button>`
+            : 'N/A'
+        }
         </td>
     </tr>
     `
@@ -213,7 +220,6 @@ const showParticipantResult = (index) => {
 
 const renderParticipantTestResult = () => {
     let data = participant_results[result_index]
-    console.log(data)
     $("#participant_result_name").html(data.name)
     $("#participant_result_id").html(data.user_id)
     $("#participant_result_final_result").html(data.result.test_final_score.final_result)
@@ -231,7 +237,6 @@ const renderParticipantTestResult = () => {
 
     renderParticipantTestResultTable(data.result.detail)
     // $("#participant_result_accuracy").html(data.result.test_final_score.)
-
 
 }
 
