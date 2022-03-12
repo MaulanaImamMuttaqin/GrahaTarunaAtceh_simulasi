@@ -18,6 +18,10 @@
                         
                     </div>
                     <div class="flex gap-5">
+                    
+                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" onclick="toTestPage()">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>                       
+                        </button>
                         <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" onclick="editDetailMode(this)">
                             <i class="fa-solid fa-pen-to-square"></i>                        
                         </button>
@@ -139,8 +143,11 @@
                                             Nama
                                         </th>
                                         <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-gray-700 uppercase dark:text-gray-400">
-                                            Hasil
+                                            Nilai
                                         </th>
+                                        <!-- <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-gray-700 uppercase dark:text-gray-400">
+                                            Detail
+                                        </th> -->
                                     </tr>
                                 </thead>
                                 <tbody id="participant_list_table_body">

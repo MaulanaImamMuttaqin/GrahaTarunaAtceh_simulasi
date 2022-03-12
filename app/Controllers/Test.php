@@ -17,6 +17,7 @@ class Test extends BaseController
 
     public function index($id = null)
     {   
+        
         if(!$this->session->has('participant_data')){
             return redirect()->to(base_url("authtest"));
         }
@@ -44,19 +45,27 @@ class Test extends BaseController
         $test_start_at = $test_start->getTimestamp();
         $time_now = $now->getTimestamp();
 
+
+        $allowed = true;
+
         if($participant_data['is_finish']){
             $this->session->setFlashdata('msg', 'Anda Sudah menyelesaikan Test Ini, silahkan hubungi Operator');
-            return redirect()->to(base_url("authtest"));
+            $allowed = false;
         }
+
         if (($time_now >= $test_end_at) && ($time_now >= $test_start_at)){
             $this->session->setFlashdata('msg', "Waktu Tes sudah Selesai, silahkan hubungi operator");
-            return redirect()->to(base_url("authtest"));
+            $allowed = false;
 
         } else if( ($time_now < $test_end_at) && ($time_now < $test_start_at)){
             $this->session->setFlashdata('msg', "Tes belum di mulai, coba lagi nanti");
-            return redirect()->to(base_url("authtest"));
+            $allowed = false;
         }
         
+        if (!$allowed){
+            $this->session->setFlashdata('test_id', $id);
+            return redirect()->to(base_url("authtest"));
+        }
         return view("Test/home2", $data);
         
         

@@ -3,6 +3,11 @@ let participant_results = []
 let detail_data = {}
 let result_index = 0;
 
+
+const toTestPage = () => {
+    window.open(`${base_url}/test/index/${detail_data.test_id}`);
+}
+
 const editDetailMode = (el,) => {
     if (!$(el).hasClass("edit")) {
         $(`#detail_question_total`).html(`<input id="edit_question_total" type='number' class='rounded-lg border border-gray-200 w-16 text-black h-full' value='${detail_data.question_total}'>`)
@@ -160,6 +165,12 @@ const render_participant_list_detail = (index, userId, name, result) => {
         </td>
         <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
             ${result ?
+            result.test_final_score.final_result
+            : 'N/A'
+        }
+        </td>
+        <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+            ${result ?
             `<button onclick="showParticipantResult(${index - 1})"  class="text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-4 py-2 text-center">Hasil</button>`
             : 'N/A'
         }
@@ -268,6 +279,8 @@ const renderParticipantTestResultTable = (data) => {
 }
 const toggleParticipantListTable = () => {
     $("#participant_list_table").toggleClass("hidden")
+    $("#participant_result_modal").addClass("hidden")
+    $("#participant_result_table tbody tr").not(".participant-result-row").remove();
 }
 
 const closeParticipantResultModal = () => {
