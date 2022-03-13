@@ -263,9 +263,9 @@ const renderParticipantTestResult = () => {
     let data = participant_results[result_index]
     $("#participant_result_name").html(data.name)
     $("#participant_result_id").html(data.user_id)
-    $("#participant_result_is_passed").html(data.is_passed === 1 ? "Lulus" : "Tidak Lulus")
+    $("#participant_result_is_passed").html(data.is_passed == 1 ? "Lulus" : "Tidak Lulus")
     $("#participant_result_final_result").html(Round(data.result.test_final_score.final_result))
-    $("#participant_result_final_result").addClass(data.is_passed === 1 ? 'bg-blue-500' : 'bg-red-500')
+    $("#participant_result_final_result").addClass(data.is_passed == 1 ? 'bg-blue-500' : 'bg-red-500')
     $("#participant_result_speed").html(Round(data.result.test_final_score.kecepatan))
     $("#participant_result_speed_final").html(Round(data.result.test_final_score.kecepatan_final))
     $("#participant_result_accuracy").html(Round(data.result.test_final_score.ketelitian))
