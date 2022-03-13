@@ -156,7 +156,6 @@
     <script src="<?= base_url('js/jszip.js')?>"></script>
     <script src="<?= base_url('js/operator_scripts.js')?>"></script>
     <script src="<?= base_url('js/operator_detail_modal_scripts.js')?>"></script>
-    
     <script src="<?= base_url('js/xlsx_scripts.js')?>"></script>
 
 <?= $this->endSection()?>

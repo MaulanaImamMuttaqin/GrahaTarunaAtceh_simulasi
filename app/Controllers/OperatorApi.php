@@ -213,6 +213,7 @@ class OperatorApi extends BaseController
             return $this->failNotFound('No row found');
         }
     }
+    
     public function delete_participant_result(){
         if ($this->request->getMethod() != "post"){
             $error = [

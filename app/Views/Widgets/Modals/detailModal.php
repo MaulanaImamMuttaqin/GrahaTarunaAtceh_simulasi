@@ -202,10 +202,15 @@
                             <p> :</p>
                             <p id="participant_result_id">1804105010004</p>
                         </div>
+                        <div class="flex  gap-1 ">
+                            <p class="w-20">Status</p>
+                            <p> :</p>
+                            <p id="participant_result_is_passed"></p>
+                        </div>
                     </div>
                     <div class="flex border border-gray-200 text-2xl p-3">
                         <p class="border-r border-gray-200 p-2">Nilai</p>
-                        <p class="p-2" id="participant_result_final_result">65.44</p>
+                        <p class="p-2 text-white font-bold" id="participant_result_final_result">65.44</p>
                     </div>
                 </div>
 
