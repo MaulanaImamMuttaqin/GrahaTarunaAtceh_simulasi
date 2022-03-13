@@ -259,13 +259,13 @@ const calculateTestResult = (data) => {
         return total + each.stability
     }, 0)
 
-    let ketahanan = parseFloat((total_ketahanan / (data.detail.length - 1)).toFixed(2))
-    let ketahanan_final = parseFloat((ketahanan * 0.3).toFixed(2))
+    let ketahanan = total_ketahanan / (data.detail.length - 1)
+    let ketahanan_final = ketahanan * 0.3
     let ketelitian = 100 - (data.overall.wrong * 5)
-    let ketelitian_final = parseFloat((ketelitian * 0.35).toFixed(2))
-    let kecepatan = parseFloat(((data.overall.total / (40 * data.detail.length)) * 100).toFixed(2))
-    let kecepatan_final = parseFloat((kecepatan * 0.35).toFixed(2))
-    let final_result = (ketahanan_final + ketelitian_final + kecepatan_final).toFixed(2)
+    let ketelitian_final = ketelitian * 0.35
+    let kecepatan = (data.overall.total / (40 * data.detail.length)) * 100
+    let kecepatan_final = kecepatan * 0.35
+    let final_result = ketahanan_final + ketelitian_final + kecepatan_final
 
     score["test_final_score"] = {
         ketahanan,

@@ -271,36 +271,36 @@
                     <div class="border-b border-gray-200">
                         <div class="flex justify-between">
                             <p>Kecepatan</p>
-                            <div class="flex justify-evenly w-52">
-                                <p id="participant_result_speed">41.5</p>
-                                <p>0.35</p>
-                                <p id="participant_result_speed_final">14.53</p>
+                            <div class="flex justify-evenly w-52 border border-black">
+                                <p class="flex-1 text-center" id="participant_result_speed">41.5</p>
+                                <p class="flex-1 text-center">0.35</p>
+                                <p class="flex-1 text-center" id="participant_result_speed_final">14.53</p>
                             </div>
                             
                         </div>
                         <div class="flex justify-between">
                             <p>ketelitian</p>
-                            <div class="flex justify-evenly w-52">
-                                <p id="participant_result_accuracy">75.00</p>
-                                <p>0.35</p>
-                                <p id="participant_result_accuracy_final">26.25</p>
+                            <div class="flex justify-evenly w-52 border border-black">
+                                <p class="flex-1 text-center" id="participant_result_accuracy">75.00</p>
+                                <p class="flex-1 text-center">0.35</p>
+                                <p class="flex-1 text-center" id="participant_result_accuracy_final">26.25</p>
                             </div>
                         </div>
                         <div class="flex justify-between">
                             <p>Ketahanan</p>
-                            <div class="flex justify-evenly w-52">
-                                <p id="participant_result_endurance">78.89</p>
-                                <p>0.3</p>
-                                <p id="participant_result_endurance_final">23.67</p>
+                            <div class="flex justify-evenly w-52 border border-black">
+                                <p class="flex-1 text-center" id="participant_result_endurance">78.89</p>
+                                <p class="flex-1 text-center">0.3</p>
+                                <p class="flex-1 text-center" id="participant_result_endurance_final">23.67</p>
                             </div>
                         </div>
                     </div>
                     <div class="flex justify-between">
                         <p>Total</p>
-                        <div class="flex justify-evenly w-52">
-                            <p id="participant_result_factor_total">195.39</p>
-                            <p>1.00</p>
-                            <p id="participant_result_final_result_total" class="font-bold">65.44</p>
+                        <div class="flex justify-evenly w-52 border border-black">
+                            <p class="flex-1 text-center" id="participant_result_factor_total">195.39</p>
+                            <p class="flex-1 text-center">1.00</p>
+                            <p class="flex-1 text-center font-bold" id="participant_result_final_result_total" >65.44</p>
                         </div>
                     </div>
                 </div>

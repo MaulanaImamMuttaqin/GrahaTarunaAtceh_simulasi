@@ -253,23 +253,28 @@ const showParticipantResult = (index) => {
     renderParticipantTestResult()
     // $("#participant_test_result").html(participant_results[index].result)
 }
-
+const Round = (num) => {
+    if (typeof num === "string") {
+        num = parseFloat(num)
+    }
+    return Math.round((num + Number.EPSILON) * 100) / 100
+}
 const renderParticipantTestResult = () => {
     let data = participant_results[result_index]
     $("#participant_result_name").html(data.name)
     $("#participant_result_id").html(data.user_id)
-    $("#participant_result_final_result").html(data.result.test_final_score.final_result)
-    $("#participant_result_speed").html(data.result.test_final_score.kecepatan)
-    $("#participant_result_speed_final").html(data.result.test_final_score.kecepatan_final)
-    $("#participant_result_accuracy").html(data.result.test_final_score.ketelitian)
-    $("#participant_result_accuracy_final").html(data.result.test_final_score.ketelitian_final)
-    $("#participant_result_endurance").html(data.result.test_final_score.ketahanan)
-    $("#participant_result_endurance_final").html(data.result.test_final_score.ketahanan_final)
-    $("#participant_result_factor_total").html((data.result.test_final_score.ketahanan + data.result.test_final_score.ketelitian + data.result.test_final_score.kecepatan).toFixed(2))
-    $("#participant_result_final_result_total").html(data.result.test_final_score.final_result)
-    $("#participant_result_total_answered").html(data.result.overall.total)
-    $("#participant_result_total_wrong").html(data.result.overall.wrong)
-    $("#participant_result_total_correct").html(data.result.overall.correct)
+    $("#participant_result_final_result").html(Round(data.result.test_final_score.final_result))
+    $("#participant_result_speed").html(Round(data.result.test_final_score.kecepatan))
+    $("#participant_result_speed_final").html(Round(data.result.test_final_score.kecepatan_final))
+    $("#participant_result_accuracy").html(Round(data.result.test_final_score.ketelitian))
+    $("#participant_result_accuracy_final").html(Round(data.result.test_final_score.ketelitian_final))
+    $("#participant_result_endurance").html(Round(data.result.test_final_score.ketahanan))
+    $("#participant_result_endurance_final").html(Round(data.result.test_final_score.ketahanan_final))
+    $("#participant_result_factor_total").html(Round(data.result.test_final_score.ketahanan + data.result.test_final_score.ketelitian + data.result.test_final_score.kecepatan))
+    $("#participant_result_final_result_total").html(Round(data.result.test_final_score.final_result))
+    $("#participant_result_total_answered").html(Round(data.result.overall.total))
+    $("#participant_result_total_wrong").html(Round(data.result.overall.wrong))
+    $("#participant_result_total_correct").html(Round(data.result.overall.correct))
 
     renderParticipantTestResultTable(data.result.detail)
     // $("#participant_result_accuracy").html(data.result.test_final_score.)
