@@ -65,9 +65,14 @@ const ProcessExcel = (data) => {
         renderPesertaRow(i + 1, r.user_id, r.name)
     })
     participant_list = excelRows
+    console.log(test_id)
+    console.log(JSON.stringify(participant_list))
     $("#excel_table").removeClass("hidden")
 
 };
+
+
+
 
 const uploadData = () => {
     upload(participant_list)
@@ -75,6 +80,7 @@ const uploadData = () => {
 
 const upload = (data) => {
     let formData = new FormData()
+    formData.append('test_id', test_id)
     formData.append('data', JSON.stringify(data))
     $("#loading").toggleClass("hidden")
 
@@ -88,7 +94,7 @@ const upload = (data) => {
         dataType: "JSON",
         success: function (data) {
             console.log(data)
-            render_message("Peserta berhasil ditambahkan untuk test dengan ID: " + test_id)
+            render_message(`Peserta berhasil ditambahkan untuk test dengan ID: ${test_id}`)
             closeFileModal()
             $("#loading").toggleClass("hidden")
 

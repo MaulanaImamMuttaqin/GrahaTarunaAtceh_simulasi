@@ -132,11 +132,15 @@ class OperatorApi extends BaseController
 
         $model = new ParticipantModel();
         $test_model = new TestModel();
-        $data = json_decode($this->request->getVar('data'));
-        
+        $test_id = $this->request->getVar('test_id');
+        $post_data = json_decode($this->request->getVar('data'), true);
+        $all_participant_exist = $model->select('user_id')->where('test_id', $test_id)->find();
+
+        $difference = $this->filter_participant_list($post_data, $all_participant_exist);
+
         try {
-            if($model->insertBatch($data)){
-                return $this->respond($data,200);
+            if($model->insertBatch($difference)){
+                return $this->respond($difference,200);
             }
             return $this->fail('failed', 400);
         }catch(Exception $e){
@@ -144,6 +148,29 @@ class OperatorApi extends BaseController
         }
     }
 
+    public function check_participant_list(){
+        $model = new ParticipantModel();
+
+        $test_id = $this->request->getVar('test_id');
+        $post_data = json_decode($this->request->getVar('data'), true);
+        $data = $model->select('user_id')->where('test_id', $test_id)->find();
+        $difference = $this->filter_participant_list($post_data, $data);
+
+        return $this->respond(["data" => $difference], 200);
+    }
+
+    public function filter_participant_list($arr_request, $arr_database){
+        $diff = $arr_request;
+        forEach($arr_request as $key =>$val){
+            if(isset($arr_database[$key])){
+                if($val['user_id'] == $arr_database[$key]['user_id']){
+                    unset($diff[$key]);
+                }
+            }
+        }
+
+        return $diff;
+    }
 
     public function change_password($id = null){
         if ($this->request->getMethod() == "post"){
@@ -288,4 +315,6 @@ class OperatorApi extends BaseController
             return $this->fail(["message"=> "error"], 400);
         }
     }
+
+    
 }

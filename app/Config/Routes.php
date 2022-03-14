@@ -48,7 +48,7 @@ $routes->group('operatorApi',['filter' => 'authGuardApi'], function($routes){
     $routes->get('test_table_list/', 'OperatorApi::test_table_list');
     $routes->post('add_test/', 'OperatorApi::add_test');
     $routes->delete('delete_test/', 'OperatorApi::delete_test');
-    $routes->post('add_participant/', 'OperatorApi::add_participant');
+    // $routes->post('add_participant/', 'OperatorApi::add_participant');
 });
 
 $routes->group('testApi',['filter' => 'authTestGuard'], function($routes){

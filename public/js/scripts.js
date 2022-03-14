@@ -135,8 +135,22 @@ const setNumberContainerAndChoices = ({ number_digits }) => {
     }
 }
 
+const roundNumber = (num, scale) => {
+    if (!("" + num).includes("e")) {
+        return +(Math.round(num + "e+" + scale) + "e-" + scale);
+    } else {
+        var arr = ("" + num).split("e");
+        var sig = ""
+        if (+arr[1] + scale > 0) {
+            sig = "+";
+        }
+        return +(Math.round(+arr[0] + "e" + sig + (+arr[1] + scale)) + "e-" + scale);
+    }
+}
+
 const renderResult = (data) => {
-    $("#final_result").html(data.test_final_score.final_result)
+    let roundedResults = roundNumber(data.test_final_score.final_result, 3)
+    $("#final_result").html(`${roundedResults}`)
 }
 // const renderResult = (data) => {
 //     let detail = data.detail
@@ -249,6 +263,7 @@ const TestFinish = () => {
     console.log(score)
 }
 
+
 const calculateTestResult = (data) => {
 
     let tot_diff_total = data.detail.reduce((total, each) => {
@@ -276,11 +291,10 @@ const calculateTestResult = (data) => {
         ketahanan_final,
         final_result
     }
-
     score.overall.tot_diff_total = tot_diff_total
     score.overall.total_ketahanan = total_ketahanan
-
 }
+
 const uploadResult = () => {
     let formData = new FormData()
     formData.append('result_test_id', TestConfiguration.result_test_id)
@@ -302,7 +316,6 @@ const uploadResult = () => {
         }
     });
 }
-
 
 // fungsi untuk memberikan event listener ke radio button
 const onClickRadioButton = function (el) {

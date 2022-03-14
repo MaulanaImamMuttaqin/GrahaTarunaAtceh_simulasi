@@ -28,8 +28,6 @@ class TestApi extends BaseController
         $id = $this->request->getVar('result_test_id');
         $result = json_decode($this->request->getVar('result'), true);
         
-
-        
         $result["test_final_score"] = [
             "ketahanan" => round($result["test_final_score"]["ketahanan"], 2),
             "ketelitian" => round($result["test_final_score"]["ketelitian"], 2),

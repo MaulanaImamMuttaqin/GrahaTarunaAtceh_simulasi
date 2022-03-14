@@ -13,12 +13,10 @@
                     </div>
 
                     <div class="p-6 space-y-6">
-
-
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="fileUpload">Upload file</label>
                         <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"  id="fileUpload" type="file">
                         <button  onclick="Upload()"  type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Import</button>
-                        
+
                     </div>
 
                     <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
@@ -27,12 +25,12 @@
                     </div>
                 </div>
             </div>
-            <div id="excel_table" class="hidden ">
+            <div id="excel_table" class="hidden p-3">
 
                             <div class="flex flex-col">
                                 <div class=" sm:-mx-6 lg:-mx-8">
                                     <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
-                                        <div class="overflow-y-scroll h-[350px] w-[600px]  shadow-md sm:rounded-lg border border-gray-600">
+                                        <div class="overflow-y-scroll max-h-[350px] w-[600px]  shadow-md sm:rounded-lg border border-gray-600">
                                             <table class="min-w-full">
                                                 <thead class="bg-gray-50 dark:bg-gray-700">
                                                     <tr>
