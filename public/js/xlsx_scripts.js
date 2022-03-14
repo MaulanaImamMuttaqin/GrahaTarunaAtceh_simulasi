@@ -89,8 +89,9 @@ const upload = (data) => {
         success: function (data) {
             console.log(data)
             render_message("Peserta berhasil ditambahkan untuk test dengan ID: " + test_id)
-            toggleModal("pesertaModal", false)
+            closeFileModal()
             $("#loading").toggleClass("hidden")
+
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(errorThrown)
