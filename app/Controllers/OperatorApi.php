@@ -139,8 +139,12 @@ class OperatorApi extends BaseController
         $difference = $this->filter_participant_list($post_data, $all_participant_exist);
 
         try {
-            if($model->insertBatch($difference)){
-                return $this->respond($difference,200);
+            if(count($difference) > 0 ){
+                if($model->insertBatch($difference)){
+                    return $this->respond($difference,200);
+                }
+            }else{
+                return $this->respond($difference, 200);
             }
             return $this->fail('failed', 400);
         }catch(Exception $e){

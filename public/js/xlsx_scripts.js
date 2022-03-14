@@ -57,7 +57,6 @@ const ProcessExcel = (data) => {
     var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
 
     excelRows.forEach((r, i) => {
-
         r.test_id = String(test_id)
         r.name = r.nama
         delete r.no
@@ -68,7 +67,6 @@ const ProcessExcel = (data) => {
     console.log(test_id)
     console.log(JSON.stringify(participant_list))
     $("#excel_table").removeClass("hidden")
-
 };
 
 
@@ -92,9 +90,13 @@ const upload = (data) => {
         processData: false,
         contentType: false,
         dataType: "JSON",
-        success: function (data) {
-            console.log(data)
-            render_message(`Peserta berhasil ditambahkan untuk test dengan ID: ${test_id}`)
+        success: function (res) {
+            console.log(res)
+            if (Object.keys(res).length > 0) {
+                render_message(`${Object.keys(res).length} dari ${data.length} data ditambahkan dari untuk test dengan ID: ${test_id}`)
+            } else {
+                render_message(`Tidak ada data yang ditambahkan disebabkan data sudah ada`)
+            }
             closeFileModal()
             $("#loading").toggleClass("hidden")
 
