@@ -75,4 +75,8 @@ class Operator extends BaseController
     
         return view('operator/settings');
     }
+
+    public function test_tkm_list(){
+        return view('operator/tkm_list');
+    }
 }

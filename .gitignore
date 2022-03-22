@@ -1,6 +1,7 @@
 #-------------------------
 # Operating Specific Junk Files
 #-------------------------
+typescripts/
 node_modules/
 # OS X
 .DS_Store
@@ -9,7 +10,7 @@ node_modules/
 
 # OS X Thumbnails
 ._*
-
+tsconfig.json
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

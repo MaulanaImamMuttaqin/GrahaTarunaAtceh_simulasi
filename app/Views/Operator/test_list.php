@@ -4,7 +4,7 @@
 
 <div class="h-full w-full flex flex-col p-10">
     
-    <?= view_cell('\App\Libraries\Widget::title_header', ['title'=> 'Daftar Tes'])?>
+    <?= view_cell('\App\Libraries\Widget::title_header', ['title'=> 'Tes Angka Hilang'])?>
     
 
     <div class=" flex items-center justify-between py-2 mt-5">

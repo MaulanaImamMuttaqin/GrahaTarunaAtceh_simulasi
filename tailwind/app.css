@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+    counter-reset: number-counter;
+}
+.soal-counter::before{
+    counter-increment: number-counter;
+    content: counter(number-counter);
+}
 .center{
     @apply flex justify-center items-center
 }

@@ -55,27 +55,8 @@ $routes->group('testApi',['filter' => 'authTestGuard'], function($routes){
     $routes->get('submit_result/', 'TestApi::submit_result');
 });
 
-// $routes->group('/', ['filter' => 'authTestGuard'], function($routes){
-//     $routes->get("/(:any)", "Test::index");
-//     $routes->group('TestApi', function($routes){
-//         $routes->get('submit_result', 'TestApi::submit_result');
-//     });
-// });
+$routes->get('tkm_manajerial/', 'TKMController::index');
 
-// $routes->group('/', ['filter' => 'authGuard'], function($routes){
-//     $routes->get('/', 'Operator::index');
-//     $routes->group('OperatorApi', function($routes){
-//         $routes->get('test_table_list', 'OperatorApi::test_table_list');
-//         $routes->get('add_test', 'OperatorApi::add_test');
-//         $routes->get('delete_test', 'OperatorApi::delete_test');
-//         $routes->get('add_participant', 'OperatorApi::add_participant');
-//     });
-//     $routes->group('operator', function($routes){
-//         $routes->get("/", "Operator::index");
-//         $routes->get("test_list", "Operator::test_list");
-//         $routes->get("users", "Operator::users");
-//     });
-// });
 
 /*
  * --------------------------------------------------------------------
