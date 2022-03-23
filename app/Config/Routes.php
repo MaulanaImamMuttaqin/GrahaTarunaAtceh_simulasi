@@ -37,6 +37,7 @@ $routes->group('operator',['filter' => 'authGuard'], function($routes){
     $routes->get("/", "Operator::index");
     $routes->get("test_list/", "Operator::test_list");
     $routes->get("users/", "Operator::users");
+    $routes->get("kelas/", "Operator::class_list");
 });
 
 
@@ -48,12 +49,15 @@ $routes->group('operatorApi',['filter' => 'authGuardApi'], function($routes){
     $routes->get('test_table_list/', 'OperatorApi::test_table_list');
     $routes->post('add_test/', 'OperatorApi::add_test');
     $routes->delete('delete_test/', 'OperatorApi::delete_test');
+    // $routes->post('create_class/', 'OperatorApi::create_new_class');
     // $routes->post('add_participant/', 'OperatorApi::add_participant');
 });
 
 $routes->group('testApi',['filter' => 'authTestGuard'], function($routes){
     $routes->get('submit_result/', 'TestApi::submit_result');
 });
+
+$routes->post('create_class/', 'OperatorApi::create_new_class');
 
 $routes->get('tkm_manajerial/', 'TKMController::index');
 

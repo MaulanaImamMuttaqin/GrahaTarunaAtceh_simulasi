@@ -10,6 +10,10 @@ class Widget
 
     public function title_header(array $params)
     {
-        return view('widgets/view_cells//headers', $params);
+        return view('widgets/view_cells/headers', $params);
+    }
+
+    public function class_list(array $params){
+        return view('widgets/view_cells/class_table', $params);
     }
 }

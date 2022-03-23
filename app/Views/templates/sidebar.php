@@ -14,7 +14,6 @@
                 <span class="ml-3">Dashboard</span>
                 </a>
             </li>
- 
             <li>
                 <button type="button" class="flex items-center px-5 p-2 w-full text-base font-normal text-blue-700 rounded-lg transition duration-75 group hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-tes" data-collapse-toggle="dropdown-tes">
                     <i class="fa-solid fa-file-lines"></i>                    
@@ -29,6 +28,12 @@
                         <a href="<?= base_url('operator/test_tkm_list')?>" class="hover:bg-gray-200 text-blue-700 flex items-center p-2 pl-11 w-full text-base font-normal  rounded-lg transition duration-75 group  dark:text-white dark:hover:bg-gray-700">Tes Kompetensi Manajerial</a>
                     </li>
                 </ul>
+            </li>
+            <li>
+                <a href="<?= base_url('operator/kelas')?>" class="flex items-center px-5 p-2 text-base font-normal text-blue-700 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">
+                <i class="fa-solid fa-user-group"></i>       
+                <span class="flex-1 ml-3 whitespace-nowrap">Kelas</span>
+                </a>
             </li>
             <li>
                 <a href="<?= base_url('operator/users')?>" class="flex items-center px-5 p-2 text-base font-normal text-blue-700 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">

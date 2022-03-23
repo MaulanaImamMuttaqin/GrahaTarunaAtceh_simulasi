@@ -1,4 +1,4 @@
-import Utility from "./Utility.js";
+import Utility from "../../utility/Utility.js";
 export class Render {
     static RenderNumberBlocksContainer(total_question) {
         const question_number_container = document.querySelector("#question_number_container");

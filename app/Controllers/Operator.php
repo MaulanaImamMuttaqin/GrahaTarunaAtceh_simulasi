@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Models\TestModel;
 use App\Models\ParticipantModel;
 use App\Models\AdminUser;
+use App\Models\ClassModel;
 class Operator extends BaseController
 {
     protected $session;
@@ -78,5 +79,10 @@ class Operator extends BaseController
 
     public function test_tkm_list(){
         return view('operator/tkm_list');
+    }
+    public function class_list(){
+        $model = new ClassModel();
+        $data['data'] = $model->orderBy('id', 'DESC')->findAll();
+        return view('operator/class', $data);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Models\TestModel;
 use App\Models\ParticipantModel;
+use App\Models\ClassModel;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\AdminUser;
 
@@ -320,5 +321,47 @@ class OperatorApi extends BaseController
         }
     }
 
-    
+    public function create_new_class(){
+        $data =[
+            'class_name' =>$this->request->getVar('class_name')
+        ];
+        $model = new ClassModel();
+        
+        $add_data = $model->insert($data);
+
+        if($add_data){
+            $all_class = $model->orderby('id', "DESC")->findAll();
+            $response = [
+                'status'   => 201,
+                'error'    => null,
+                'data' => $all_class,
+                'html' => view("Widgets/View_Cells/class_table", ['data' => $all_class]),
+                'messages' => "Kelas {$data['class_name']} Berhasil di tambah"
+            ];
+            return $this->respond($response,200);
+        }else{
+            return $this->fail(["message"=> "error"], 400);  
+        }
+         
+    }
+
+    public function delete_class($id = null){
+        $model = new ClassModel();
+        
+        $delete = $model->where('id', $id)->delete();
+
+        if($delete){
+            $all_class = $model->orderby('id', "DESC")->findAll();
+            $response = [
+                'status'   => 201,
+                'error'    => null,
+                'data' => $all_class,
+                'html' => view("Widgets/View_Cells/class_table", ['data' => $all_class]),
+                'messages' => "Kelas Berhasil di Hapus"
+            ];
+            return $this->respond($response,200);
+        }else{
+            return $this->fail(["message"=> "error"], 400);  
+        }
+    }
 }
