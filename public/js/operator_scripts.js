@@ -16,7 +16,6 @@ $(function () {
 
         $("#loading").toggleClass("hidden")
 
-
         let formData = new FormData(this)
 
         formData.append("test_id", Math.floor(100000000 + Math.random() * 900000000))
