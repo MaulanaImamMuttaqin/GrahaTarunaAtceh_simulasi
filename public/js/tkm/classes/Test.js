@@ -1,4 +1,4 @@
-import { RenderTemplate } from "./render_template.js";
+import { Render } from "./render_template.js";
 // import Utility from "./Utility.js";
 export default class Test {
     constructor(config) {
@@ -15,40 +15,58 @@ export default class Test {
     startTest() {
         this.isStart = true;
         this.startTimer();
-        return this.RenderQuestion();
+        this.RerenderContent();
+    }
+    stopTest() {
+        this.stopTimer();
     }
     nextQuestion() {
         this.current_question++;
-        this.RenderNumberBlocks();
-        return this.RenderQuestion();
+        this.RerenderContent();
     }
     prevQuestion() {
         this.current_question--;
-        this.RenderNumberBlocks();
-        return this.RenderQuestion();
+        this.RerenderContent();
     }
     toQuestion(q_n) {
         this.current_question = q_n;
-        this.RenderNumberBlocks();
-        return this.RenderQuestion();
+        this.RerenderContent();
     }
     setAnsweredQuestion(value) {
         this.answered[this.current_question] = value;
     }
-    RenderQuestion() {
-        return RenderTemplate.RenderCurrentQuestionNumber(this.question_list[this.current_question], this.current_question, this.answered[this.current_question]);
+    getAnswer() {
+        return this.answered;
     }
-    RenderNumberBlocks() {
-        RenderTemplate.RenderQuestionNumberBlocks(this.total_question, this.answered, this.current_question);
+    RerenderContent() {
+        if (this.current_question < 0) {
+            this.current_question++;
+        }
+        else if (this.current_question > this.total_question - 1) {
+            this.current_question--;
+        }
+        if (this.current_question === this.total_question - 1) {
+            Render.ShowStopTestButton();
+        }
+        else {
+            Render.RemoveStopTestButton();
+        }
+        Render.RenderQuestion(this.question_list[this.current_question], this.current_question, this.answered);
+        Render.RerenderBlockNumber(this.answered, this.current_question);
+        Render.ShowBars(false);
     }
     renderTestConfiguration() {
-        this.RenderNumberBlocks();
-        RenderTemplate.RenderTimer(this.duration);
+        Render.RenderNumberBlocksContainer(this.total_question);
+        Render.RenderQuestionContainer(this.question_list[this.current_question]);
+        Render.RenderTimer(this.duration);
     }
     startTimer() {
         this.interval = setInterval(() => {
             --this.current_time;
-            RenderTemplate.RenderTimer(this.current_time);
+            Render.RenderTimer(this.current_time);
         }, 1000);
+    }
+    stopTimer() {
+        clearInterval(this.interval);
     }
 }
