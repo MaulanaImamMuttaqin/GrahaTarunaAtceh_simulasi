@@ -43,3 +43,13 @@ body{
 .items-center-h{
     @apply flex flex-col items-center
 }
+
+.tkm-highlight{
+    @apply bg-yellow-400 text-white
+}
+.tkm-filled{
+    @apply bg-green-800 text-white
+}
+.tkm-not-filled{
+    @apply bg-white text-gray-500
+}

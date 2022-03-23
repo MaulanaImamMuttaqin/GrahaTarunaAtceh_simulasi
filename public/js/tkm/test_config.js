@@ -1,5 +1,5 @@
 export let tkm_configuration = {
-    duration: 3600,
+    duration: 100,
     total_question: 5,
     question_list: [
         {
