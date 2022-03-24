@@ -27,7 +27,7 @@
             </svg>
         </div>
     </div>
-    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm h-10 w-10 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-modal-toggle="addModal">
+    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm h-10 w-10 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-modal-toggle="addClassModal">
         <i class="fa-solid fa-plus"></i>
     </button>
     </div>
@@ -53,6 +53,9 @@
                                         Total Tes
                                     </th>   
                                     <th scope="col" class="relative py-3 px-6">
+                                        <span class="sr-only"></span>
+                                    </th>   
+                                    <th scope="col" class="relative py-3 px-6">
                                         <span class="sr-only">Hapus</span>
                                     </th>                        
                                 </tr>
@@ -70,8 +73,8 @@
 
     
     <?= $this->include("Widgets/Modals/Class/addModal")?>
-    <?= $this->include("Widgets/Modals/detailModal")?>
-    <?= $this->include("Widgets/Modals/pesertaModal")?>
+    <?= $this->include("Widgets/Modals/Class/detailModal")?>
+    <?= $this->include("Widgets/Modals/Class/pesertaModal")?>
     
 </div>
 
@@ -81,5 +84,5 @@
 
 
 <?= $this->section("additional-scripts")?>
-    <script type="module" src="<?= base_url('js/operator/class_list.js')?>"></script>
+    <script type="module" src="<?= base_url('js/operator/class/class.js')?>"></script>
 <?= $this->endSection()?>

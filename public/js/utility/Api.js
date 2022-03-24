@@ -1,4 +1,4 @@
-import { RenderClass } from "../operator/classes/RenderClass.js";
+import { RenderClass } from "../operator/class/classes/RenderClass.js";
 export class Api {
     static ClassListData(url, method, formData) {
         fetch(url, {

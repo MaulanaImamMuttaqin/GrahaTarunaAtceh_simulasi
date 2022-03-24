@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Models\TestModel;
 use App\Models\ParticipantModel;
+use App\Models\ParticipantsListModel;
 use App\Models\ClassModel;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\AdminUser;
@@ -363,5 +364,12 @@ class OperatorApi extends BaseController
         }else{
             return $this->fail(["message"=> "error"], 400);  
         }
+    }
+
+    public function get_detail_class($id = null){
+        $model = new ClassModel();
+        $data = $model->where('id', $id)->first();
+        
+        return $this->respond(["data"=> $data], 200);
     }
 }
