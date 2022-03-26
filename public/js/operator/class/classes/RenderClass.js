@@ -13,16 +13,4 @@ export class RenderClass {
         // @ts-ignore
         toggleModal("addClassModal", show);
     }
-    static ShowClassDetailModal(show) {
-        // @ts-ignore
-        toggleModal("detailClassModal", show);
-    }
-    static ShowAddParticipantClassModal(show) {
-        // @ts-ignore
-        toggleModal("pesertaClassModal", show);
-    }
-    static RenderClassName(name) {
-        let detail_id = document.querySelector("#modal_test_id");
-        detail_id.innerText = name;
-    }
 }

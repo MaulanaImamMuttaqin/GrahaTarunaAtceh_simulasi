@@ -1,12 +1,12 @@
-<div id="addClassModal" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center h-modal md:h-full md:inset-0">
+<div id="addNewTest" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center h-modal md:h-full md:inset-0">
             <div class="relative px-4 w-full max-w-2xl h-full md:h-auto">
 
-                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700  h-max-[600px] overflow-y-auto">
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700  h-[300px] overflow-y-auto">
 
                     <div class="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600">
                         <div class="flex gap-5 items-center">
                             <h3 class="text-xl font-semibold text-gray-900 lg:text-2xl dark:text-white">
-                            Tambah Kelas Baru
+                            Buat Test Baru
                             </h3>
                             <div id="loading" class="text-center hidden">
                                 <svg role="status" class="inline mr-2 w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,21 +15,21 @@
                                 </svg>
                             </div>
                         </div>
-                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="addClassModal">
+                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="addNewTest">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
                     </div>
-                    <form id="add_class_form" action="javascript:void(0)">
-                        <div class="p-6 space-y-6">
+                    <form id="add_new_test_form" action="javascript:void(0)">
+                        <div class="p-6 space-y-2">
                             <div class="mb-6">
-                                <label for="soal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nama kelas</label>
-                                <input name="class_name" type="text" id="soal" class="auto-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required>
+                                <label for="soal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nama Test </label>
+                                <input name="test_name" type="text" id="soal" class="auto-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required>
                             </div>
                         </div>
 
                         <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
                             <button id="add_test" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tambah</button>
-                            <button data-modal-toggle="addClassModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600">Batal</button>
+                            <button data-modal-toggle="addNewTest" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600">Batal</button>
                         </div>
                     </form>
                     

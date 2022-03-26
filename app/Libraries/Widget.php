@@ -16,4 +16,7 @@ class Widget
     public function class_list(array $params){
         return view('widgets/view_cells/class_table', $params);
     }
+    public function class_test_list(array $params){
+        return view('widgets/view_cells/class_detail/class_test_list', $params);
+    }
 }

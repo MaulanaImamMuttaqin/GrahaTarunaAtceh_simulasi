@@ -21,6 +21,7 @@
   "dependencies": {
     "@types/jquery": "^3.5.14",
     "jquery": "^3.6.0",
-    "postcss-cli": "^9.1.0"
+    "postcss-cli": "^9.1.0",
+    "read-excel-file": "^5.2.28"
   }
 }

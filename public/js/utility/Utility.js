@@ -13,4 +13,13 @@ export default class Utility {
         const hoursStr = makeHumanReadable(hours, 'Jam');
         return `${hoursStr}${minutesStr}${secondsStr}`.replace(/,\s*$/, '');
     }
+    static GenerateID(length) {
+        let digits = 10 ** length;
+        let id = Math.floor(digits + Math.random() * 9 * digits);
+        return `${id}`;
+    }
+    static $(id) {
+        let element = document.querySelector(id);
+        return element;
+    }
 }

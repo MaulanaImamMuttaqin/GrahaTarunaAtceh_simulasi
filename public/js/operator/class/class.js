@@ -1,20 +1,10 @@
-import { ClassList } from "./classes/ClassList.js";
+import { ApiClass } from "./classes/ApiClass.js";
 let classForm = document.querySelector("#add_class_form");
-let class_list = new ClassList();
 classForm.onsubmit = function () {
     const formData = new FormData(classForm);
-    class_list.addNewClass(formData);
+    ApiClass.addNewClass(formData);
 };
-const deleteRow = (id) => {
-    class_list.deleteClass(id);
+const deleteClass = (id) => {
+    ApiClass.deleteClass(id);
 };
-const detailRow = (id) => {
-    class_list.openDetailModal(id);
-    console.log(class_list.currentClassData);
-};
-const addParticipantModal = (id) => {
-    class_list.openAddParticipantModal();
-};
-window.addParticipantModal = addParticipantModal;
-window.deleteRow = deleteRow;
-window.detailRow = detailRow;
+window.deleteClass = deleteClass;

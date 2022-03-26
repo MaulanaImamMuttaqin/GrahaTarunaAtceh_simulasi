@@ -5,6 +5,8 @@ use App\Models\TestModel;
 use App\Models\ParticipantModel;
 use App\Models\AdminUser;
 use App\Models\ClassModel;
+
+use App\Models\TestListModel;
 class Operator extends BaseController
 {
     protected $session;
@@ -83,6 +85,15 @@ class Operator extends BaseController
     public function class_list(){
         $model = new ClassModel();
         $data['data'] = $model->orderBy('id', 'DESC')->findAll();
-        return view('operator/class', $data);
+        return view('operator/class_list', $data);
+    }
+
+    public function class_detail($id){
+        $test_list_model = new TestListModel();
+        $model = new ClassModel();
+
+        $data['data'] = $model->where('id', $id)->first();
+        $data['data']['test_list'] = $test_list_model->where('class_id', $id)->orderBy('id', 'DESC')->findAll();
+        return view('class/class', $data);
     }
 }
