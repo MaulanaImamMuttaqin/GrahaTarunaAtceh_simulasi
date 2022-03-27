@@ -47,7 +47,7 @@ class OperatorApi extends BaseController
             'duration' => $this->request->getVar('duration'),
             'test_start_at' =>$this->request->getVar('test_start_at'),
             'test_end_at' => $this->request->getVar('test_end_at'),
-            'auto' => $this->request->getVar('auto')
+            'mode' => $this->request->getVar('mode')
         ];
         
         $model->insert($data);
@@ -82,7 +82,7 @@ class OperatorApi extends BaseController
             'question_total' => $this->request->getVar('question_total'),
             'test_start_at' =>$this->request->getVar('test_start_at'),
             'test_end_at' => $this->request->getVar('test_end_at'),
-            'auto' => $this->request->getVar('auto')
+            'mode' => $this->request->getVar('mode')
         ];
         
         $model->insert($data);
@@ -485,7 +485,7 @@ class OperatorApi extends BaseController
             'duration' => $this->request->getVar('duration'),//
             'test_start_at' =>$this->request->getVar('test_start_at'),//
             'test_end_at' => $this->request->getVar('test_end_at'),//
-            'auto' => $this->request->getVar('auto') === "true" ? true : false ,//
+            'mode' => $this->request->getVar('mode') === "true" ? true : false ,//
             'description' => $this->request->getVar('description'),
             'questions_list' => $this->request->getVar('questions_list'),
         ];
@@ -531,16 +531,76 @@ class OperatorApi extends BaseController
 
     public function test_kecermatan_detail($class_id, $test_id){
         $model = new TestKecermatanModel();
+
+        
         $args = [
             'class_id' => $class_id,
             'test_id' => $test_id
         ];
+
         $get_data = $model->where($args)->first();
+        
         if($get_data){ 
             return $this->respond(["data"=> $get_data]);
         }else{
             return $this->fail(["error" => true], 400);
         }
     }
+
+    public function get_participants_list_test_result($class_id, $test_id){
+        $participant_list = new ParticipantsListModel();
+        $get_participant_list = $participant_list
+                                ->select("id, user_id, name, score_kecermatan, score_kecerdasan, score_kepribadian")
+                                ->where([
+                                    "class_id" => $class_id,
+                                    "test_id" => $test_id
+                                ])
+                                ->findAll();
+        if($get_participant_list){ 
+            return $this->respond(["data"=> $get_participant_list]);
+        }else{
+            return $this->fail(["error" => true], 400);
+        }
+    }
+
+    public function update_test_kecermatan(){
+        $model = new TestKecermatanModel();
+
+        $test_id = $this->request->getVar('test_id');
+
+        $data = [
+            'question_total' => $this->request->getVar('question_total'),
+            'duration' => $this->request->getVar('duration'),
+            'test_start_at' => $this->request->getVar('test_start_at'),
+            'test_end_at' =>$this->request->getVar('test_end_at'),
+        ];
+        
+        $update = $model->set($data)->where('test_id', $test_id)->update();
+        // $new_data['data'] = $model->orderBy('id', 'DESC')->findAll();
+        
+        if($update){
+            return $this->respond(["message" => "test '{$test_id}' berhasil di update"], 200);
+        }else{
+            return $this->fail(["message"=> "error"], 400);
+        }
+    }
     
+
+    public function get_participants_test_result($id) {
+        $participant_test_result = new ParticipantsListModel();
+        $get_participant_test_result = $participant_test_result
+                                ->where([
+                                    "id" => $id,
+                                ])
+                                ->first();
+        
+        if($get_participant_test_result){
+            $get_participant_test_result["kecermatan"] = json_decode( $get_participant_test_result["kecermatan"], true);
+            $get_participant_test_result["kecerdasan"] = json_decode( $get_participant_test_result["kecerdasan"], true);
+            $get_participant_test_result["kepribadian"] = json_decode( $get_participant_test_result["kepribadian"], true);
+            return $this->respond(["data"=> $get_participant_test_result]);
+        }else{
+            return $this->fail(["error" => true], 400);
+        }
+    }
 }

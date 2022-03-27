@@ -16,6 +16,9 @@
             </div>
         </div>
         <div>
+            <button type="button" onclick="openParticipantsTestResult(<?=$row['test_id']?>)"   class="text-blue-500 font-bold bg-gray-100 hover:bg-gray-200  rounded-lg text-sm px-4 py-2 text-center">
+                <i class="fa-solid fa-square-poll-vertical"></i>
+            </button>
             <button onclick="toggleTestDetailDropdown(<?=$key?>)"  class="text-blue-500 font-bold bg-gray-100 hover:bg-gray-200  rounded-lg text-sm px-4 py-2 text-center">
                 <i class="fa-solid fa-chevron-down"></i>
             </button>
@@ -28,7 +31,7 @@
     <div id="test_detail_drop_down_<?=$key?>" class="hidden flex justify-center gap-10 py-2 test_detail">
 
         <button onclick="openKecermatanModal('<?=$row['test_id']?>', '<?= $row['kecermatan']?>')" >
-            <div class="<?= $row['kecermatan'] ? 'bg-blue-200' : 'bg-white' ?> hover:bg-gray-300 transition text-blue-500 font-semibold border border-gray-200  rounded-lg h-auto shadow-lg flex flex-col items-center justify-between px-5">
+            <div class="<?= $row['kecermatan'] ? 'bg-white' : 'bg-gray-300' ?> hover:bg-gray-200 transition text-blue-500 font-semibold border border-gray-200  rounded-lg h-auto shadow-lg flex flex-col items-center justify-between px-5">
                 <div class="flex text-4xl  p-5">
                     <i class="fa-solid fa-bullseye"></i>
                 </div>
@@ -44,7 +47,7 @@
         </button>
 
         <button onclick="">
-            <div class="hover:bg-gray-300 transition text-blue-500 font-semibold border border-gray-200 bg-white rounded-lg h-auto shadow-lg flex flex-col items-center justify-between px-5">
+            <div class="<?= $row['kecerdasan'] ? 'bg-white' : 'bg-gray-300' ?> hover:bg-gray-200 transition text-blue-500 font-semibold border border-gray-200 rounded-lg h-auto shadow-lg flex flex-col items-center justify-between px-5">
                 <div class="flex text-4xl  p-5">
                     <i class="fa-solid fa-brain"></i>
                 </div>
@@ -54,14 +57,13 @@
                     </div>
                     <!-- <button onclick="manageTest(<?= $row['test_id']?>)"  class=" text-blue-500 font-bold bg-gray-100 hover:bg-gray-200  rounded-lg text-sm px-4 py-2 text-center">
                        <i class="fa-solid fa-wrench"></i>
-                    </button> -->
-                    
+                    </button> -->  
                 </div>
             </div>
         </button>
 
         <button onclick="">
-            <div class="hover:bg-gray-300 transition text-blue-500 font-semibold border border-gray-200 bg-white rounded-lg h-auto shadow-lg flex flex-col items-center justify-between px-5">
+            <div class="<?= $row['kepribadian'] ? 'bg-white' : 'bg-gray-300' ?> hover:bg-gray-200 transition text-blue-500 font-semibold border border-gray-200  rounded-lg h-auto shadow-lg flex flex-col items-center justify-between px-5">
                 <div class="flex text-4xl  p-5">
                     <i class="fa-solid fa-puzzle-piece"></i>
                 </div>
@@ -72,7 +74,7 @@
                     <!-- <button onclick="manageTest(<?= $row['test_id']?>)"  class=" text-blue-500 font-bold bg-gray-100 hover:bg-gray-200  rounded-lg text-sm px-4 py-2 text-center">
                        <i class="fa-solid fa-wrench"></i>
                     </button> -->
-                    
+
                 </div>
             </div>
         </button>

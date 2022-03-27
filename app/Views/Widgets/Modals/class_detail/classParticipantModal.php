@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <?= $this->include("Widgets/Modals/Class/addParticipantClassModal")?>
+            <?= $this->include("Widgets/Modals/class_detail/addParticipantClassModal")?>
             
             
         </div>

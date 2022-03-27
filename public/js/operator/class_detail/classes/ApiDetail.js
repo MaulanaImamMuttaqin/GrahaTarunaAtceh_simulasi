@@ -1,98 +1,101 @@
 import { RenderClass } from "../../class/classes/RenderClass.js";
 import { RenderDetail } from "./RenderDetail.js";
 export class ApiDetail {
-    static UploadParticipantClass(id, formData) {
-        fetch('http://localhost:8080/operatorApi/add_new_participant_class/', {
+    static async UploadParticipantClass(id, formData) {
+        const response = await fetch('http://localhost:8080/operatorApi/add_new_participant_class/', {
             method: 'POST',
             body: formData
-        })
-            .then(response => response.json())
-            .then(result => {
-            console.log(result);
-            RenderDetail.RenderClassParticipantList("import_table_body", []);
-            RenderClass.showMessage(true, result.message);
-            RenderDetail.ShowClassParticipantModal(false);
         });
+        const data = await response.json();
+        RenderDetail.RenderClassParticipantList("import_table_body", []);
+        RenderClass.showMessage(true, data.message);
+        RenderDetail.ShowClassParticipantModal(false);
     }
-    static getParticipantClassList(id) {
-        fetch(`http://localhost:8080/operatorApi/get_participant_class_list/${id}`, {
+    static async getParticipantClassList(id) {
+        const response = await fetch(`http://localhost:8080/operatorApi/get_participant_class_list/${id}`, {
             method: 'GET',
-        })
-            .then(response => response.json())
-            .then(result => {
-            RenderDetail.RenderClassParticipantList("class_participant_list", result.data);
         });
+        const data = await response.json();
+        RenderDetail.RenderClassParticipantList("class_participant_list", data.data);
     }
-    static deleteParticipantClass(user_id, class_id) {
-        fetch(`http://localhost:8080/operatorApi/delete_participant_in_class/${class_id}/${user_id}`, {
+    static async deleteParticipantClass(user_id, class_id) {
+        const response = await fetch(`http://localhost:8080/operatorApi/delete_participant_in_class/${class_id}/${user_id}`, {
             method: 'DELETE',
-        })
-            .then(response => response.json())
-            .then(result => {
-            RenderClass.showMessage(true, result.message);
-            RenderDetail.ShowClassParticipantModal(false);
         });
+        const data = await response.json();
+        RenderClass.showMessage(true, data.message);
+        RenderDetail.ShowClassParticipantModal(false);
     }
-    static AddNewTest(formData) {
-        fetch(`http://localhost:8080/operatorApi/add_new_test_in_class/`, {
+    static async AddNewTest(formData) {
+        const response = await fetch(`http://localhost:8080/operatorApi/add_new_test_in_class/`, {
             method: 'POST',
             body: formData
-        })
-            .then(response => response.json())
-            .then(result => {
-            RenderClass.showMessage(true, result.message);
-            RenderDetail.ShowNewTestModal(false);
-            RenderDetail.RenderClassTestList(result.html);
-            console.log(result);
         });
+        const data = await response.json();
+        RenderClass.showMessage(true, data.message);
+        RenderDetail.ShowNewTestModal(false);
+        RenderDetail.RenderClassTestList(data.html);
     }
-    static deleteClassTest(test_id, class_id) {
-        fetch(`http://localhost:8080/operatorApi/delete_class_test/${class_id}/${test_id}`, {
+    static async deleteClassTest(test_id, class_id) {
+        const response = await fetch(`http://localhost:8080/operatorApi/delete_class_test/${class_id}/${test_id}`, {
             method: 'POST',
-        })
-            .then(response => response.json())
-            .then(result => {
-            RenderClass.showMessage(true, result.message);
-            RenderDetail.RenderClassTestList(result.html);
-            console.log(result);
         });
+        const data = await response.json();
+        RenderClass.showMessage(true, data.message);
+        RenderDetail.RenderClassTestList(data.html);
+        console.log(data);
     }
-    static addTestKecermatan(formData) {
-        fetch(`http://localhost:8080/operatorApi/add_test_kecermatan/`, {
+    static async addTestKecermatan(formData) {
+        const response = await fetch(`http://localhost:8080/operatorApi/add_test_kecermatan/`, {
             method: 'POST',
             body: formData
-        })
-            .then(response => response.json())
-            .then(result => {
-            RenderClass.showMessage(true, result.message);
-            RenderDetail.ResetFormValue("add_test_kecermatan_form");
-            RenderDetail.ShowModal("addKecermatanModal", false);
-            RenderDetail.RenderClassTestList(result.html);
-            console.log(result);
         });
+        const data = await response.json();
+        RenderClass.showMessage(true, data.message);
+        RenderDetail.ResetFormValue("add_test_kecermatan_form");
+        RenderDetail.ShowModal("addKecermatanModal", false);
+        RenderDetail.RenderClassTestList(data.html);
+        console.log(data);
     }
-    static deleteTestKecermatan(formData) {
-        fetch(`http://localhost:8080/operatorApi/delete_test_kecermatan/`, {
+    static async deleteTestKecermatan(formData) {
+        const response = await fetch(`http://localhost:8080/operatorApi/delete_test_kecermatan/`, {
             method: 'POST',
             body: formData
-        })
-            .then(response => response.json())
-            .then(result => {
-            RenderClass.showMessage(true, result.message);
-            RenderDetail.ShowModal("kecermatanDetailModal", false);
-            RenderDetail.RenderClassTestList(result.html);
         });
+        const data = await response.json();
+        RenderClass.showMessage(true, data.message);
+        RenderDetail.ShowModal("kecermatanDetailModal", false);
+        RenderDetail.RenderClassTestList(data.html);
     }
-    static getTestKecermatanDetail(class_id, test_id) {
-        fetch(`http://localhost:8080/operatorApi/test_kecermatan_detail/${class_id}/${test_id}`, {
+    static async getTestKecermatanDetail(class_id, test_id) {
+        const response = await fetch(`http://localhost:8080/operatorApi/test_kecermatan_detail/${class_id}/${test_id}`, {
             method: 'GET',
-        })
-            .then(response => response.json())
-            .then(result => {
-            console.log(result);
-            // RenderClass.showMessage(true, result.message)
-            // RenderDetail.ShowModal("kecermatanDetailModal", false)
-            // RenderDetail.RenderClassTestList(result.html)
         });
+        const json = await response.json();
+        return json.data;
+    }
+    static async updateTestKecermatanDetail(formData) {
+        const response = await fetch(`http://localhost:8080/operatorApi/update_test_kecermatan/`, {
+            method: 'POST',
+            body: formData
+        });
+        const data = await response.json();
+        RenderDetail.CloseKecermatanModal();
+        RenderClass.showMessage(true, data.message);
+    }
+    static async getParticipantsTestList(class_id, test_id) {
+        const response = await fetch(`http://localhost:8080/operatorApi/get_participants_list_test_result/${class_id}/${test_id}`, {
+            method: 'GET',
+        });
+        const json = await response.json();
+        return json.data;
+    }
+    static async getParticipantTestResult(user_id) {
+        const response = await fetch(`http://localhost:8080/operatorApi/get_participants_test_result/${user_id}`, {
+            method: 'GET',
+        });
+        const json = await response.json();
+        console.log(json.data);
+        return json.data;
     }
 }

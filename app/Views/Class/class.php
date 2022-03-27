@@ -116,10 +116,11 @@
         </div>
     </div>  -->
 
-    <?= $this->include("Widgets/Modals/Class/KecermatanDetailModal")?>
-    <?= $this->include("Widgets/Modals/Class/classParticipantModal")?>
-    <?= $this->include("Widgets/Modals/Class/KecermatanModal")?>
-    <?= $this->include("Widgets/Modals/Class/addNewTest")?>
+    <?= $this->include("Widgets/Modals/class_detail/kecermatan/KecermatanDetailModal")?>
+    <?= $this->include("Widgets/Modals/class_detail/kecermatan/AddKecermatanModal")?>
+    <?= $this->include("Widgets/Modals/class_detail/classParticipantModal")?>
+    <?= $this->include("Widgets/Modals/class_detail/addNewTest")?>
+    <?= $this->include("Widgets/Modals/class_detail/TestResultModal")?>
 </div>
 
 

@@ -7,5 +7,5 @@ class TestKecermatanModel extends Model
 {
     protected $table = 'test_kecermatan';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['test_id','class_id', 'question_total', 'number_digits', 'duration', 'test_start_at', 'test_end_at', 'isOpen', 'description', 'description', 'auto', 'questions_list'];
+    protected $allowedFields = ['test_id','class_id', 'question_total', 'number_digits', 'duration', 'test_start_at', 'test_end_at', 'isOpen', 'description', 'description', 'mode', 'questions_list'];
 }

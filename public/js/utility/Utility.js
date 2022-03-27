@@ -18,8 +18,4 @@ export default class Utility {
         let id = Math.floor(digits + Math.random() * 9 * digits);
         return `${id}`;
     }
-    static $(id) {
-        let element = document.querySelector(id);
-        return element;
-    }
 }
