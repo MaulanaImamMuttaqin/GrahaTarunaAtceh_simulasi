@@ -115,9 +115,16 @@
             </div>
         </div>
     </div>  -->
+    <?= $this->include("Widgets/Modals/class_detail/kecerdasan/KecerdasanDetailModal")?>
+    <?= $this->include("Widgets/Modals/class_detail/kecerdasan/AddKecerdasanModal")?>
+
+    <?= $this->include("Widgets/Modals/class_detail/kepribadian/KepribadianDetailModal")?>
+    <?= $this->include("Widgets/Modals/class_detail/kepribadian/AddKepribadianModal")?>
+
 
     <?= $this->include("Widgets/Modals/class_detail/kecermatan/KecermatanDetailModal")?>
     <?= $this->include("Widgets/Modals/class_detail/kecermatan/AddKecermatanModal")?>
+
     <?= $this->include("Widgets/Modals/class_detail/classParticipantModal")?>
     <?= $this->include("Widgets/Modals/class_detail/addNewTest")?>
     <?= $this->include("Widgets/Modals/class_detail/TestResultModal")?>
@@ -129,5 +136,7 @@
 
 
 <?= $this->section("additional-scripts")?>
-<script type="module" src="<?= base_url('js/operator/class_detail/index.js')?>"></script>
+<script src="https://cdn.tiny.cloud/1/wk1hkn1bhnlnh7x62phcpe7ho5z4e0mlnqw96d24y56wmtgz/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
+<script type="module" src="<?= base_url('js/operator/class_details/index.js')?>"></script>
 <?= $this->endSection()?>

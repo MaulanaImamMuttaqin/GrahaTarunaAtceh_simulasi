@@ -1,7 +1,7 @@
 <?php 
 namespace App\Controllers;  
 use CodeIgniter\Controller;
-use App\Models\ParticipantModel;
+use App\Models\TestsResultsModel;
   
 class AuthTest extends Controller
 {
@@ -26,18 +26,19 @@ class AuthTest extends Controller
     {
         $user_id = $this->request->getVar('user_id');
 		$token = $this->request->getVar('token');
-        $model = new ParticipantModel();
+        $test_name = $this->request->getVar('test_name');
+        $model = new TestsResultsModel();
 
         $user_data = [
             'test_id' => $token,
             'user_id'=> $user_id   
         ];
-        $data = $model->where($user_data)->first();
+        $data = $model->select("id, user_id, name, class_id, test_id, kecermatan, kepribadian, kecerdasan")->where($user_data)->first();
         
         if(!empty($data)){
-            if(!$data['is_finish']){
+            if(!isset($data[$test_name])){
                 $this->session->set(['participant_data'=>$data]);
-                return redirect()->to(base_url("test/index/{$data['test_id']}"));
+                return redirect()->to(base_url("test/{$test_name}/{$data['test_id']}"));
             }else{
                 $this->session->setFlashdata('msg', 'Anda Sudah menyelesaikan Test Ini, silahkan hubungi Operator');
                 return redirect()->to(base_url('authtest'));

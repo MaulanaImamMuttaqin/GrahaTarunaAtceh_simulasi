@@ -25,7 +25,15 @@
                     <input value="<?= session()->getFlashdata('test_id')?>" type="text" name="token" id="token" class="block py-2.5 px-0 w-full text-sm text-blue-900 bg-transparent border-0 border-b-2 border-blue-400 appearance-none dark:border- dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " required />
                     <label for="token" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tes Token</label>
                 </div>
-                
+                <div class="relative z-0 mb-6 w-full group">
+                    <label for="test_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Tes</label>
+                    <select name="test_name" id="test_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                        <option value="kecermatan">Tes Kecermatan</option>
+                        <option value="kecerdasan">Tes Kecerdasan</option>
+                        <option value="kepribadian">Tes Kepribadian</option>
+                    </select>
+                </div>
+
                 <div class="center">
                     <button type="submit" class="text-white text-center bg-blue-900 transition duration-300 hover:bg-blue-600 focus:ring-4 focus:ring-blue-200  rounded-full w-full sm:w-auto px-5 py-2.5 ">MASUK</button>
                 </div>

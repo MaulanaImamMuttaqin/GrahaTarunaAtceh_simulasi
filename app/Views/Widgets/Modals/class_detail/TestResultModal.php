@@ -1,7 +1,7 @@
 <div id="test_result_modal" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center h-modal md:h-full md:inset-0">
             <div class="relative px-4 w-full max-w-2xl h-full md:h-auto">
 
-                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 h-[500px] overflow-x-auto">
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 h-max-[500px] overflow-y-auto">
 
                     <div class="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600">
                         <div class="flex gap-5 items-center">
@@ -31,14 +31,14 @@
                         </div>
                     </div>
                     
-                    <div id="participant_list_test_result" class="p-3 rounded-lg flex flex-col gap-2">
+                    <div id="participant_list_test_result" class="p-3 rounded-lg flex flex-col gap-2 h-max-[450px] overflow-auto">
                         
                         <div class="bg-white p-3">
                             <div class="flex flex-col">
-                                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                <div class=" sm:-mx-6 lg:-mx-8">
                                     <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
                                         <div class="overflow-auto h-min-full w-min-full   shadow-md sm:rounded-lg border border-gray-300">
-                                            <table class="min-w-full">
+                                            <table class="w-min-full">
                                                 <thead class="bg-gray-50 dark:bg-gray-700">
                                                     <tr>
                                                         <th rowspan="2" scope="col" class="p-3 text-center text-xs font-medium tracking-wider  text-gray-700  dark:text-gray-400">
@@ -94,18 +94,18 @@
                         </div>
                         <div class="flex justify-between items-center px-5 py-2 rounded-t border-b dark:border-gray-600">
                             <div class="flex items-center ">
-                                <button id="kecermatan_button" onclick="openTestResultDetail('kecermatan')"  class="relative z-20 bg-gray-100 shadow-2xl p-2 rounded-t-lg text-normal font-thin text-gray-900  dark:text-white">
+                                <button id="kecermatan_button" onclick="open_test_result_detail('kecermatan')"  class="relative z-20 bg-gray-100 shadow-2xl p-2 rounded-t-lg text-normal font-thin text-gray-900  dark:text-white">
                                     Test Kecermatan
                                 </button>
-                                <button id="kecerdasan_button" onclick="openTestResultDetail('kecerdasan')"  class="relative z-10 -ml-1 shadow-lg p-2 bg-gray-300 rounded-t-lg text-normal font-thin text-gray-900  dark:text-white">
+                                <button id="kecerdasan_button" onclick="open_test_result_detail('kecerdasan')"  class="relative z-10 -ml-1 shadow-lg p-2 bg-gray-300 rounded-t-lg text-normal font-thin text-gray-900  dark:text-white">
                                     Test Kecerdasan
                                 </button>
-                                <button id="kepribadian_button" onclick="openTestResultDetail('kepribadian')"  class="relative z-0 -ml-1 shadow-lg p-2 bg-gray-300 rounded-t-lg text-normal font-thin text-gray-900  dark:text-white">
+                                <button id="kepribadian_button" onclick="open_test_result_detail('kepribadian')"  class="relative z-0 -ml-1 shadow-lg p-2 bg-gray-300 rounded-t-lg text-normal font-thin text-gray-900  dark:text-white">
                                     Test Kepribadian
                                 </button>
                             </div>
                             <div class="flex gap-5">
-                                <button onclick="deleteParticipantsTestResult()" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                                <button id="delete_participants_test_result" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
                                     <div class="h-5 w-5 center">
                                         <i class="fa-solid fa-trash-can"></i>           
                                     </div>    
@@ -113,10 +113,11 @@
                             </div>
                         </div>
                         <div id="participants_result_modal_body">
+                            
                             <?= $this->include("Widgets/Modals/class_detail/kecermatan/KecermatanResultModal")?>
                             <?= $this->include("Widgets/Modals/class_detail/kecerdasan/KecerdasanResultModal")?>
                             <?= $this->include("Widgets/Modals/class_detail/kepribadian/KepribadianResultModal")?>
-                            <div id="test_result_not_available" class="hidden center p-5 w-full border border-gray-200 rounded-lg ">
+                            <div id="test_result_not_available" class="hidden center h-32 my-2 p-5 w-full border border-gray-200 rounded-lg ">
                                 Peserta Belum mengerjakan Test ini
                             </div>
                         </div>

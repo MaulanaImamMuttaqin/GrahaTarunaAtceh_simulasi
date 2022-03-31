@@ -152,6 +152,7 @@ const renderResult = (data) => {
     let roundedResults = roundNumber(data.test_final_score.final_result, 3)
     $("#final_result").html(`${roundedResults}`)
 }
+
 // const renderResult = (data) => {
 //     let detail = data.detail
 //     $(".all-total").html(data.overall.total)
@@ -173,7 +174,7 @@ const renderResult = (data) => {
 //         <span class="mx-2"><i class="fa-solid fa-arrow-right"></i></span>
 //         <span class="total">${d.total}</span>/
 //         <span class="correct">${d.correct}</span>/
-//         <span class="wrong">${d.wrong}</span>
+//         <span class="wrong">${d.wrong}</span
 //     </div>
 //     `
 //     $(".detail").append($(detail))
@@ -262,7 +263,6 @@ const TestFinish = () => {
     uploadResult()
     console.log(score)
 }
-
 
 const calculateTestResult = (data) => {
 
@@ -413,7 +413,6 @@ const startTimer = () => {
         storeTestStatus(testStatus)
         if (timer < 0) {
             renderNewNumbers()
-
         }
         renderTimer(timer)
 
@@ -476,6 +475,7 @@ String.prototype.shuffle = function () {
     var a = this.split(""),
         n = a.length,
         rand;
+
     if (index_num_removed.length >= (n / 2)) index_num_removed = []
 
     do {

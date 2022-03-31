@@ -3,13 +3,15 @@
 namespace App\Controllers;
 use App\Models\TestModel;
 use App\Models\ParticipantModel;
-use App\Models\ParticipantsListModel;
+use App\Models\TestsResultsModel;
+use App\Models\ParticipantsListsModel;
 use App\Models\ClassModel;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\AdminUser;
 use App\Models\TestListModel;
 use App\Models\TestKecermatanModel;
-
+use App\Models\TestKepribadianModel;
+use App\Models\TestKecerdasanModel;
 class OperatorApi extends BaseController
 {
     use ResponseTrait;
@@ -377,14 +379,14 @@ class OperatorApi extends BaseController
     }
 
     public function get_participant_class_list($id = null){
-        $model = new ParticipantsListModel();
+        $model = new ParticipantsListsModel();
         $data = $model->select("id, user_id, name")->where('class_id', $id)->findAll();
         return $this->respond(["data"=> $data], 200);
 
     }
 
     public function add_new_participant_class(){
-        $model = new ParticipantsListModel();
+        $model = new ParticipantsListsModel();
         $post_data = json_decode($this->request->getVar('data'), true);
         $id = $this->request->getVar('id');
         $all_participant_exist = $model->select('user_id')->where('class_id', $id)->find();
@@ -408,7 +410,7 @@ class OperatorApi extends BaseController
         }
     }
     public function delete_participant_in_class($class_id, $user_id){
-        $model = new ParticipantsListModel();
+        $model = new ParticipantsListsModel();
         $args = [
             'class_id' => $class_id,
             'user_id' => $user_id
@@ -438,21 +440,33 @@ class OperatorApi extends BaseController
 
 
     public function add_new_test_in_class(){
-        $model = new TestListModel();
         $class_id = $this->request->getVar("class_id");
         $test_name = $this->request->getVar("test_name");
         $id = $this->request->getVar("test_id");
+
+
+        $model = new TestListModel();
+        $participant_list = new ParticipantsListsModel();
+        $test_result = new TestsResultsModel();
 
         $data = [
             'test_id' => $id,
             'class_id'=> $class_id,
             'test_name' => $test_name
         ];
+
+        $get_participant_list = $participant_list->where(['class_id'=> $class_id])->findAll();
+        foreach($get_participant_list as $key=>$value){
+            $get_participant_list[$key]['test_id'] = $id;
+        }
+
+        
         $add_data = $model->insert($data);
         if($data){
+            $test_result->insertbatch($get_participant_list);
             $test_list = $model->orderBy('id', 'DESC')->findAll();
             $test_list_html = view('widgets/view_cells/class_detail/class_test_list', ['data' => $test_list]);  
-            return $this->respond(["message"=> "Test '{$test_name}' berhasil di tambah", "html"=>$test_list_html]);
+            return $this->respond(["message"=> "Test '{$test_name}' berhasil di tambah", "html"=>$test_list_html, "list"=> $get_participant_list]);
         }else{
             return $this->fail(["error"=>true]);
         }
@@ -464,6 +478,7 @@ class OperatorApi extends BaseController
             'class_id' => $class_id,
             'test_id' => $test_id
         ];
+
         $delete_data = $model->where($args)->delete();
         if($delete_data){
             $test_list = $model->orderBy('id', 'DESC')->findAll();
@@ -548,7 +563,7 @@ class OperatorApi extends BaseController
     }
 
     public function get_participants_list_test_result($class_id, $test_id){
-        $participant_list = new ParticipantsListModel();
+        $participant_list = new TestsResultsModel();
         $get_participant_list = $participant_list
                                 ->select("id, user_id, name, score_kecermatan, score_kecerdasan, score_kepribadian")
                                 ->where([
@@ -556,11 +571,8 @@ class OperatorApi extends BaseController
                                     "test_id" => $test_id
                                 ])
                                 ->findAll();
-        if($get_participant_list){ 
-            return $this->respond(["data"=> $get_participant_list]);
-        }else{
-            return $this->fail(["error" => true], 400);
-        }
+        return $this->respond(["data"=> $get_participant_list]);
+
     }
 
     public function update_test_kecermatan(){
@@ -587,7 +599,7 @@ class OperatorApi extends BaseController
     
 
     public function get_participants_test_result($id) {
-        $participant_test_result = new ParticipantsListModel();
+        $participant_test_result = new TestsResultsModel();
         $get_participant_test_result = $participant_test_result
                                 ->where([
                                     "id" => $id,
@@ -601,6 +613,203 @@ class OperatorApi extends BaseController
             return $this->respond(["data"=> $get_participant_test_result]);
         }else{
             return $this->fail(["error" => true], 400);
+        }
+    }
+    public function delete_participants_test_result($test_name, $id) {
+        $model = new TestsResultsModel();
+        $data = [
+            "{$test_name}" => null,
+            "score_{$test_name}" => null,
+        ];
+        
+        $update = $model->set($data)->where('id', $id)->update();
+
+        if($update){
+            
+            return $this->respond(["message" => "Hasil test {$test_name} peserta berhasil dihapus"],200);
+        }else{
+            return $this->fail(["error" => true], 400);
+        }
+    }
+    
+    public function add_test_kepribadian(){
+        $model = new TestKepribadianModel();
+        $test_list = new TestListModel();
+
+        $data = [
+            'test_id' =>$this->request->getVar('test_id'),//
+            'class_id' =>$this->request->getVar('class_id'),//
+            'duration' => $this->request->getVar('duration'),//
+            'test_start_at' =>$this->request->getVar('test_start_at'),//
+            'test_end_at' => $this->request->getVar('test_end_at'),//
+            'questions_list' => $this->request->getVar('questions_list'),
+        ];
+
+        // $update_test_list = $test_list->update(['kecermatan' => true], ['test_id' => $data['test_id']]);
+        $update_test_list = $test_list->set('kepribadian', true)->where('test_id', $data['test_id'])->update();    
+        $model->insert($data);
+        $test_list = $test_list->orderBy('id', 'DESC')->findAll();
+        $test_list_html = view('widgets/view_cells/class_detail/class_test_list', ['data' => $test_list]);  
+        $response = [
+            'status'   => 201,
+            'error'    => null,
+            'html' => $test_list_html,
+            'message' => "Test Kepribadian dengan ID: {$data['test_id']} berhasil dibuat"
+        ];
+        return $this->respondCreated($response);
+    }
+
+    public function delete_test_kepribadian(){
+        $model = new TestKepribadianModel();
+        $test_list = new TestListModel();
+
+        $test_id = $this->request->getVar('test_id');
+
+        $delete = $model->where(['test_id'=> $test_id])->delete();
+        if($delete){
+            $update_test_list = $test_list->set('kepribadian', false)->where('test_id', $test_id)->update();
+            if(!$update_test_list) return $this->fail(); 
+            $tests = $test_list->orderBy('id', 'DESC')->findAll();
+            $test_list_html = view('widgets/view_cells/class_detail/class_test_list', ['data' => $tests]);
+            $response = [
+                'status'   => 201,
+                'error'    => null,
+                'html' => $test_list_html,
+                'message' => "Test Kepribadian dengan ID: {$test_id} berhasil dihapus"
+            ];
+            return $this->respondDeleted($response);     
+        }else{
+            return $this->fail(["error" => true]);
+        }
+    }
+
+    public function test_kepribadian_detail($class_id, $test_id){
+        $model = new TestKepribadianModel();
+
+        
+        $args = [
+            'class_id' => $class_id,
+            'test_id' => $test_id
+        ];
+
+        $get_data = $model->where($args)->first();
+        
+
+        return $this->respond(["data"=> $get_data]);
+        // if($get_data){ 
+        //     return $this->respond(["data"=> $get_data]);
+        // }else{
+        //     return $this->fail(["error" => true], 400);
+        // }
+    }
+
+    public function update_test_kepribadian(){
+        $model = new TestKepribadianModel();
+
+        $test_id = $this->request->getVar('test_id');
+
+        $data = [
+            'duration' => $this->request->getVar('duration'),
+            'test_start_at' => $this->request->getVar('test_start_at'),
+            'test_end_at' =>$this->request->getVar('test_end_at'),
+        ];
+        
+        $update = $model->set($data)->where('test_id', $test_id)->update();
+        // $new_data['data'] = $model->orderBy('id', 'DESC')->findAll();
+        
+        if($update){
+            return $this->respond(["message" => "test '{$test_id}' berhasil di update"], 200);
+        }else{
+            return $this->fail(["message"=> "error"], 400);
+        }
+    }
+
+    public function add_test_kecerdasan(){
+        $model = new TestKecerdasanModel();
+        $test_list = new TestListModel();
+
+        $data = [
+            'test_id' =>$this->request->getVar('test_id'),//
+            'class_id' =>$this->request->getVar('class_id'),//
+            'duration' => $this->request->getVar('duration'),//
+            'test_start_at' =>$this->request->getVar('test_start_at'),//
+            'test_end_at' => $this->request->getVar('test_end_at'),//
+        ];
+
+        // $update_test_list = $test_list->update(['kecermatan' => true], ['test_id' => $data['test_id']]);
+        $update_test_list = $test_list->set('kecerdasan', true)->where('test_id', $data['test_id'])->update();    
+        $model->insert($data);
+        $test_list = $test_list->orderBy('id', 'DESC')->findAll();
+        $test_list_html = view('widgets/view_cells/class_detail/class_test_list', ['data' => $test_list]);  
+        $response = [
+            'status'   => 201,
+            'error'    => null,
+            'html' => $test_list_html,
+            'message' => "Test Kecerdasan dengan ID: {$data['test_id']} berhasil dibuat"
+        ];
+        return $this->respondCreated($response);
+    }
+
+    public function delete_test_kecerdasan(){
+        $model = new TestKecerdasanModel();
+        $test_list = new TestListModel();
+
+        $test_id = $this->request->getVar('test_id');
+
+        $delete = $model->where(['test_id'=> $test_id])->delete();
+        if($delete){
+            $update_test_list = $test_list->set('kecerdasan', false)->where('test_id', $test_id)->update();
+            if(!$update_test_list) return $this->fail(); 
+            $tests = $test_list->orderBy('id', 'DESC')->findAll();
+            $test_list_html = view('widgets/view_cells/class_detail/class_test_list', ['data' => $tests]);
+            $response = [
+                'status'   => 201,
+                'error'    => null,
+                'html' => $test_list_html,
+                'message' => "Test Kecerdasan dengan ID: {$test_id} berhasil dihapus"
+            ];
+            return $this->respondDeleted($response);     
+        }else{
+            return $this->fail(["error" => true]);
+        }
+    }
+
+    public function test_kecerdasan_detail($class_id, $test_id){
+        $model = new TestKecerdasanModel();
+
+        
+        $args = [
+            'class_id' => $class_id,
+            'test_id' => $test_id
+        ];
+
+        $get_data = $model->where($args)->first();
+        
+        if($get_data){ 
+            return $this->respond(["data"=> $get_data]);
+        }else{
+            return $this->fail(["error" => true], 400);
+        }
+    }
+
+    public function update_test_kecerdasan(){
+        $model = new TestKecerdasanModel();
+
+        $test_id = $this->request->getVar('test_id');
+
+        $data = [
+            'duration' => $this->request->getVar('duration'),
+            'test_start_at' => $this->request->getVar('test_start_at'),
+            'test_end_at' =>$this->request->getVar('test_end_at'),
+        ];
+        
+        $update = $model->set($data)->where('test_id', $test_id)->update();
+        // $new_data['data'] = $model->orderBy('id', 'DESC')->findAll();
+        
+        if($update){
+            return $this->respond(["message" => "test '{$test_id}' berhasil di update"], 200);
+        }else{
+            return $this->fail(["message"=> "error"], 400);
         }
     }
 }

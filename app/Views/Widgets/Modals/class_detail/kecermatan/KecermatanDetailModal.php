@@ -2,12 +2,12 @@
         <div class="relative px-4 w-full max-w-2xl h-full md:h-auto">
             <!-- Modal content -->
     
-            <form id="test_detail_update_form" action="javascript:void(0)" class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <form id="test_detail_kecermatan_update_form" action="javascript:void(0)" class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <!-- Modal header -->
                 <div class="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600">
                     <div class="flex gap-2 items-center">
                         <h3 class="text-xl font-semibold text-gray-900 lg:text-2xl dark:text-white">
-                            Detail Tes
+                            Detail Tes Kecermatan
                         </h3>
 
                         <div id="modal-loading" class="text-center hidden">
@@ -43,11 +43,11 @@
                                         <i class="fa-solid fa-key"></i>
                                     </div>
                                     <div class="flex  items-center gap-3">
-                                            ID : <div id="detail_test_id" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div> 
+                                            ID : <div id="detail_kecermatan_test_id" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div> 
                                     </div>
                                 </div>    
                                 <div class="">
-                                    <button onmouseout="TestURLCopied()" onclick="copyTestURL()" data-tooltip-target="tooltip-copy-url" type="button" class="text-blue-500 font-medium rounded-lg text-sm p-2 text-center hover:bg-blue-400 hover:text-white"><i class="fa-solid fa-copy"></i></button>
+                                    <button id="copy_id_button"  data-tooltip-target="tooltip-copy-url" type="button" class="text-blue-500 font-medium rounded-lg text-sm p-2 text-center hover:bg-blue-400 hover:text-white"><i class="fa-solid fa-copy"></i></button>
                                     <div id="tooltip-copy-url" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
                                         Salin ID Tes
                                         <div class="tooltip-arrow" data-popper-arrow></div>
@@ -59,7 +59,7 @@
                                     <i class="fa-solid fa-hashtag"></i>
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    <div id="detail_number_digits" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  Digit Per Pertanyaan
+                                    <div id="detail_kecermatan_number_digits" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  Digit Per Pertanyaan
                                 </div>
                             </div>
                             <div class="h-16 py-1 px-4 mb-1 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800  flex items-center gap-5" role="alert">
@@ -67,7 +67,7 @@
                                     <i class="fa-solid fa-users"></i>
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    <div id="detail_total_participant" class="h-6 w-6  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div> Peserta
+                                    <div id="detail_kecermatan_total_participant" class="h-6 w-6  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div> Peserta
                                 </div>
                             </div>
                             <div class="h-16 py-1 px-4 mb-1 text-sm  text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800 flex items-center gap-5" role="alert">
@@ -75,7 +75,7 @@
                                     <i class="fa-solid fa-clock"></i>
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    <div id="detail_duration" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  Detik per angka
+                                    <div id="detail_kecermatan_duration" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  Detik per angka
                                 </div>
                             </div>
                             
@@ -84,7 +84,7 @@
                                 <i class="fa-solid fa-list-ol"></i>
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    <div id="detail_question_total" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  Angka Pertanyaan
+                                    <div id="detail_kecermatan_question_total" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  Angka Pertanyaan
                                 </div>
                             </div>
 
@@ -93,7 +93,7 @@
                                 <i class="fa-solid fa-circle-info"></i>
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    Mode <div id="detail_mode" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>
+                                    Mode <div id="detail_kecermatan_mode" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>
                                 </div>
                             </div>
                             
@@ -102,10 +102,10 @@
                                 <i class="fa-solid fa-calendar"></i>
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    dimulai dari <div id="detail_test_start_at" class="h-6  px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  
+                                    dimulai dari <div id="detail_kecermatan_test_start_at" class="h-6  px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    hingga <div id="detail_test_end_at" class="h-6  px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  
+                                    hingga <div id="detail_kecermatan_test_end_at" class="h-6  px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  
                                 </div>
                             </div>
                            

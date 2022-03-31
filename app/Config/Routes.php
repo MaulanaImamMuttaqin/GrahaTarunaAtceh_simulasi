@@ -38,12 +38,13 @@ $routes->group('operator',['filter' => 'authGuard'], function($routes){
     $routes->get("test_list/", "Operator::test_list");
     $routes->get("users/", "Operator::users");
     $routes->get("kelas/", "Operator::class_list");
+    $routes->get("class_detail/(:num)", "Operator::class_detail/$1");
 });
 
 
 $routes->group('test',['filter' => 'authTestGuard'], function($routes){
     $routes->get("/", "Test::index");
-    $routes->get("/index/(:any)", "Test::index");
+    $routes->get("/(:any)/(:any)", "Test::index");
 });
 $routes->group('operatorApi',['filter' => 'authGuardApi'], function($routes){
     $routes->get('test_table_list/', 'OperatorApi::test_table_list');
@@ -54,7 +55,7 @@ $routes->group('operatorApi',['filter' => 'authGuardApi'], function($routes){
 });
 
 $routes->group('testApi',['filter' => 'authTestGuard'], function($routes){
-    $routes->get('submit_result/', 'TestApi::submit_result');
+    $routes->get('submit_kecermatan_result/', 'TestApi::submit_kecermatan_result');
 });
 
 $routes->post('create_class/', 'OperatorApi::create_new_class');

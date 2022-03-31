@@ -16,13 +16,13 @@
             </div>
         </div>
         <div>
-            <button type="button" onclick="openParticipantsTestResult(<?=$row['test_id']?>)"   class="text-blue-500 font-bold bg-gray-100 hover:bg-gray-200  rounded-lg text-sm px-4 py-2 text-center">
+            <button type="button" onclick="open_test_result_list_modal(<?=$row['test_id']?>)"   class="text-blue-500 font-bold bg-gray-100 hover:bg-gray-200  rounded-lg text-sm px-4 py-2 text-center">
                 <i class="fa-solid fa-square-poll-vertical"></i>
             </button>
-            <button onclick="toggleTestDetailDropdown(<?=$key?>)"  class="text-blue-500 font-bold bg-gray-100 hover:bg-gray-200  rounded-lg text-sm px-4 py-2 text-center">
+            <button onclick="toggle_detail_dropdown(<?=$key?>)"  class="text-blue-500 font-bold bg-gray-100 hover:bg-gray-200  rounded-lg text-sm px-4 py-2 text-center">
                 <i class="fa-solid fa-chevron-down"></i>
             </button>
-            <button onclick="deleteTest(<?= $row['test_id']?>)"  class="text-white bg-red-500 hover:bg-red-800  font-medium rounded-lg text-sm px-4 py-2 text-center">
+            <button onclick="delete_test(<?= $row['test_id']?>)"  class="text-white bg-red-500 hover:bg-red-800  font-medium rounded-lg text-sm px-4 py-2 text-center">
                 <i class="fa-solid fa-trash-can"></i>  
             </button>
         </div>
@@ -30,7 +30,7 @@
 
     <div id="test_detail_drop_down_<?=$key?>" class="hidden flex justify-center gap-10 py-2 test_detail">
 
-        <button onclick="openKecermatanModal('<?=$row['test_id']?>', '<?= $row['kecermatan']?>')" >
+        <button onclick="open_kecermatan_modal('<?=$row['test_id']?>', '<?= $row['kecermatan']?>')" >
             <div class="<?= $row['kecermatan'] ? 'bg-white' : 'bg-gray-300' ?> hover:bg-gray-200 transition text-blue-500 font-semibold border border-gray-200  rounded-lg h-auto shadow-lg flex flex-col items-center justify-between px-5">
                 <div class="flex text-4xl  p-5">
                     <i class="fa-solid fa-bullseye"></i>
@@ -46,7 +46,7 @@
             </div>
         </button>
 
-        <button onclick="">
+        <button onclick="open_kecerdasan_modal('<?=$row['test_id']?>', '<?= $row['kecerdasan']?>')">
             <div class="<?= $row['kecerdasan'] ? 'bg-white' : 'bg-gray-300' ?> hover:bg-gray-200 transition text-blue-500 font-semibold border border-gray-200 rounded-lg h-auto shadow-lg flex flex-col items-center justify-between px-5">
                 <div class="flex text-4xl  p-5">
                     <i class="fa-solid fa-brain"></i>
@@ -62,7 +62,7 @@
             </div>
         </button>
 
-        <button onclick="">
+        <button onclick="open_kepribadian_modal('<?=$row['test_id']?>', '<?= $row['kepribadian']?>')">
             <div class="<?= $row['kepribadian'] ? 'bg-white' : 'bg-gray-300' ?> hover:bg-gray-200 transition text-blue-500 font-semibold border border-gray-200  rounded-lg h-auto shadow-lg flex flex-col items-center justify-between px-5">
                 <div class="flex text-4xl  p-5">
                     <i class="fa-solid fa-puzzle-piece"></i>

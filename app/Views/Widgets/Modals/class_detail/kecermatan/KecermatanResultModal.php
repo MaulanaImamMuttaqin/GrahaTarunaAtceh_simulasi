@@ -4,12 +4,12 @@
             <div class="flex  gap-1 ">
                 <p class="w-20">Nama</p>
                 <p> :</p>
-                <p id="participant_result_name">Maulana Imam Muttaqin</p>
+                <p class="participant_result_name">Maulana Imam Muttaqin</p>
             </div>
             <div class="flex  gap-1 ">
                 <p class="w-20">user ID</p>
                 <p> :</p>
-                <p id="participant_result_id">1804105010004</p>
+                <p class="participant_result_id">1804105010004</p>
             </div>
             <div class="flex  gap-1 ">
                 <p class="w-20">Status</p>

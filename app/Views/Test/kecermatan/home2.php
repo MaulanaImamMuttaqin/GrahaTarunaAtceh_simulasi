@@ -46,9 +46,7 @@
 <?= $this->endSection()?>
 
 
-<?= $this->section("additional-scripts")?>
-
-    
+<?= $this->section("additional-scripts")?>    
     <script>
         let TestConfiguration = {
             duration: "<?= $data['duration']?>",

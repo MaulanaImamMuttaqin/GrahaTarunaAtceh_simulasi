@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\TestModel;
-use App\Models\ParticipantModel;
+use App\Models\TestKecermatanModel;
+use App\Models\TestKepribadianModel;
+use App\Models\TestsResultsModel;
+use App\Models\TestListModel;
+
 use CodeIgniter\I18n\Time;
 class Test extends BaseController
 {
@@ -14,8 +17,7 @@ class Test extends BaseController
         $this->session = \Config\Services::session();
         $this->session->start();
     }
-
-    public function index($id = null)
+    public function kecermatan($id = null)
     {   
         
         if(!$this->session->has('participant_data')){
@@ -27,12 +29,17 @@ class Test extends BaseController
             $allowed = false;
         }
 
+        $test_list = new TestListModel();
+        $test_exist = $test_list->select("kepribadian")->where('test_id', $id)->first();
+        if(!$test_exist["kepribadian"]){
+            $this->session->setFlashdata('test_id', $id);
+            return redirect()->to(base_url("authtest"));
+        }
 
-        $participant_model = new ParticipantModel();
-        $model = new TestModel();
-
-
-        $participant_data = $participant_model->where('id' , $this->session->get('participant_data')['id'])->first();
+        $test_results_model = new TestsResultsModel();
+        $model = new TestKecermatanModel();
+                                                             
+        $participant_data = $test_results_model->select("kecermatan")->where('id' , $this->session->get('participant_data')['id'])->first();
         $data['data'] = $model->where('test_id', $id)->first();
         $data['data']['result_test_id'] = $this->session->get('participant_data')['id'];
 
@@ -48,7 +55,7 @@ class Test extends BaseController
 
         $allowed = true;
 
-        if($participant_data['is_finish']){
+        if(isset($participant_data['kecermatan'])){
             $this->session->setFlashdata('msg', 'Anda Sudah menyelesaikan Test Ini, silahkan hubungi Operator');
             $allowed = false;
         }
@@ -66,6 +73,75 @@ class Test extends BaseController
             $this->session->setFlashdata('test_id', $id);
             return redirect()->to(base_url("authtest"));
         }
-        return view("Test/home2", $data);
+        return view("Test/kecermatan/home3", $data);
+    }
+
+
+    public function kepribadian($id = null){
+        if(!$this->session->has('participant_data')){
+            $this->session->setFlashdata('test_id', $id);
+            return redirect()->to(base_url("authtest"));
+        }
+
+        if(!($this->session->get('participant_data')['test_id'] == $id) ){
+            $allowed = false;
+        }
+
+        $test_list = new TestListModel();
+        $test_exist = $test_list->select("kepribadian")->where('test_id', $id)->first();
+
+        if(!$test_exist["kepribadian"]){
+            $this->session->setFlashdata('test_id', $id);
+            $this->session->setFlashdata('msg', 'Tes ini belum tersedia');
+            return redirect()->to(base_url("authtest"));
+        }
+
+        $test_results_model = new TestsResultsModel();
+        $model = new TestKepribadianModel();
+                                                             
+        $participant_data = $test_results_model->select("kepribadian")->where('id' , $this->session->get('participant_data')['id'])->first();
+        $data['data'] = $model->where('test_id', $id)->first();
+        $data['data']['result_test_id'] = $this->session->get('participant_data')['id'];
+
+        $questions_list = json_decode($data['data']['questions_list'], true);
+        foreach($questions_list as $key => $value){
+            unset($questions_list[$key]['answer']);
+        }
+
+        $data['data']['questions_list'] = $questions_list;
+        $test_end = Time::parse($data['data']['test_end_at'], "Asia/Jakarta");
+        $test_start = Time::parse($data['data']['test_start_at'], "Asia/Jakarta");
+        $now = Time::now("Asia/Jakarta");
+
+
+        $test_end_at = $test_end->getTimestamp();
+        $test_start_at = $test_start->getTimestamp();
+        $time_now = $now->getTimestamp();
+
+        $allowed = true;
+
+        if(isset($participant_data['kepribadian'])){
+            $this->session->setFlashdata('msg', 'Anda Sudah menyelesaikan Test Ini, silahkan hubungi Operator');
+            $allowed = false;
+        }
+
+        if (($time_now >= $test_end_at) && ($time_now >= $test_start_at)){
+            $this->session->setFlashdata('msg', "Waktu Tes sudah Selesai, silahkan hubungi operator");
+            $allowed = false;
+
+        } else if( ($time_now < $test_end_at) && ($time_now < $test_start_at)){
+            $this->session->setFlashdata('msg', "Tes belum di mulai, coba lagi nanti");
+            $allowed = false;
+        }
+        
+        if (!$allowed){
+            $this->session->setFlashdata('test_id', $id);
+            return redirect()->to(base_url("authtest"));
+        }
+        return view("Test/kepribadian/home" ,$data);
+    }
+
+    public function kecerdasan($id = null){
+        return view("Test/kecerdasan/home");
     }
 }
