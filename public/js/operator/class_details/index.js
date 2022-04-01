@@ -12,6 +12,10 @@ $("#open_add_new_test_modal").onclick = () => Test_List.open_new_test_form_modal
 $("#close_participants_test_result").onclick = () => Test_results.close_test_result_list_modal();
 $("#close_participant_result_modal").onclick = () => Test_results.close_participant_test_result();
 $("#delete_participants_test_result").onclick = () => Test_results.delete_participants_test_result();
+window.toggle_detail_dropdown = Test_List.toggle_detail_dropdown;
+window.delete_test = Test_List.delete_test;
+window.open_test_result_list_modal = Test_results.open_test_result_list_modal;
+window.open_test_result_detail = Test_results.open_test_result_detail;
 // particiapnts list
 $("#open_participants_list_modal").onclick = () => Participants_list.open_participant_list_modal();
 $("#import_participants_list_button").onclick = () => Participants_list.import_file();
@@ -29,6 +33,7 @@ $("#close_kepribadian_modal").onclick = () => Test_kepribadian.close_modal();
 $("#read_question_file_button").onclick = () => Test_kepribadian.read_question_file();
 $("#delete_test_kepribadian").onclick = () => Test_kepribadian.delete_test();
 $("#edit_test_kepribadian").onclick = () => Test_kepribadian.edit();
+window.open_kepribadian_modal = Test_kepribadian.open_modal;
 // kecermatan
 let add_test_kecermatan_form_manual = $("#add_test_kecermatan_form_manual"); // form untuk membuat test kecermatan manual
 let add_test_kecermatan_form = $("#add_test_kecermatan_form"); // form untuk membuat test kecermatan
@@ -43,6 +48,7 @@ $("#delete_test_kecermatan").onclick = () => Test_kecermatan.delete_test();
 $("#edit_test_kecermatan").onclick = () => Test_kecermatan.edit();
 $("#copy_id_button").onclick = () => Test_kecermatan.copy_to_clipboard();
 $("#copy_id_button").onmouseleave = () => Test_kecermatan.text_copied();
+window.open_kecermatan_modal = Test_kecermatan.open_modal;
 // kecerdasan
 let add_test_kecerdasan_form = $("#add_test_kecerdasan_form");
 let test_detail_kecerdasan_update_form = $("#test_detail_kecerdasan_update_form");
@@ -51,12 +57,13 @@ add_test_kecerdasan_form.onsubmit = () => Test_kecerdasan.add_test_kecerdasan(ad
 $("#close_kecerdasan_modal").onclick = () => Test_kecerdasan.close_modal();
 $("#delete_test_kecerdasan").onclick = () => Test_kecerdasan.delete_test();
 $("#edit_test_kecerdasan").onclick = () => Test_kecerdasan.edit();
-window.toggle_detail_dropdown = Test_List.toggle_detail_dropdown;
-window.delete_test = Test_List.delete_test;
-window.open_test_result_list_modal = Test_results.open_test_result_list_modal;
-window.open_test_result_detail = Test_results.open_test_result_detail;
-window.open_kecermatan_modal = Test_kecermatan.open_modal;
-window.open_kepribadian_modal = Test_kepribadian.open_modal;
+$("#open_question_editor_button").onclick = () => Test_kecerdasan.open_question_editor("single");
+$("#close_question_editor").onclick = () => Test_kecerdasan.close_question_editor();
+$("#upload_kecerdasan_question").onclick = () => Test_kecerdasan.upload_kecerdasan_question();
+$("#clear_kecerdasan_question_input").onclick = () => Test_kecerdasan.clear_kecerdasan_question_input();
+// $("#add_kecerdasan_question_options").onclick = () => Test_kecerdasan.add_kecerdasan_question_options();
+// $("#remove_kecerdasan_question_options").onclick = () => Test_kecerdasan.remove_kecerdasan_question_options();
+window.open_kecerdasan_question_editor = Test_kecerdasan.open_question_editor;
 window.open_kecerdasan_modal = Test_kecerdasan.open_modal;
 // (window as any).openParticipantsTestResult = openParticipantsTestResult;
 // (window as any).deleteParticipantClass = deleteParticipantClass;

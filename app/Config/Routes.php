@@ -60,7 +60,6 @@ $routes->group('testApi',['filter' => 'authTestGuard'], function($routes){
 
 $routes->post('create_class/', 'OperatorApi::create_new_class');
 
-$routes->get('tkm_manajerial/', 'TKMController::index');
 
 
 /*

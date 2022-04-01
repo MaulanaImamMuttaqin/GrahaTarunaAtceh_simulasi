@@ -1,5 +1,5 @@
 <div id="kecerdasanDetailModal" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center h-modal  md:h-full md:inset-0">
-        <div class="relative px-4 w-full max-w-2xl h-full md:h-auto">
+    <div class="relative px-4 w-full max-w-2xl h-full md:h-auto">
             <!-- Modal content -->
     
             <form id="test_detail_kecerdasan_update_form" action="javascript:void(0)" class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -80,8 +80,8 @@
                         </div>
 
                         <div class="flex items-center justify-center h-20  mt-5">
-                            <button onclick="closekecerdasanDetailModal()" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Tambah Soal
+                            <button id="open_question_editor_button" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Atur Soal
                             </button>
                         </div>
                         
@@ -98,6 +98,43 @@
                 </div>
             </form>
         </div>
-            
-        
-    </div>
+        <div id="question_editor" class="hidden bg-white p-3 rounded-lg   w-[550px]">
+            <div class="flex justify-end items-start p-1 rounded-t border-b dark:border-gray-600">
+                
+                <div class="flex gap-5">
+                    <button id="close_question_editor" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                        <div class="h-5 w-5 center">
+                            <i class="fa-solid fa-chevron-left"></i>            
+                        </div>    
+                    </button>
+                </div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-2 rounded-t border-b dark:border-gray-600">
+                <div class="flex items-center ">
+                    <button id="single_upload" onclick="open_kecerdasan_question_editor('single')"  class="relative z-20 bg-gray-100 shadow-2xl p-2 rounded-t-lg text-normal font-thin text-gray-900  dark:text-white">
+                        Single
+                    </button>
+                    <button id="batch_upload" onclick="open_kecerdasan_question_editor('batch')"  class="relative z-10 -ml-1 shadow-lg p-2 bg-gray-300 rounded-t-lg text-normal font-thin text-gray-900  dark:text-white">
+                        Batch
+                    </button>
+                </div>
+                <div class="flex gap-5">
+                </button>
+                    <button id="upload_kecerdasan_question" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                        <div class="h-5 w-5 center">
+                            <i class="fa-solid fa-upload"></i>           
+                        </div>    
+                    </button>
+                    <button id="clear_kecerdasan_question_input" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                        <div class="h-5 w-5 center">
+                            <i class="fa-solid fa-trash-can"></i>           
+                        </div>    
+                    </button>
+                </div>
+            </div>
+            <div id="participants_result_modal_body" class="p-5">
+                <?= $this->include("Widgets/Modals/class_detail/kecerdasan/KecerdasanQuestionEditorSingle")?>
+                <?= $this->include("Widgets/Modals/class_detail/kecerdasan/KecerdasanQuestionEditorBatch")?>
+            </div>
+        </div>
+</div>

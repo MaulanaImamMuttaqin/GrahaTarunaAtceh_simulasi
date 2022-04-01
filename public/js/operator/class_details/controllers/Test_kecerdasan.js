@@ -1,7 +1,9 @@
 var _a;
+import { $, $$ } from "../../../utility/doms.js";
 import { Render } from "../../../utility/render.js";
+import { TinyMCE } from "../../../utility/tinymce.js";
 import Utility from "../../../utility/Utility.js";
-import { Modal } from "../classes/Modals.js";
+import { Test_kecerdasan_modals } from "../classes/Test_kecerdasan_modal.js";
 import { classID } from "../const.js";
 import { Test_Kecerdasan_API } from "../models/Test_kecerdasan_API.js";
 import { Render_test_kecerdasan } from "../views/Render_test_kecerdasan.js";
@@ -9,7 +11,10 @@ import { Render_test_list } from "../views/Render_test_list.js";
 // import { Render_test_kecerdasan} from "../views/Render_test_kecerdasan.js";
 // let file_question_upload = $("#fileQuestionKecerdasanUpload") as HTMLInputElement
 // export let read_xlsx_kecerdasan_question = new ReadXLSX(file_question_upload);
-export const testKecerdasan = new Modal();
+export const testKecerdasan = new Test_kecerdasan_modals();
+const editor = new TinyMCE('.editor_questions_input', true);
+// const question_editor = new QuestionEditor();
+console.log($(".tox"));
 export class Test_kecerdasan {
 }
 _a = Test_kecerdasan;
@@ -33,35 +38,6 @@ Test_kecerdasan.close_modal = () => {
     Render.showElement("#upload_edited_test_kecerdasan", false);
     Render.showModal("kecerdasanDetailModal", false);
 };
-// static toggle_test_mode = (): void => {
-//     Render_test_kecerdasan.toggle_test_form()
-// }
-// static read_question_file = (): void => {
-//     if (read_xlsx_kecerdasan_question.getData().length > 0) {
-//         let data = read_xlsx_kecerdasan_question.getData()
-//         let new_data: Array<questionTypes> = data.map((d, i) => {
-//             let pilihan = [
-//                 d.a,
-//                 d.b,
-//                 d.c,
-//                 d.d,
-//                 d.e
-//             ]
-//             delete d.a, d.b, d.c, d.d, d.e
-//             return {
-//                 question: d.soal,
-//                 q_id: d.no,
-//                 options: pilihan,
-//                 answer: d.jawaban
-//             }
-//         })
-//         read_xlsx_kecerdasan_question.setNewData(new_data)
-//         console.log(read_xlsx_kecerdasan_question.getNewData())
-//         Render.Text("#fileQuestionKecerdasanUpload_result small", "data berhasil di import")
-//     } else {
-//         alert("silahkan import file excel terlebih dahulu")
-//     }
-// }
 Test_kecerdasan.add_test_kecerdasan = async (form) => {
     let formData = new FormData(form);
     let duration = String(formData.get("duration"));
@@ -108,4 +84,45 @@ Test_kecerdasan.upload_edit = async (form) => {
     Render.showElement("#upload_edited_test_kecerdasan", false);
     Render.showModal("kecerdasanDetailModal", false);
     Render.showMessage(true, data.message);
+};
+Test_kecerdasan.open_question_editor = (mode) => {
+    testKecerdasan.set_result_show_mode(mode);
+    Render_test_kecerdasan.show_question_editor(mode);
+};
+Test_kecerdasan.close_question_editor = () => {
+    Render.showElement("#question_editor", false);
+};
+Test_kecerdasan.clear_kecerdasan_question_input = () => {
+    Render.TextAll(".editor_questions_input", "");
+};
+Test_kecerdasan.upload_kecerdasan_question = () => {
+    let question = $$(".editor_questions_input");
+    let val = {
+        q_id: Utility.GenerateID(5),
+        options: []
+    };
+    question.forEach((q, i) => {
+        if (i === 0)
+            val.question = q.innerHTML;
+        if (i === 1)
+            val.answer = q.innerHTML;
+        if (i > 1)
+            val.options.push(q.innerHTML);
+    });
+    console.log(val);
+    Render.TextAll(".editor_questions_input", "");
+};
+Test_kecerdasan.add_kecerdasan_question_options = () => {
+    // question_editor.increment()
+    // Render_test_kecerdasan.render_new_options(Utility.numToLetter(question_editor.total_options))
+    Render_test_kecerdasan.render_new_options();
+    editor.init();
+};
+Test_kecerdasan.remove_kecerdasan_question_options = () => {
+    // question_editor.decrement()
+    let el = $(".kecerdasan_options");
+    console.log(el);
+    // console.log(el.childNodes[el.childNodes.length-1])
+    console.log(el.lastChild);
+    el.removeChild(el.lastChild);
 };

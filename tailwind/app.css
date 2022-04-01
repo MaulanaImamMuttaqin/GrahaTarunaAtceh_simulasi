@@ -9,6 +9,19 @@ body{
     counter-increment: number-counter;
     content: counter(number-counter);
 }
+
+.kecerdasan_options{
+    counter-reset: letter-counter 0;
+}
+.kecerdasan_options>div{
+    counter-increment: letter-counter 1;
+}
+.kecerdasan_options>div::before{
+    content: counter(letter-counter, upper-alpha) '. '
+}
+.yes{
+    @apply border border-black;
+}
 .center{
     @apply flex justify-center items-center
 }
@@ -53,3 +66,5 @@ body{
 .tkm-not-filled{
     @apply bg-white text-gray-500
 }
+
+

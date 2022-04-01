@@ -91,4 +91,7 @@ export default class Utility {
     static capToNum(char) {
         return char.toUpperCase().charCodeAt(0) - 65;
     }
+    static numToLetter(num) {
+        return String.fromCharCode(64 + num);
+    }
 }
