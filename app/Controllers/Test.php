@@ -23,6 +23,7 @@ class Test extends BaseController
         
         if(!$this->session->has('participant_data')){
             $this->session->setFlashdata('test_id', $id);
+            $this->session->setFlashdata('msg', "error occured");
             return redirect()->to(base_url("authtest"));
         }
 
@@ -31,8 +32,8 @@ class Test extends BaseController
         }
 
         $test_list = new TestListModel();
-        $test_exist = $test_list->select("kepribadian")->where('test_id', $id)->first();
-        if(!$test_exist["kepribadian"]){
+        $test_exist = $test_list->select("kecermatan")->where('test_id', $id)->first();
+        if(!$test_exist["kecermatan"]){
             $this->session->setFlashdata('test_id', $id);
             return redirect()->to(base_url("authtest"));
         }
@@ -72,6 +73,7 @@ class Test extends BaseController
         
         if (!$allowed){
             $this->session->setFlashdata('test_id', $id);
+            $this->session->setFlashdata('msg', "error occured");
             return redirect()->to(base_url("authtest"));
         }
         return view("Test/kecermatan/home3", $data);

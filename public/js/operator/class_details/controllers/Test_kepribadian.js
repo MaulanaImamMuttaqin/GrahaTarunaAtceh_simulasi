@@ -86,6 +86,7 @@ Test_kepribadian.delete_test = async () => {
         let id = testKepribadian.test_id;
         let formData = new FormData();
         formData.append("test_id", id);
+        formData.append("class_id", classID);
         let data = await Test_Kepribadian_API.delete_test(formData);
         Render.showMessage(true, data.message);
         Render.showModal("kepribadianDetailModal", false);

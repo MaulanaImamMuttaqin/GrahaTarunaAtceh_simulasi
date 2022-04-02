@@ -79,6 +79,7 @@ Test_kecermatan.delete_test = async () => {
         let id = testKecermatanModal.test_id;
         let formData = new FormData();
         formData.append("test_id", id);
+        formData.append("class_id", classID);
         let data = await Test_Kecermatan_API.delete_test(formData);
         Render.showMessage(true, data.message);
         Render.showModal("kecermatanDetailModal", false);
