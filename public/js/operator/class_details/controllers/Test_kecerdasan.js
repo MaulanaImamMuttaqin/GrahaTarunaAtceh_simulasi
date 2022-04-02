@@ -12,7 +12,7 @@ import { Render_test_list } from "../views/Render_test_list.js";
 // let file_question_upload = $("#fileQuestionKecerdasanUpload") as HTMLInputElement
 // export let read_xlsx_kecerdasan_question = new ReadXLSX(file_question_upload);
 export const testKecerdasan = new Test_kecerdasan_modals();
-const editor = new TinyMCE('.editor_questions_input', true);
+const editor = new TinyMCE('#kecerdasanDetailModal .editor_questions_input', true);
 // const question_editor = new QuestionEditor();
 console.log($(".tox"));
 export class Test_kecerdasan {
@@ -28,6 +28,8 @@ Test_kecerdasan.open_modal = async (test_id, status) => {
         console.log("detail");
         let data = await Test_Kecerdasan_API.get_test(test_id);
         testKecerdasan.set_modal_data(data);
+        if (Test_kecerdasan.test_is_start())
+            Test_kecerdasan.close_question_editor();
         Render.showModal("kecerdasanDetailModal", true);
         Render.Text("#test_id", test_id);
         Render_test_kecerdasan.test_detail(data);
@@ -86,17 +88,25 @@ Test_kecerdasan.upload_edit = async (form) => {
     Render.showMessage(true, data.message);
 };
 Test_kecerdasan.open_question_editor = (mode) => {
+    let test_end_at = Math.round(new Date(testKecerdasan.modal_data.test_end_at).getTime() / 1000);
+    let test_start_at = Math.round(new Date(testKecerdasan.modal_data.test_start_at).getTime() / 1000);
+    let now = Math.round(Date.now() / 1000);
+    console.log(test_start_at, now, test_end_at);
+    let test_is_start = ((test_start_at < now) && (now < test_end_at)) ? true : false;
+    if (test_is_start)
+        return alert("Anda tidak boleh mengedit test ketika test sedang berjalan");
     testKecerdasan.set_result_show_mode(mode);
     Render_test_kecerdasan.show_question_editor(mode);
+    console.log(testKecerdasan.test_id);
 };
 Test_kecerdasan.close_question_editor = () => {
-    Render.showElement("#question_editor", false);
+    Render.showElement("#kecerdasanDetailModal #question_editor", false);
 };
 Test_kecerdasan.clear_kecerdasan_question_input = () => {
-    Render.TextAll(".editor_questions_input", "");
+    Render.TextAll("#kecerdasanDetailModal .editor_questions_input", "");
 };
-Test_kecerdasan.upload_kecerdasan_question = () => {
-    let question = $$(".editor_questions_input");
+Test_kecerdasan.upload_kecerdasan_question = async () => {
+    let question = $$("#kecerdasanDetailModal .editor_questions_input");
     let val = {
         q_id: Utility.GenerateID(5),
         options: []
@@ -104,13 +114,25 @@ Test_kecerdasan.upload_kecerdasan_question = () => {
     question.forEach((q, i) => {
         if (i === 0)
             val.question = q.innerHTML;
-        if (i === 1)
-            val.answer = q.innerHTML;
-        if (i > 1)
+        else if (i === 1)
+            val.answer = q.value;
+        else if (i > 1)
             val.options.push(q.innerHTML);
     });
-    console.log(val);
-    Render.TextAll(".editor_questions_input", "");
+    let formData = new FormData();
+    formData.append('test_id', testKecerdasan.test_id);
+    formData.append('data', JSON.stringify(val));
+    for (const data of formData.values()) {
+        console.log(data);
+    }
+    const data = await Test_Kecerdasan_API.upload_question(formData);
+    console.log(data);
+    $$("#kecerdasanDetailModal .editor_questions_input").forEach(el => {
+        if (el.tagName.toLocaleLowerCase() === "select")
+            return;
+        el.innerHTML = "";
+    });
+    Render_test_kecerdasan.test_detail(data.data);
 };
 Test_kecerdasan.add_kecerdasan_question_options = () => {
     // question_editor.increment()
@@ -120,9 +142,16 @@ Test_kecerdasan.add_kecerdasan_question_options = () => {
 };
 Test_kecerdasan.remove_kecerdasan_question_options = () => {
     // question_editor.decrement()
-    let el = $(".kecerdasan_options");
+    let el = $("#kecerdasanDetailModal .kecerdasan_options");
     console.log(el);
     // console.log(el.childNodes[el.childNodes.length-1])
     console.log(el.lastChild);
     el.removeChild(el.lastChild);
+};
+Test_kecerdasan.test_is_start = () => {
+    let test_end_at = Math.round(new Date(testKecerdasan.modal_data.test_end_at).getTime() / 1000);
+    let test_start_at = Math.round(new Date(testKecerdasan.modal_data.test_start_at).getTime() / 1000);
+    let now = Math.round(Date.now() / 1000);
+    console.log(test_start_at, now, test_end_at);
+    return ((test_start_at < now) && (now < test_end_at)) ? true : false;
 };

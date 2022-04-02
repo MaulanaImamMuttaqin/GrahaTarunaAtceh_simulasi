@@ -1,17 +1,19 @@
 var _a;
-import { $ } from "../../../utility/doms.js";
+import { $, $$ } from "../../../utility/doms.js";
 import { ReadXLSX } from "../../../utility/read_xlsx.js";
 import { Render } from "../../../utility/render.js";
+import { TinyMCE } from "../../../utility/tinymce.js";
 import Utility from "../../../utility/Utility.js";
-import { Modal } from "../classes/Modals.js";
+import { Test_kepribadian_modals } from "../classes/Test_kepribadian_modal.js";
 import { classID } from "../const.js";
 import { Test_Kepribadian_API } from "../models/Test_kepribadian_API.js";
-import { Render_test_kepribadian } from "../views/Render_test_kepribadiann.js";
+import { Render_test_kepribadian } from "../views/Render_test_kepribadian.js";
 import { Render_test_list } from "../views/Render_test_list.js";
 // import { Render_test_kepribadian } from "../views/Render_test_kepribadian.js";
 let file_question_upload = $("#fileQuestionKepribadianUpload");
 export let read_xlsx_kepribadian_question = new ReadXLSX(file_question_upload);
-export const testKepribadian = new Modal();
+export const testKepribadian = new Test_kepribadian_modals();
+const editor = new TinyMCE('#kepribadianDetailModal .editor_questions_input', true);
 export class Test_kepribadian {
 }
 _a = Test_kepribadian;
@@ -107,4 +109,71 @@ Test_kepribadian.upload_edit = async (form) => {
     Render.showElement("#upload_edited_test_kepribadian", false);
     Render.showModal("kepribadianDetailModal", false);
     Render.showMessage(true, data.message);
+};
+Test_kepribadian.open_question_editor = (mode) => {
+    let test_end_at = Math.round(new Date(testKepribadian.modal_data.test_end_at).getTime() / 1000);
+    let test_start_at = Math.round(new Date(testKepribadian.modal_data.test_start_at).getTime() / 1000);
+    let now = Math.round(Date.now() / 1000);
+    console.log(test_start_at, now, test_end_at);
+    let test_is_start = ((test_start_at < now) && (now < test_end_at)) ? true : false;
+    if (test_is_start)
+        return alert("Anda tidak boleh mengedit test ketika test sedang berjalan");
+    testKepribadian.set_result_show_mode(mode);
+    Render_test_kepribadian.show_question_editor(mode);
+};
+Test_kepribadian.close_question_editor = () => {
+    Render.showElement("#kepribadianDetailModal #question_editor", false);
+};
+Test_kepribadian.clear_kepribadian_question_input = () => {
+    Render.TextAll("#kepribadianDetailModal .editor_questions_input", "");
+};
+Test_kepribadian.upload_kepribadian_question = async () => {
+    let question = $$("#kepribadianDetailModal .editor_questions_input");
+    let val = {
+        q_id: Utility.GenerateID(5),
+        options: []
+    };
+    question.forEach((q, i) => {
+        if (i === 0)
+            val.question = q.innerHTML;
+        else if (i === 1)
+            val.answer = q.value;
+        else if (i > 1)
+            val.options.push(q.innerHTML);
+    });
+    let formData = new FormData();
+    formData.append('test_id', testKepribadian.test_id);
+    formData.append('data', JSON.stringify(val));
+    for (const data of formData.values()) {
+        console.log(data);
+    }
+    const data = await Test_Kepribadian_API.upload_question(formData);
+    console.log(data);
+    $$("#kepribadianDetailModal .editor_questions_input").forEach(el => {
+        if (el.tagName.toLocaleLowerCase() === "select")
+            return;
+        el.innerHTML = "";
+    });
+    Render_test_kepribadian.test_detail(data.data);
+};
+// static add_kepribadian_question_options = (): void => {
+//     // question_editor.increment()
+//     // Render_test_kepribadian.render_new_options(Utility.numToLetter(question_editor.total_options))
+//     Render_test_kepribadian.render_new_options()
+//     editor.init()
+// }
+Test_kepribadian.remove_kepribadian_question_options = () => {
+    // question_editor.decrement()
+    let el = $("#kepribadianDetailModal .kepribadian_options");
+    console.log(el);
+    // console.log(el.childNodes[el.childNodes.length-1])
+    console.log(el.lastChild);
+    el.removeChild(el.lastChild);
+};
+Test_kepribadian.test_is_start = () => {
+    let test_end_at = Math.round(new Date(testKepribadian.modal_data.test_end_at).getTime() / 1000);
+    let test_start_at = Math.round(new Date(testKepribadian.modal_data.test_start_at).getTime() / 1000);
+    let now = Math.round(Date.now() / 1000);
+    console.log(test_start_at, now, test_end_at);
+    return ((test_start_at < now) && (now < test_end_at)) ? true : false;
 };

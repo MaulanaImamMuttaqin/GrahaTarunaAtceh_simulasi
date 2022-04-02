@@ -553,7 +553,7 @@ class OperatorApi extends BaseController
             'test_id' => $test_id
         ];
 
-        $get_data = $model->where($args)->first();
+        $get_data = $model->where($args)->first(); 
         
         if($get_data){ 
             return $this->respond(["data"=> $get_data]);
@@ -693,6 +693,8 @@ class OperatorApi extends BaseController
         ];
 
         $get_data = $model->where($args)->first();
+        $total_question = count(json_decode($get_data['questions_list'], true));
+        $get_data['total_question'] = $total_question;
         
 
         return $this->respond(["data"=> $get_data]);
@@ -719,6 +721,25 @@ class OperatorApi extends BaseController
         
         if($update){
             return $this->respond(["message" => "test '{$test_id}' berhasil di update"], 200);
+        }else{
+            return $this->fail(["message"=> "error"], 400);
+        }
+    }
+
+    public function upload_question_kepribadian(){
+        $test_id = $this->request->getVar('test_id');
+        $data = json_decode($this->request->getVar('data'), true);
+        $model = new TestKepribadianModel();
+
+
+        $current_question_list = json_decode($model->select("questions_list")->where('test_id', $test_id)->first()['questions_list'], true);
+
+        array_push($current_question_list, $data);
+
+        $update = $model->set('questions_list', json_encode($current_question_list))->where('test_id', $test_id)->update();
+        $new_data = $model->where('test_id', $test_id)->first();
+        if($update){
+            return $this->respond(["message" => "soal berhasil di tambah", 'data' => $new_data ], 200);
         }else{
             return $this->fail(["message"=> "error"], 400);
         }
@@ -784,7 +805,8 @@ class OperatorApi extends BaseController
         ];
 
         $get_data = $model->where($args)->first();
-        
+        $total_question = count(json_decode($get_data['questions_list'], true));
+        $get_data['total_question'] = $total_question;     
         if($get_data){ 
             return $this->respond(["data"=> $get_data]);
         }else{
@@ -808,6 +830,25 @@ class OperatorApi extends BaseController
         
         if($update){
             return $this->respond(["message" => "test '{$test_id}' berhasil di update"], 200);
+        }else{
+            return $this->fail(["message"=> "error"], 400);
+        }
+    }
+
+    public function upload_question_kecerdasan(){
+        $test_id = $this->request->getVar('test_id');
+        $data = json_decode($this->request->getVar('data'), true);
+        $model = new TestKecerdasanModel();
+
+
+        $current_question_list = json_decode($model->select("questions_list")->where('test_id', $test_id)->first()['questions_list'], true);
+
+        array_push($current_question_list, $data);
+
+        $update = $model->set('questions_list', json_encode($current_question_list))->where('test_id', $test_id)->update();
+        $new_data = $model->where('test_id', $test_id)->first();
+        if($update){
+            return $this->respond(["message" => "soal berhasil di tambah", 'data' => $new_data ], 200);
         }else{
             return $this->fail(["message"=> "error"], 400);
         }

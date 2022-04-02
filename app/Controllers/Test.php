@@ -7,10 +7,11 @@ use App\Models\TestsResultsModel;
 use App\Models\TestListModel;
 use App\Models\TestKecerdasanModel;
 use CodeIgniter\I18n\Time;
+use CodeIgniter\API\ResponseTrait;
 class Test extends BaseController
 {
     protected $session;
-
+    use ResponseTrait;
 
     function __construct()
     {
@@ -108,7 +109,7 @@ class Test extends BaseController
             unset($questions_list[$key]['answer']);
         }
 
-        $data['data']['questions_list'] = $questions_list;
+        $data['data']['questions_list'] = str_replace("\u0022","\\\\\"",json_encode( $questions_list,JSON_HEX_QUOT));
         $test_end = Time::parse($data['data']['test_end_at'], "Asia/Jakarta");
         $test_start = Time::parse($data['data']['test_start_at'], "Asia/Jakarta");
         $now = Time::now("Asia/Jakarta");
@@ -171,8 +172,8 @@ class Test extends BaseController
         foreach($questions_list as $key => $value){
             unset($questions_list[$key]['answer']);
         }
-
-        $data['data']['questions_list'] = $questions_list;
+        $data['data']['questions_list'] = str_replace("\u0022","\\\\\"",json_encode( $questions_list,JSON_HEX_QUOT));
+        // $data['data']['questions_list'] = $questions_list;
         $test_end = Time::parse($data['data']['test_end_at'], "Asia/Jakarta");
         $test_start = Time::parse($data['data']['test_start_at'], "Asia/Jakarta");
         $now = Time::now("Asia/Jakarta");
@@ -204,4 +205,8 @@ class Test extends BaseController
         }
         return view("Test/kecerdasan/home" ,$data);
     }
+
+
+
+
 }

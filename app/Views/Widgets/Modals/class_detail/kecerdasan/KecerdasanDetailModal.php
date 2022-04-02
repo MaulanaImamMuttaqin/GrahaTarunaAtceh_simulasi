@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                             
-
+                            
                             
                             <div class="col-span-2 h-16 py-1 px-4 text-sm  text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800 flex items-center gap-5" role="alert">
                                 <div>
@@ -76,16 +76,30 @@
                                     hingga <div id="detail_kecerdasan_test_end_at" class="h-6  px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  
                                 </div>
                             </div>
-                           
-                        </div>
 
-                        <div class="flex items-center justify-center h-20  mt-5">
-                            <button id="open_question_editor_button" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Atur Soal
-                            </button>
-                        </div>
-                        
+                            <div class="col-span-2 h-16 py-1 px-4 text-sm  text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800 flex items-center justify-between " role="alert">
+                                <div class="flex gap-5">
+                                    <div>
+                                    <i class="fa-solid fa-file-lines"></i>
+                                    </div>
+                                    
+                                    <div class="flex items-center gap-3">
+                                        <div id="detail_kecerdasan_total_question" class="h-6  px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div> 
+                                        total pertanyaan 
+                                    </div>
+                                </div>
 
+                                <div class="flex gap-3  justify-self-end">
+                                    <button class="hover:bg-blue-400 rounded-lg bg-blue-300 px-2 py-1">
+                                        <i class="fa-solid fa-align-justify"></i>
+                                    </button>
+
+                                    <button id="open_question_editor_button" type="button" class="hover:bg-blue-400 rounded-lg bg-blue-300 px-2 py-1">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                    </div>
                 </div>
                 
 
@@ -132,7 +146,7 @@
                     </button>
                 </div>
             </div>
-            <div id="participants_result_modal_body" class="p-5">
+            <div id="question_editor_modal" class="p-5">
                 <?= $this->include("Widgets/Modals/class_detail/kecerdasan/KecerdasanQuestionEditorSingle")?>
                 <?= $this->include("Widgets/Modals/class_detail/kecerdasan/KecerdasanQuestionEditorBatch")?>
             </div>

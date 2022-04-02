@@ -33,6 +33,12 @@ $("#close_kepribadian_modal").onclick = () => Test_kepribadian.close_modal();
 $("#read_question_file_button").onclick = () => Test_kepribadian.read_question_file();
 $("#delete_test_kepribadian").onclick = () => Test_kepribadian.delete_test();
 $("#edit_test_kepribadian").onclick = () => Test_kepribadian.edit();
+$("#kepribadianDetailModal #open_question_editor_button").onclick = () => Test_kepribadian.open_question_editor("single");
+$("#kepribadianDetailModal #close_question_editor").onclick = () => Test_kepribadian.close_question_editor();
+$("#kepribadianDetailModal #upload_kepribadian_question").onclick = () => Test_kepribadian.upload_kepribadian_question();
+$("#kepribadianDetailModal #clear_kepribadian_question_input").onclick = () => Test_kepribadian.clear_kepribadian_question_input();
+window.open_kepribadian_modal = Test_kepribadian.open_modal;
+window.open_kepribadian_question_editor = Test_kepribadian.open_question_editor;
 window.open_kepribadian_modal = Test_kepribadian.open_modal;
 // kecermatan
 let add_test_kecermatan_form_manual = $("#add_test_kecermatan_form_manual"); // form untuk membuat test kecermatan manual
@@ -57,10 +63,10 @@ add_test_kecerdasan_form.onsubmit = () => Test_kecerdasan.add_test_kecerdasan(ad
 $("#close_kecerdasan_modal").onclick = () => Test_kecerdasan.close_modal();
 $("#delete_test_kecerdasan").onclick = () => Test_kecerdasan.delete_test();
 $("#edit_test_kecerdasan").onclick = () => Test_kecerdasan.edit();
-$("#open_question_editor_button").onclick = () => Test_kecerdasan.open_question_editor("single");
-$("#close_question_editor").onclick = () => Test_kecerdasan.close_question_editor();
-$("#upload_kecerdasan_question").onclick = () => Test_kecerdasan.upload_kecerdasan_question();
-$("#clear_kecerdasan_question_input").onclick = () => Test_kecerdasan.clear_kecerdasan_question_input();
+$("#kecerdasanDetailModal #open_question_editor_button").onclick = () => Test_kecerdasan.open_question_editor("single");
+$("#kecerdasanDetailModal #close_question_editor").onclick = () => Test_kecerdasan.close_question_editor();
+$("#kecerdasanDetailModal #upload_kecerdasan_question").onclick = () => Test_kecerdasan.upload_kecerdasan_question();
+$("#kecerdasanDetailModal #clear_kecerdasan_question_input").onclick = () => Test_kecerdasan.clear_kecerdasan_question_input();
 // $("#add_kecerdasan_question_options").onclick = () => Test_kecerdasan.add_kecerdasan_question_options();
 // $("#remove_kecerdasan_question_options").onclick = () => Test_kecerdasan.remove_kecerdasan_question_options();
 window.open_kecerdasan_question_editor = Test_kecerdasan.open_question_editor;

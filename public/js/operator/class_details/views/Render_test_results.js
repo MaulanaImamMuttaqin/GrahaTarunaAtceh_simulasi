@@ -101,6 +101,19 @@ export class Render_test_results {
         tbody.appendChild(fragment);
     }
     static render_kecerdasan_result_data(data) {
+        let data_test = data["kecerdasan"];
+        Render.TextAll(".participant_result_name", data.name);
+        Render.TextAll(".participant_result_id", data.user_id);
+        $("#participant_kecerdasan_final_result").innerText = data_test.final_score;
+        $("#participant_kecerdasan_final_result").classList.remove("bg-blue-500", "bg-red-500");
+        $("#participant_kecerdasan_final_result").classList.add(data_test.final_score >= 60 ? 'bg-blue-500' : 'bg-red-500');
+        $("#participant_kecerdasan_result_is_passed").innerText = data_test.final_score >= 60 ? "Lulus" : "Tidak Lulus";
+        $("#participant_kecerdasan_result_correct").innerText = data_test.overall.correct;
+        $("#participant_kecerdasan_result_wrong").innerText = data_test.overall.wrong;
+        $("#participant_kecerdasan_result_total").innerText = data_test.overall.total;
+        $("#participant_kecerdasan_result_final").innerText = data_test.final_score;
+        console.log(data_test);
+        Render_test_results.render_resume_result_table("kecerdasan", data_test.detail);
     }
     static render_kepribadian_result_data(data) {
         let data_test = data["kepribadian"];
@@ -108,22 +121,23 @@ export class Render_test_results {
         Render.TextAll(".participant_result_id", data.user_id);
         $("#participant_kepribadian_final_result").innerText = data_test.final_score;
         $("#participant_kepribadian_final_result").classList.remove("bg-blue-500", "bg-red-500");
-        $("#participant_kepribadian_final_result").classList.add(data_test.final_scor >= 60 ? 'bg-blue-500' : 'bg-red-500');
+        $("#participant_kepribadian_final_result").classList.add(data_test.final_score >= 60 ? 'bg-blue-500' : 'bg-red-500');
         $("#participant_kepribadian_result_is_passed").innerText = data_test.final_score >= 60 ? "Lulus" : "Tidak Lulus";
         $("#participant_kepribadian_result_correct").innerText = data_test.overall.correct;
         $("#participant_kepribadian_result_wrong").innerText = data_test.overall.wrong;
         $("#participant_kepribadian_result_total").innerText = data_test.overall.total;
         $("#participant_kepribadian_result_final").innerText = data_test.final_score;
-        Render_test_results.render_kepribadian_result_table(data_test.detail);
+        // $("#detail_kecerdasan_total_question").innerText = "5"
+        Render_test_results.render_resume_result_table("kepribadian", data_test.detail);
     }
-    static render_kepribadian_result_table(data) {
-        let tbody = $("#participant_kepribadian_result_table tbody");
+    static render_resume_result_table(test, data) {
+        let tbody = $(`#participant_${test}_result_table tbody`);
         tbody.innerHTML = '';
         let fragment = document.createDocumentFragment();
         data.forEach((d, i) => {
-            let tr = _("tr", { class: "bg-white border-b dark:bg-gray-800 dark:border-gray-700" }, [
+            let tr = _("tr", { class: `bg-white border-b dark:bg-gray-800 dark:border-gray-700 ${(d.answer.toLowerCase() != d.answered.toLowerCase()) && 'bg-red-400'}` }, [
                 _("td", { class: "py-1 text-center text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white" }, String(i + 1)),
-                _("td", { class: "py-1 text-center px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400" }, String(d.question)),
+                _("td", { class: "py-1 text-center px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400" }, "/*html*/" + d.question),
                 _("td", { class: "py-1 text-center px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400" }, String(d.answer).toUpperCase()),
                 _("td", { class: "py-1 text-center px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400" }, String(d.answered).toUpperCase()),
             ]);

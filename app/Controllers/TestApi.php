@@ -87,7 +87,7 @@ class TestApi extends BaseController
             
         }
 
-        $final_score = ($total_correct / count($question_list)) * 100;
+        $final_score = round(($total_correct / count($question_list)) * 100, 2);
         
         $test_result  = array();
         $test_result["overall"] = array(
@@ -143,7 +143,7 @@ class TestApi extends BaseController
             
         }
 
-        $final_score = ($total_correct / count($question_list)) * 100;
+        $final_score = round(($total_correct / count($question_list)) * 100, 2);
         
         $test_result  = array();
         $test_result["overall"] = array(

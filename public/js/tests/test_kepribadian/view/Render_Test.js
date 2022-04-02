@@ -30,7 +30,7 @@ export class Render_Test {
                         Test_kepribadian.choose_answer(letter, question.q_id);
                     }
                 }, letter)),
-                _("p", { class: "pl-2" }, o)
+                _("p", { class: "pl-2" }, `/*html*/${o}`)
             ]);
             fragment.appendChild(option);
         });
@@ -52,7 +52,7 @@ export class Render_Test {
         el.childNodes.forEach((nodes, index) => {
             let buttonNode = nodes.childNodes[0].childNodes[0];
             let optionNode = nodes.childNodes[1];
-            optionNode.innerText = options[index];
+            optionNode.innerHTML = options[index];
             buttonNode.classList.remove("tkm-filled");
             if (buttonNode.innerText === answer.answer) {
                 buttonNode.classList.add("tkm-filled");

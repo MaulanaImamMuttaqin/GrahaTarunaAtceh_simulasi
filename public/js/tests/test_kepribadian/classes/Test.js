@@ -123,7 +123,7 @@ export class Test_Kepribadian {
         else {
             Render.showElement("#stop_test_button", false);
         }
-        Render.Text("#soal", this.questions_list[this.question_index].question);
+        Render.html("#soal", this.questions_list[this.question_index].question);
         Render.TextAll(".nomor_soal", String(this.question_index + 1));
         console.log(this.answers, this.question_index);
         Render_Test.RenderOptions(this.questions_list[this.question_index], this.answers[this.question_index].answer);

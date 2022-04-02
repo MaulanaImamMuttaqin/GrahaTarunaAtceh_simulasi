@@ -77,6 +77,29 @@
                                 </div>
                             </div>
                            
+                            <div class="col-span-2 h-16 py-1 px-4 text-sm  text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800 flex items-center justify-between " role="alert">
+                                <div class="flex gap-5">
+                                    <div>
+                                    <i class="fa-solid fa-file-lines"></i>
+                                    </div>
+                                    
+                                    <div class="flex items-center gap-3">
+                                        <div id="detail_kepribadian_total_question" class="h-6  px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div> 
+                                        total pertanyaan 
+                                    </div>
+                                </div>
+
+                                <div class="flex gap-3  justify-self-end">
+                                    <button class="hover:bg-blue-400 rounded-lg bg-blue-300 px-2 py-1">
+                                        <i class="fa-solid fa-align-justify"></i>
+                                    </button>
+
+                                    <button id="open_question_editor_button" type="button" class="hover:bg-blue-400 rounded-lg bg-blue-300 px-2 py-1">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
                         </div>
 
                         
@@ -92,6 +115,44 @@
                 </div>
             </form>
         </div>
-        
+        <div id="question_editor" class="hidden bg-white p-3 rounded-lg   w-[550px]">
+            <div class="flex justify-end items-start p-1 rounded-t border-b dark:border-gray-600">
+                
+                <div class="flex gap-5">
+                    <button id="close_question_editor" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                        <div class="h-5 w-5 center">
+                            <i class="fa-solid fa-chevron-left"></i>            
+                        </div>    
+                    </button>
+                </div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-2 rounded-t border-b dark:border-gray-600">
+                <div class="flex items-center ">
+                    <button id="single_upload" onclick="open_kepribadian_question_editor('single')"  class="relative z-20 bg-gray-100 shadow-2xl p-2 rounded-t-lg text-normal font-thin text-gray-900  dark:text-white">
+                        Single
+                    </button>
+                    <button id="batch_upload" onclick="open_kepribadian_question_editor('batch')"  class="relative z-10 -ml-1 shadow-lg p-2 bg-gray-300 rounded-t-lg text-normal font-thin text-gray-900  dark:text-white">
+                        Batch
+                    </button>
+                </div>
+                <div class="flex gap-5">
+                </button>
+                    <button id="upload_kepribadian_question" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                        <div class="h-5 w-5 center">
+                            <i class="fa-solid fa-upload"></i>           
+                        </div>    
+                    </button>
+                    <button id="clear_kepribadian_question_input" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                        <div class="h-5 w-5 center">
+                            <i class="fa-solid fa-trash-can"></i>           
+                        </div>    
+                    </button>
+                </div>
+            </div>
+            <div id="participants_result_modal_body" class="p-5">
+                <?= $this->include("Widgets/Modals/class_detail/kepribadian/KepribadianQuestionEditorSingle")?>
+                <?= $this->include("Widgets/Modals/class_detail/kepribadian/KepribadianQuestionEditorBatch")?>
+            </div>
+        </div>
         
     </div>

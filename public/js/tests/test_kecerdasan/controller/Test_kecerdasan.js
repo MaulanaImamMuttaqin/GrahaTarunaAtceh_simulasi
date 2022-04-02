@@ -5,7 +5,7 @@ import { TesKecerdasanConfiguration } from "../const.js";
 import { Render_Test } from "../view/Render_Test.js";
 // import { tkm_configuration } from "../test_config";
 let test_kecerdasan = new Test_Kecerdasan(TesKecerdasanConfiguration);
-console.log(TesKecerdasanConfiguration);
+// console.log(TesKecerdasanConfiguration)
 // console.log(test_kecerdasan.questions_list)
 export class Test_kecerdasan {
     static start_test() {

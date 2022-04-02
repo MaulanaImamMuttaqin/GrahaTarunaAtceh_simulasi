@@ -128,7 +128,7 @@
             test_id: "<?= $data['test_id']?>",
             test_start_at: "<?= $data['test_start_at']?>",
             result_test_id : "<?= $data['result_test_id']?>",
-            questions_list : JSON.parse('<?= json_encode($data['questions_list'])?>')
+            questions_list : JSON.parse('<?= $data['questions_list']?>')
         }
     </script>
     <script type="module" src="<?= base_url('js/tests/test_kepribadian/index.js')?>"></script>

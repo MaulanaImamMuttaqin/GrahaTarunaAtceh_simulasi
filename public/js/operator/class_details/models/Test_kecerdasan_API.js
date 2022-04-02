@@ -31,4 +31,12 @@ export class Test_Kecerdasan_API {
         const data = await response.json();
         return data;
     }
+    static async upload_question(formData) {
+        const response = await fetch(`http://localhost:8080/operatorApi/upload_question_kecerdasan/`, {
+            method: 'POST',
+            body: formData
+        });
+        const data = await response.json();
+        return data;
+    }
 }

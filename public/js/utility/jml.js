@@ -69,8 +69,14 @@ export function _(tagName, props, nest) {
         return el;
     }
     if (typeof nest === "string") {
-        var t = document.createTextNode(nest);
-        el.appendChild(t);
+        if (nest.includes("/*html*/")) {
+            let innerEls = nest.split("/*html*/");
+            el.innerHTML = innerEls[1];
+        }
+        else {
+            var t = document.createTextNode(nest);
+            el.appendChild(t);
+        }
     }
     else if (nest instanceof Array) {
         for (var i = 0; i < nest.length; i++) {

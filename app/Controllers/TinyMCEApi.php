@@ -5,12 +5,15 @@ use App\Models\TestModel;
 use App\Models\ParticipantModel;
 use App\Models\AdminUser;
 use App\Models\ClassModel;
+use CodeIgniter\API\ResponseTrait;
+use CodeIgniter\Files\File;
 
 use App\Models\TestListModel;
 class TinyMCEApi extends BaseController
 {
     protected $session;
-
+    use ResponseTrait;
+    protected $helpers = ['form'];
 
     function __construct()
     {
@@ -20,21 +23,31 @@ class TinyMCEApi extends BaseController
 
     }
     public function image(){
-        $config['upload_path'] = './LOKASI_IMAGE_AKAN_DISIMPAN/';
-		$config['allowed_types'] = 'jpg|png|jpeg';
-		$config['max_size'] = 0;
-		$this->load->library('upload', $config);
-		if ( ! $this->upload->do_upload('file')) {
-			$this->output->set_header('HTTP/1.0 500 Server Error');
-			exit;
-		} else {
-			$file = $this->upload->data();
-			$this->output
-				->set_content_type('application/json', 'utf-8')
-				->set_output(json_encode(['location' => base_url().'LOKASI_IMAGE_AKAN_DISIMPAN/'.$file['file_name']]))
-				->_display();
-			exit;
-		}
+        // $file = $this->validate([
+        //     'file' => [
+        //         'uploaded[file]',
+        //         'mime_in[file, image/png, image/jpg, image/jpeg]',
+        //         'max_size[file,4096]',
+        //     ]
+        // ]);
+        
+        // if (!$file) {
+        //     return $this->respond([
+        //         'failed' => 'failed'
+        //     ], 200);
+        // } else {
+        //     $imageFile = $this->request->getFile('file');
+        //     $imageFile->move(WRITEPATH . 'uploads');
+
+        // }
+        $imageFile = $this->request->getFile('file');
+        $newName = $imageFile->getRandomName();
+        $imageFile->move(ROOTPATH  . '/public/images/test_images',  $newName);
+        return $this->respond([
+            'location' => base_url()."/images/test_images/{$imageFile->getName()}",
+        ], 200);  
+        
+        
     }
     
 }
