@@ -136,7 +136,7 @@
 
 
 <?= $this->section("additional-scripts")?>
-<script src="<?= base_url('js/vendor/tinymce.min.js')?>"
+<script src="<?= base_url('js/js_vendor/tinymce.min.js')?>"
         referrerpolicy="origin"></script>
 <script type="module" src="<?= base_url('js/operator/class_details/index.js')?>"></script>
 <?= $this->endSection()?>

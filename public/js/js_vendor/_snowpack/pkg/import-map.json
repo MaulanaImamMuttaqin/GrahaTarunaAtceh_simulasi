@@ -1,0 +1,6 @@
+{
+  "imports": {
+    "jszip": "./jszip.js",
+    "read-excel-file": "./read-excel-file.js"
+  }
+}

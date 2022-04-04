@@ -1,5 +1,5 @@
 // @ts-ignore
-import readXlsxFile from "../vendor/_snowpack/pkg/read-excel-file.js";
+import readXlsxFile from "../js_vendor/_snowpack/pkg/read-excel-file.js";
 export class ReadXLSX {
     constructor(element) {
         this.file = [];
