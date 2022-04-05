@@ -36,6 +36,7 @@ export class Render_test_results {
         Render.showElement("#test_kecermatan_result", false);
         Render.showElement("#test_kecerdasan_result", false);
         Render.showElement("#test_kepribadian_result", false);
+        Render.showElement("#test_result_modal div", false);
         $("#kecermatan_button").classList.add("bg-gray-300");
         $("#kecerdasan_button").classList.add("bg-gray-300");
         $("#kepribadian_button").classList.add("bg-gray-300");

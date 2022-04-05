@@ -17,7 +17,7 @@
     <?= $this->renderSection("body")?>
 
     <script>
-        var base_url = "<?= base_url()?>"
+        window.base_url = "<?= base_url()?>"
     </script>
     
     <script src="<?= base_url('js/jquery.js')?>"></script>

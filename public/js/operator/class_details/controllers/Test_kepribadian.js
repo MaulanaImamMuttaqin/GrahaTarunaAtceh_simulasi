@@ -1,6 +1,6 @@
 var _a;
 import { $, $$ } from "../../../utility/doms.js";
-import { ReadXLSX } from "../../../utility/read_xlsx.js";
+import { ReadXLSX } from "../../../utility/xlsx.js";
 import { Render } from "../../../utility/render.js";
 import { TinyMCE } from "../../../utility/tinymce.js";
 import Utility from "../../../utility/Utility.js";
@@ -67,10 +67,11 @@ Test_kepribadian.read_question_file = () => {
 };
 Test_kepribadian.add_test_kepribadian = async (form) => {
     let formData = new FormData(form);
-    let duration = String(formData.get("duration"));
-    let seconds = Utility.convertToSecond(duration);
+    let hours = parseInt(String(formData.get("duration_hours"))) * 3600;
+    let seconds = parseInt(String(formData.get("duration_minutes"))) * 60;
+    let seconds_total = hours + seconds;
     formData.delete("duration");
-    formData.append("duration", String(seconds));
+    formData.append("duration", String(seconds_total));
     formData.append("class_id", classID);
     formData.append("test_id", testKepribadian.test_id);
     formData.append("questions_list", JSON.stringify(read_xlsx_kepribadian_question.getNewData()));
@@ -101,10 +102,11 @@ Test_kepribadian.edit = () => {
 Test_kepribadian.upload_edit = async (form) => {
     testKepribadian.toggle_edit_mode();
     let formData = new FormData(form);
-    let duration = String(formData.get("duration"));
-    let seconds = Utility.convertToSecond(duration);
+    let hours = parseInt(String(formData.get("duration_hours"))) * 3600;
+    let seconds = parseInt(String(formData.get("duration_minutes"))) * 60;
+    let seconds_total = hours + seconds;
     formData.delete("duration");
-    formData.append("duration", String(seconds));
+    formData.append("duration", String(seconds_total));
     formData.append("test_id", testKepribadian.test_id);
     let data = await Test_Kepribadian_API.update_test(formData);
     Render.showElement("#upload_edited_test_kepribadian", false);

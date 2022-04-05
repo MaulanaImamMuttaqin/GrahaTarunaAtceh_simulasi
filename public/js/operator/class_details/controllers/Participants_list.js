@@ -1,6 +1,6 @@
 var _a;
 import { $ } from "../../../utility/doms.js";
-import { ReadXLSX } from "../../../utility/read_xlsx.js";
+import { ReadXLSX } from "../../../utility/xlsx.js";
 import { Render } from "../../../utility/render.js";
 import { classID } from "../const.js";
 import { Participants_list_API } from "../models/Participants_list_API.js";

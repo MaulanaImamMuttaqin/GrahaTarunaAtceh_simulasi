@@ -14,7 +14,7 @@
             <div id="dropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                 <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown_profile">
                 <li>
-                    <a href="<?= base_url("authtest/logoutAuth")?>" class="py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white flex justify-between items-center"><span>Logout</span> <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                    <button id="logout_test" class="py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white flex justify-between items-center"><span>Logout</span> <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
                 </li>
                
                 </ul>
@@ -62,7 +62,7 @@
                 <h1  class="border-b border-gray-300 font-bold text-2xl pb-4">
                     PILIH JAWABAN SOAL <span class="nomor_soal"></span> 
                 </h1>
-                <div id="options_soal" class="hidden max-h-80 overflow-auto text-sm py-2 flex flex-col gap-2"></div>
+                <div id="options_soal" class="hidden max-h-[500px] overflow-auto text-sm py-2 flex flex-col gap-2"></div>
                 <div class="bars flex flex-col gap-2 py-2">
                     <div class="h-10 bg-gray-200 rounded-lg"></div>
                     <div class="h-10 bg-gray-200 rounded-lg"></div>

@@ -52,8 +52,6 @@ $("#close_kecermatan_modal").onclick = () => Test_kecermatan.close_modal();
 $("#read_question_file_button").onclick = () => Test_kecermatan.read_question_file();
 $("#delete_test_kecermatan").onclick = () => Test_kecermatan.delete_test();
 $("#edit_test_kecermatan").onclick = () => Test_kecermatan.edit();
-$("#copy_id_button").onclick = () => Test_kecermatan.copy_to_clipboard();
-$("#copy_id_button").onmouseleave = () => Test_kecermatan.text_copied();
 window.open_kecermatan_modal = Test_kecermatan.open_modal;
 // kecerdasan
 let add_test_kecerdasan_form = $("#add_test_kecerdasan_form");
@@ -71,5 +69,11 @@ $("#kecerdasanDetailModal #clear_kecerdasan_question_input").onclick = () => Tes
 // $("#remove_kecerdasan_question_options").onclick = () => Test_kecerdasan.remove_kecerdasan_question_options();
 window.open_kecerdasan_question_editor = Test_kecerdasan.open_question_editor;
 window.open_kecerdasan_modal = Test_kecerdasan.open_modal;
+window.close_kecermatan_detail_modal = Test_kecermatan.close_modal;
+window.close_kecerdasan_detail_modal = Test_kecerdasan.close_modal;
+window.close_kecerpribadian_detail_modal = Test_kecerdasan.close_modal;
+window.copy_test_id = Test_List.copy_test_id_to_clipboard;
+window.id_copied = Test_List.id_copied;
+window.export_to_spreadsheet = Test_results.export_to_excel;
 // (window as any).openParticipantsTestResult = openParticipantsTestResult;
 // (window as any).deleteParticipantClass = deleteParticipantClass;

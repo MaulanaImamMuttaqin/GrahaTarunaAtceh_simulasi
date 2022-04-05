@@ -1,8 +1,7 @@
 var _a;
 import { $ } from "../../../utility/doms.js";
-import { ReadXLSX } from "../../../utility/read_xlsx.js";
+import { ReadXLSX } from "../../../utility/xlsx.js";
 import { Render } from "../../../utility/render.js";
-import Utility from "../../../utility/Utility.js";
 import { Test_kecermatan_modal } from "../classes/Test_kecermatan_modals.js";
 import { classID } from "../const.js";
 import { Test_Kecermatan_API } from "../models/Test_kecermatan_API.js";
@@ -69,7 +68,7 @@ Test_kecermatan.add_test_kecermatan_manual = async (form) => {
     formData.append('mode', String(testKecermatanModal.test_is_auto));
     let data = await Test_Kecermatan_API.add_test(formData);
     Render.showMessage(true, data.message);
-    Render.resetFormValue("add_test_kecermatan_form_manual");
+    Render.resetFormValue("#add_test_kecermatan_form_manual");
     Render_test_list.render_class_test_list(data.html);
     Render.showModal("addKecermatanModal", false);
 };
@@ -99,11 +98,4 @@ Test_kecermatan.upload_edit = async (form) => {
     Render.showElement("#upload_edited_test_kecermatan", false);
     Render.showModal("kecermatanDetailModal", false);
     Render.showMessage(true, data.message);
-};
-Test_kecermatan.copy_to_clipboard = () => {
-    Utility.copyToClipboard(testKecermatanModal.test_id);
-    Render.Text("#tooltip-copy-url", "berhasil di salin");
-};
-Test_kecermatan.text_copied = () => {
-    Render.Text("#tooltip-copy-url", "Salin ID Tes");
 };

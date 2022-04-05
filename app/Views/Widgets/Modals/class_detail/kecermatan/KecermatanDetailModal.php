@@ -46,13 +46,13 @@
                                             ID : <div id="detail_kecermatan_test_id" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div> 
                                     </div>
                                 </div>    
-                                <div class="">
-                                    <button id="copy_id_button"  data-tooltip-target="tooltip-copy-url" type="button" class="text-blue-500 font-medium rounded-lg text-sm p-2 text-center hover:bg-blue-400 hover:text-white"><i class="fa-solid fa-copy"></i></button>
-                                    <div id="tooltip-copy-url" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                                <!-- <div class="">
+                                    <button id="copy_kecermatan_id_button"  data-tooltip-target="tooltip_copy_kecermatan_id_button" type="button" class="text-blue-500 font-medium rounded-lg text-sm p-2 text-center hover:bg-blue-400 hover:text-white"><i class="fa-solid fa-copy"></i></button>
+                                    <div id="tooltip_copy_kecermatan_id_button" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
                                         Salin ID Tes
                                         <div class="tooltip-arrow" data-popper-arrow></div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="h-16 py-1 px-4 mb-1 text-sm  text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800 flex items-center gap-5" role="alert">
                                 <div>
@@ -115,7 +115,7 @@
 
                 <!-- Modal footer -->
                 <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
-                    <button onclick="closekecermatanDetailModal()" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tutup</button>
+                    <button onclick="close_kecermatan_detail_modal()" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tutup</button>
                     <button id="upload_edited_test_kecermatan"  type="submit" class="hidden flex items-center gap-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Update
                     </button>

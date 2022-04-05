@@ -36,7 +36,13 @@
                             </div> -->
                             <div class="mb-6">
                                 <label for="durasi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Durasi tes (Jam : Detik)</label>
-                                <input name="duration" type="time" id="manual-durasi" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                <div class="flex gap-3 items-center">
+                                    <input name="duration_hours" min="0"value="0" type="number" id="manual-durasi" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[60px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                    <span> Jam</span>
+                                    <span> : </span>
+                                    <input name="duration_minutes" min="0" max="59" value="0" type="number" id="manual-durasi" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[60px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                    <span> Menit</span>                                
+                                </div>                         
                             </div>
                             <div class="mb-6">
                                 <label for="mulai" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tanggal Waktu Mulai </label>

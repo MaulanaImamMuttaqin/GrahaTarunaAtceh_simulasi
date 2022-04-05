@@ -22,7 +22,7 @@
                     
                     <form id="add_test_kepribadian_form" action="javascript:void(0)" >
                         <div class="p-6 space-y-6">
-                            
+
                             <div id="dropdown-input-manual" >
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="fileQuestionKepribadianUpload">Upload file</label>
                                 <input class="mb-3 manual-input block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"  id="fileQuestionKepribadianUpload" type="file" required>
@@ -33,11 +33,17 @@
                                         </small>
                                     </div>
                                 </div>
-                                    
+     
                             </div>
                             <div class="mb-6">
                                 <label for="durasi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Durasi tes (Jam : Detik)</label>
-                                <input name="duration" type="time" id="manual-durasi" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                <div class="flex gap-3 items-center">
+                                    <input name="duration_hours" min="0" value="0" type="number" id="manual-durasi" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[60px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                    <span> Jam</span>
+                                    <span> : </span>
+                                    <input name="duration_minutes" min="0" max="59" value="0" type="number" id="manual-durasi" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[60px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                    <span> Menit</span>                                
+                                </div>
                             </div>
                             <div class="mb-6">
                                 <label for="mulai" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tanggal Waktu Mulai </label>

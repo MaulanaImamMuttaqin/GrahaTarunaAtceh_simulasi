@@ -1,7 +1,7 @@
 <div id="test_result_modal" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center h-modal md:h-full md:inset-0">
-            <div class="relative px-4 w-full max-w-2xl h-full md:h-auto">
+            <div class="relative px-4 w-[840px] transition h-full md:h-auto ">
 
-                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 h-max-[500px] overflow-y-auto">
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 h-max-[500px]  overflow-y-auto ">
 
                     <div class="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600">
                         <div class="flex gap-5 items-center">
@@ -17,7 +17,7 @@
                         </div>
                         <div class="flex items-center gap-5">
                             <div class="flex items-center justify-end">
-                                <button onclick="exportToSpreadSheet()"  data-tooltip-target="tooltip_export_spreadsheet" id="export_to_spredsheet" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                                <button onclick="export_to_spreadsheet()"  data-tooltip-target="tooltip_export_spreadsheet" id="export_to_spredsheet" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
                                     <i class="fa-solid fa-file-excel"></i>
                                 </button>
                                 <div id="tooltip_export_spreadsheet" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
@@ -31,51 +31,44 @@
                         </div>
                     </div>
                     
-                    <div id="participant_list_test_result" class="p-3 rounded-lg flex flex-col gap-2 h-max-[450px] overflow-auto">
+                    <div id="participant_list_test_result" class="p-3 rounded-lg flex flex-col gap-2 h-max-[450px] ">
                         
-                        <div class="bg-white p-3">
-                            <div class="flex flex-col">
-                                <div class=" sm:-mx-6 lg:-mx-8">
-                                    <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
-                                        <div class="overflow-auto h-min-full w-min-full   shadow-md sm:rounded-lg border border-gray-300">
-                                            <table class="w-min-full">
-                                                <thead class="bg-gray-50 dark:bg-gray-700">
-                                                    <tr>
-                                                        <th rowspan="2" scope="col" class="p-3 text-center text-xs font-medium tracking-wider  text-gray-700  dark:text-gray-400">
-                                                            No
-                                                        </th>
-                                                        <th rowspan="2"  scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-gray-700  dark:text-gray-400">
-                                                            User ID
-                                                        </th>
-                                                        <th rowspan="2"  scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-gray-700  dark:text-gray-400">
-                                                            Nama
-                                                        </th>
-                                                        <th colspan="3" scope="col" class="text-center  py-1 px-6 text-xs font-medium tracking-wider text-gray-700  dark:text-gray-400">
-                                                            Nilai
-                                                        </th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="col" class="py-1 px-1 text-xs font-medium tracking-wider text-gray-700  dark:text-gray-400">
-                                                            Kecermatan
-                                                        </th>
-                                                        <th scope="col" class="py-1 px-1 text-xs font-medium tracking-wider text-gray-700  dark:text-gray-400">
-                                                            Kecerdasan
-                                                        </th>
-                                                        <th scope="col" class="py-1 px-1 text-xs font-medium tracking-wider text-gray-700  dark:text-gray-400">
-                                                            Kepribadian
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="participant_test_result_tbody">
-                                                    <!-- Product 1 -->
-                                                    
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="relative overflow-x-auto shadow-md sm:rounded-lg  center">
+                            <table class="w-min-full ">
+                                <thead class="bg-gray-50 dark:bg-gray-700">
+                                    <tr>
+                                        <th rowspan="2" scope="col" class="p-3 text-center text-xs font-medium tracking-wider  text-gray-700  dark:text-gray-400">
+                                            No
+                                        </th>
+                                        <th rowspan="2"  scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-gray-700  dark:text-gray-400">
+                                            User ID
+                                        </th>
+                                        <th rowspan="2"  scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-gray-700  dark:text-gray-400">
+                                            Nama
+                                        </th>
+                                        <th colspan="3" scope="col" class="text-center  py-1 px-6 text-xs font-medium tracking-wider text-gray-700  dark:text-gray-400">
+                                            Nilai
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" class="py-1 px-1 text-xs font-medium tracking-wider text-gray-700  dark:text-gray-400">
+                                            Kecermatan
+                                        </th>
+                                        <th scope="col" class="py-1 px-1 text-xs font-medium tracking-wider text-gray-700  dark:text-gray-400">
+                                            Kecerdasan
+                                        </th>
+                                        <th scope="col" class="py-1 px-1 text-xs font-medium tracking-wider text-gray-700  dark:text-gray-400">
+                                            Kepribadian
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="participant_test_result_tbody">
+                                    <!-- Product 1 -->
+                                    
+                                </tbody>
+                            </table>
                         </div>
+                           
                     </div>
                     
                                 

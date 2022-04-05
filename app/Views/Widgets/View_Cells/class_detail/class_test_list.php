@@ -1,17 +1,24 @@
 <?php foreach($data as $key => $row): ?>
 <div class="mb-2">
     <div class="text-blue-500 font-semibold border border-gray-200 bg-white rounded-lg h-12 shadow-lg flex items-center justify-between px-5 ">
-        <div class="flex  w-3/4">
+        <div class="flex  w-3/4 items-center justify-center">
             <div class="w-10 py-4 text-center text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <?= $key+1?>
             </div>
             <div class="flex-1  py-4 text-center px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                 <a><?= $row['test_name']?></a>
             </div>
-            <div class="flex-1  py-4 text-center px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+            <div class="flex-1  py-4 text-center px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400 flex items-center gap-5 justify-center ">
                 <a> <?= $row['test_id']?></a>
+                <div class="">
+                    <button onclick="copy_test_id('<?= $row['test_id']?>')" onmouseleave="id_copied()"  data-tooltip-target="tooltip_copy_id_button" type="button" class="text-blue-500 font-medium rounded-lg text-sm p-2 text-center hover:bg-blue-400 hover:text-white"><i class="fa-solid fa-copy"></i></button>
+                    <div id="tooltip_copy_id_button" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                        Salin ID Tes
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                </div>
             </div>
-            <div class="flex-1  py-4 text-center px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+            <div class="flex-1  py-4 text-center px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400 ">
                 <a><?= $row['date_created']?></a>
             </div>
         </div>

@@ -39,6 +39,10 @@ export class Test_Kecerdasan {
             this.storeAnswers();
         }
     }
+    stopTest() {
+        clearInterval(this.interval);
+        Utility.storage("delete", "test_kecerdasan_cache");
+    }
     startTest() {
         this.test_cache = Object.assign(Object.assign({}, this.test_cache), { is_start: true, is_finish: false });
         this.storeTestKecerdasanCache();
@@ -46,7 +50,7 @@ export class Test_Kecerdasan {
             this.startTimer();
         this.RerenderContent();
     }
-    stopTest() {
+    finishTest() {
         clearInterval(this.interval);
         this.test_cache = {
             is_start: false,
@@ -138,7 +142,7 @@ export class Test_Kecerdasan {
             this.test_cache = Object.assign(Object.assign({}, this.test_cache), { current_time: this.current_time, question_index: this.question_index });
             this.storeTestKecerdasanCache();
             if (this.current_time <= 0) {
-                this.stopTest();
+                this.finishTest();
             }
             Render.Text("#test_timer", Utility.convertHMS(this.current_time, "verbose"));
         }, 1000);

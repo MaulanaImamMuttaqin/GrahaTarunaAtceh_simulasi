@@ -537,6 +537,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .m-5 {
   margin: 1.25rem;
 }
+.m-1 {
+  margin: 0.25rem;
+}
 .my-5 {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
@@ -600,6 +603,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .-ml-1 {
   margin-left: -0.25rem;
 }
+.ml-2 {
+  margin-left: 0.5rem;
+}
 .block {
   display: block;
 }
@@ -623,6 +629,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .table-cell {
   display: table-cell;
+}
+.table-column {
+  display: table-column;
+}
+.table-column-group {
+  display: table-column-group;
+}
+.table-row-group {
+  display: table-row-group;
+}
+.table-row {
+  display: table-row;
 }
 .grid {
   display: grid;
@@ -710,9 +728,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .max-h-\[500px\] {
   max-height: 500px;
-}
-.max-h-80 {
-  max-height: 20rem;
 }
 .max-h-\[200px\] {
   max-height: 200px;
@@ -813,8 +828,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-\[500px\] {
   width: 500px;
 }
+.w-\[840px\] {
+  width: 840px;
+}
 .w-1\/4 {
   width: 25%;
+}
+.w-\[60px\] {
+  width: 60px;
 }
 .w-\[550px\] {
   width: 550px;
@@ -825,11 +846,17 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-\[94\%\] {
   width: 94%;
 }
+.w-1 {
+  width: 0.25rem;
+}
 .w-16 {
   width: 4rem;
 }
 .w-40 {
   width: 10rem;
+}
+.w-\[50px\] {
+  width: 50px;
 }
 .w-24 {
   width: 6rem;
@@ -1572,6 +1599,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .outline {
   outline-style: solid;
+}
+.\!outline {
+  outline-style: solid !important;
 }
 .blur {
   --tw-blur: blur(8px);

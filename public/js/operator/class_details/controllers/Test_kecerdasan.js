@@ -42,10 +42,11 @@ Test_kecerdasan.close_modal = () => {
 };
 Test_kecerdasan.add_test_kecerdasan = async (form) => {
     let formData = new FormData(form);
-    let duration = String(formData.get("duration"));
-    let seconds = Utility.convertToSecond(duration);
+    let hours = parseInt(String(formData.get("duration_hours"))) * 3600;
+    let seconds = parseInt(String(formData.get("duration_minutes"))) * 60;
+    let seconds_total = hours + seconds;
     formData.delete("duration");
-    formData.append("duration", String(seconds));
+    formData.append("duration", String(seconds_total));
     formData.append("class_id", classID);
     formData.append("test_id", testKecerdasan.test_id);
     // formData.append("questions_list", JSON.stringify(read_xlsx_kecerdasan_question.getNewData()))
@@ -78,10 +79,11 @@ Test_kecerdasan.edit = () => {
 Test_kecerdasan.upload_edit = async (form) => {
     testKecerdasan.toggle_edit_mode();
     let formData = new FormData(form);
-    let duration = String(formData.get("duration"));
-    let seconds = Utility.convertToSecond(duration);
+    let hours = parseInt(String(formData.get("duration_hours"))) * 3600;
+    let seconds = parseInt(String(formData.get("duration_minutes"))) * 60;
+    let seconds_total = hours + seconds;
     formData.delete("duration");
-    formData.append("duration", String(seconds));
+    formData.append("duration", String(seconds_total));
     formData.append("test_id", testKecerdasan.test_id);
     let data = await Test_Kecerdasan_API.update_test(formData);
     Render.showElement("#upload_edited_test_kecerdasan", false);

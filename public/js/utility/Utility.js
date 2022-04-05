@@ -25,6 +25,11 @@ export default class Utility {
         }
         return `${hoursStr}${minutesStr}${secondsStr}`.replace(/,\s*$/, '');
     }
+    static getHourMinutes(seconds) {
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const hours = Math.floor((seconds % (3600 * 24)) / 3600);
+        return { hours, minutes };
+    }
     static GenerateID(length) {
         let digits = 10 ** length;
         let id = Math.floor(digits + Math.random() * 9 * digits);
@@ -41,6 +46,8 @@ export default class Utility {
             case "get":
                 let d = localStorage.getItem(name);
                 return d ? JSON.parse(d) : null;
+            case "delete":
+                localStorage.removeItem(name);
         }
     }
     static shuffleArray(array) {
