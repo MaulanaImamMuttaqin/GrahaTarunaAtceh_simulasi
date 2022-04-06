@@ -4,7 +4,6 @@ import { Render } from "../../../utility/render.js";
 import Utility from "../../../utility/Utility.js";
 export class Render_test_kecerdasan {
     static test_detail(data) {
-        console.log(data);
         Object.entries(data).forEach(([key, value], index) => {
             let el = $(`#kecerdasanDetailModal #detail_kecerdasan_${key}`);
             if (el) {

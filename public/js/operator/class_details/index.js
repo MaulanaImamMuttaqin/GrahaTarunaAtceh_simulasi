@@ -1,5 +1,6 @@
 import { $ } from "../../utility/doms.js";
 import { Participants_list } from "./controllers/Participants_list.js";
+import { QuestionTestDetail } from "./controllers/QuestionsTestDetail.js";
 import { Test_kecerdasan } from "./controllers/Test_kecerdasan.js";
 import { Test_kecermatan } from "./controllers/Test_kecermatan.js";
 import { Test_kepribadian } from "./controllers/Test_kepribadian.js";
@@ -37,6 +38,10 @@ $("#kepribadianDetailModal #open_question_editor_button").onclick = () => Test_k
 $("#kepribadianDetailModal #close_question_editor").onclick = () => Test_kepribadian.close_question_editor();
 $("#kepribadianDetailModal #upload_kepribadian_question").onclick = () => Test_kepribadian.upload_kepribadian_question();
 $("#kepribadianDetailModal #clear_kepribadian_question_input").onclick = () => Test_kepribadian.clear_kepribadian_question_input();
+$("#open_kepribadian_question_detail").onclick = () => QuestionTestDetail.openModal("kepribadian");
+$("#kepribadianDetailModal #close_question_details").onclick = () => QuestionTestDetail.closeModal("kepribadian");
+$("#kepribadianDetailModal #update_question_details").onclick = () => QuestionTestDetail.update_question();
+$("#kepribadianDetailModal #delete_question_details").onclick = () => QuestionTestDetail.delete_question();
 window.open_kepribadian_modal = Test_kepribadian.open_modal;
 window.open_kepribadian_question_editor = Test_kepribadian.open_question_editor;
 window.open_kepribadian_modal = Test_kepribadian.open_modal;
@@ -67,6 +72,10 @@ $("#kecerdasanDetailModal #upload_kecerdasan_question").onclick = () => Test_kec
 $("#kecerdasanDetailModal #clear_kecerdasan_question_input").onclick = () => Test_kecerdasan.clear_kecerdasan_question_input();
 // $("#add_kecerdasan_question_options").onclick = () => Test_kecerdasan.add_kecerdasan_question_options();
 // $("#remove_kecerdasan_question_options").onclick = () => Test_kecerdasan.remove_kecerdasan_question_options();
+$("#open_kecerdasan_question_detail").onclick = () => QuestionTestDetail.openModal("kecerdasan");
+$("#kecerdasanDetailModal #close_question_details").onclick = () => QuestionTestDetail.closeModal("kecerdasan");
+$("#kecerdasanDetailModal #update_question_details").onclick = () => QuestionTestDetail.update_question();
+$("#kecerdasanDetailModal #delete_question_details").onclick = () => QuestionTestDetail.delete_question();
 window.open_kecerdasan_question_editor = Test_kecerdasan.open_question_editor;
 window.open_kecerdasan_modal = Test_kecerdasan.open_modal;
 window.close_kecermatan_detail_modal = Test_kecermatan.close_modal;
@@ -75,5 +84,6 @@ window.close_kecerpribadian_detail_modal = Test_kecerdasan.close_modal;
 window.copy_test_id = Test_List.copy_test_id_to_clipboard;
 window.id_copied = Test_List.id_copied;
 window.export_to_spreadsheet = Test_results.export_to_excel;
+window.open_question_test_detail = QuestionTestDetail.openModal;
 // (window as any).openParticipantsTestResult = openParticipantsTestResult;
 // (window as any).deleteParticipantClass = deleteParticipantClass;

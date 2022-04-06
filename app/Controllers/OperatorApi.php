@@ -731,15 +731,17 @@ class OperatorApi extends BaseController
         $data = json_decode($this->request->getVar('data'), true);
         $model = new TestKepribadianModel();
 
-
-        $current_question_list = json_decode($model->select("questions_list")->where('test_id', $test_id)->first()['questions_list'], true);
+        $test_data = $model->where('test_id', $test_id)->first();
+        $current_question_list = json_decode($test_data['questions_list'], true);
 
         array_push($current_question_list, $data);
 
         $update = $model->set('questions_list', json_encode($current_question_list))->where('test_id', $test_id)->update();
-        $new_data = $model->where('test_id', $test_id)->first();
+
+        $test_data['questions_list'] = json_encode($current_question_list);
+        $test_data["total_question"] = count($current_question_list);
         if($update){
-            return $this->respond(["message" => "soal berhasil di tambah", 'data' => $new_data ], 200);
+            return $this->respond(["message" => "soal berhasil di tambah", 'data' => $test_data ], 200);
         }else{
             return $this->fail(["message"=> "error"], 400);
         }
@@ -840,17 +842,39 @@ class OperatorApi extends BaseController
         $data = json_decode($this->request->getVar('data'), true);
         $model = new TestKecerdasanModel();
 
-
-        $current_question_list = json_decode($model->select("questions_list")->where('test_id', $test_id)->first()['questions_list'], true);
+        $test_data = $model->where('test_id', $test_id)->first();
+        $current_question_list = json_decode($test_data['questions_list'], true);
 
         array_push($current_question_list, $data);
 
         $update = $model->set('questions_list', json_encode($current_question_list))->where('test_id', $test_id)->update();
-        $new_data = $model->where('test_id', $test_id)->first();
+
+        $test_data['questions_list'] = json_encode($current_question_list);
+        $test_data["total_question"] = count($current_question_list);
         if($update){
-            return $this->respond(["message" => "soal berhasil di tambah", 'data' => $new_data ], 200);
+            return $this->respond(["message" => "soal berhasil di tambah", 'data' => $test_data ], 200);
         }else{
             return $this->fail(["message"=> "error"], 400);
         }
+    }
+
+
+    public function update_question_test() {
+        $test_id = $this->request->getVar('test_id');
+        $test_name = $this->request->getVar('test_name');
+        $data = $this->request->getVar('data');
+
+        $model = $test_name == 'kecerdasan' ? new TestKecerdasanModel() : new TestKepribadianModel();
+        $update_test_question = $model->set('questions_list', $data)->where('test_id', $test_id)->update();    
+        $new_data = [
+            "total_question" => count(json_decode($data, true)),
+            "questions_list" => $data
+        ];
+        if($update_test_question){
+            return $this->respond(["message" => "Soal berhasil di update", "data" => $new_data], 200);
+        }else{
+            return $this->fail(["message"=> "error"], 400);
+        }
+
     }
 }

@@ -30,6 +30,12 @@ export class Render {
         toggleCollapse("message", show);
         mess_el.innerHTML = message;
     }
+    static showMessages(selector, message, show) {
+        let mess_el = $("." + selector);
+        // @ts-ignore
+        toggleCollapse(selector, show);
+        mess_el.innerText = message;
+    }
     static Text(selector, text) {
         let el = $(selector);
         if (el)

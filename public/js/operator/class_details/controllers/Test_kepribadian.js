@@ -9,6 +9,7 @@ import { classID } from "../const.js";
 import { Test_Kepribadian_API } from "../models/Test_kepribadian_API.js";
 import { Render_test_kepribadian } from "../views/Render_test_kepribadian.js";
 import { Render_test_list } from "../views/Render_test_list.js";
+import { QuestionTestDetail } from "./QuestionsTestDetail.js";
 // import { Render_test_kepribadian } from "../views/Render_test_kepribadian.js";
 let file_question_upload = $("#fileQuestionKepribadianUpload");
 export let read_xlsx_kepribadian_question = new ReadXLSX(file_question_upload);
@@ -34,10 +35,8 @@ Test_kepribadian.close_modal = () => {
     testKepribadian.toggle_edit_mode();
     Render.showElement("#upload_edited_test_kepribadian", false);
     Render.showModal("kepribadianDetailModal", false);
+    QuestionTestDetail.closeModal('kepribadian');
 };
-// static toggle_test_mode = (): void => {
-//     Render_test_kepribadian.toggle_test_form()
-// }
 Test_kepribadian.read_question_file = () => {
     if (read_xlsx_kepribadian_question.getData().length > 0) {
         let data = read_xlsx_kepribadian_question.getData();
@@ -123,9 +122,11 @@ Test_kepribadian.open_question_editor = (mode) => {
         return alert("Anda tidak boleh mengedit test ketika test sedang berjalan");
     testKepribadian.set_result_show_mode(mode);
     Render_test_kepribadian.show_question_editor(mode);
+    Render.showElement(`#kepribadianDetailModal #questions_details`, false);
 };
 Test_kepribadian.close_question_editor = () => {
     Render.showElement("#kepribadianDetailModal #question_editor", false);
+    Render.showElement(`#kepribadianDetailModal #questions_details`, false);
 };
 Test_kepribadian.clear_kepribadian_question_input = () => {
     Render.TextAll("#kepribadianDetailModal .editor_questions_input", "");
@@ -157,7 +158,9 @@ Test_kepribadian.upload_kepribadian_question = async () => {
             return;
         el.innerHTML = "";
     });
+    testKepribadian.set_modal_data(data.data);
     Render_test_kepribadian.test_detail(data.data);
+    Render.showMessages(`q_add_kepribadian_modal_message`, 'Pertanyaan berhasil di tambah', true);
 };
 // static add_kepribadian_question_options = (): void => {
 //     // question_editor.increment()

@@ -723,6 +723,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-32 {
   height: 8rem;
 }
+.h-\[650px\] {
+  height: 650px;
+}
 .max-h-96 {
   max-height: 24rem;
 }
@@ -740,6 +743,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .max-h-\[450px\] {
   max-height: 450px;
+}
+.max-h-\[800px\] {
+  max-height: 800px;
 }
 .min-h-\[300px\] {
   min-height: 300px;
@@ -1378,6 +1384,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .px-1 {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
+}
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 .pl-11 {
   padding-left: 2.75rem;
