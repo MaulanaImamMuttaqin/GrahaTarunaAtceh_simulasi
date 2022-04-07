@@ -112,7 +112,8 @@ Test_kecerdasan.clear_kecerdasan_question_input = () => {
     Render.TextAll("#kecerdasanDetailModal .editor_questions_input", "");
 };
 Test_kecerdasan.upload_kecerdasan_question = async () => {
-    let question = $$("#kecerdasanDetailModal .editor_questions_input");
+    let question = $$("#kecerdasanDetailModal #single_question_editor .editor_questions_input");
+    console.log(question);
     let val = {
         q_id: Utility.GenerateID(5),
         options: []

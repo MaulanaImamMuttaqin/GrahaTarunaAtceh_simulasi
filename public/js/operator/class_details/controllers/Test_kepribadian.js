@@ -132,7 +132,7 @@ Test_kepribadian.clear_kepribadian_question_input = () => {
     Render.TextAll("#kepribadianDetailModal .editor_questions_input", "");
 };
 Test_kepribadian.upload_kepribadian_question = async () => {
-    let question = $$("#kepribadianDetailModal .editor_questions_input");
+    let question = $$("#kepribadianDetailModal #single_question_editor .editor_questions_input");
     let val = {
         q_id: Utility.GenerateID(5),
         options: []
