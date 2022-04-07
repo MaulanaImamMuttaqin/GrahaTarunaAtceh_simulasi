@@ -23,12 +23,14 @@ export class Render_Test {
         let fragment = document.createDocumentFragment();
         question.options.forEach((o, i) => {
             let letter = String.fromCharCode(65 + i);
-            let option = _("div", { class: "flex" }, [
+            let option = _("div", {
+                class: "flex hover:cursor-pointer",
+                onclick: function () {
+                    Test_kepribadian.choose_answer(letter, question.q_id);
+                }
+            }, [
                 _("div", { class: "" }, _("button", {
-                    class: `px-5 py-1 border border-gray-900 ${current_answer === letter && 'tkm-filled'}`,
-                    onclick: function () {
-                        Test_kepribadian.choose_answer(letter, question.q_id);
-                    }
+                    class: `px-5 py-1 border border-gray-900 ${current_answer === letter && 'tkm-filled'}`
                 }, letter)),
                 _("p", { class: "pl-2" }, `/*html*/${o}`)
             ]);
