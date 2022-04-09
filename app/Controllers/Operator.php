@@ -88,11 +88,11 @@ class Operator extends BaseController
         $participants_list = new ParticipantsListsModel();
         $test_list = new TestListModel();
         $data = $model->orderBy('id', 'DESC')->findAll();
-        $participant_total = $participants_list->select("class_id, COUNT(*) as `total`")->groupBy('class_id')->findAll();
-        $tests_total = $test_list->select("class_id, COUNT(*) as `total`")->groupBy('class_id')->findAll();
+        $participant_total = $participants_list->select("class_id, COUNT(*) as `total`")->groupBy('class_id')->orderBy('class_id', 'DESC')->findAll();
+        $tests_total = $test_list->select("class_id, COUNT(*) as `total`")->groupBy('class_id')->orderBy('class_id', 'DESC')->findAll();
         foreach($data as $key => $value){
             
-            
+
             $data[$key]['participant_total'] =  $participant_total[$key]['total'];
             $data[$key]['test_total'] =  $tests_total[$key]['total'];
         }
