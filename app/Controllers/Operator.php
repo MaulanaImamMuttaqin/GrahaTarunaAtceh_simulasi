@@ -92,6 +92,7 @@ class Operator extends BaseController
         $tests_total = $test_list->select("class_id, COUNT(*) as `total`")->groupBy('class_id')->findAll();
         foreach($data as $key => $value){
             
+            
             $data[$key]['participant_total'] =  $participant_total[$key]['total'];
             $data[$key]['test_total'] =  $tests_total[$key]['total'];
         }
