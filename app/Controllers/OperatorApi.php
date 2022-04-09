@@ -326,22 +326,36 @@ class OperatorApi extends BaseController
             return $this->fail(["message"=> "error"], 400);
         }
     }
+    
+    public function _get_new_class_list() {
+        $model = new ClassModel();
+        $data = $model->select("class_list.id, class_list.class_name, p.participant_total, t.test_total")
+                        ->join("(
+                            SELECT class_id, COUNT(*) as participant_total FROM participants_lists GROUP BY class_id
+                        ) p", "class_list.id = p.class_id", "left")
+                        ->join("(
+                            SELECT class_id, COUNT(*) as test_total FROM test_list GROUP BY class_id
+                        ) t", "class_list.id = t.class_id", "left")
+                        ->orderBy("class_list.id", "DESC")
+                        ->findAll();
+        return $data;
+    }
+
 
     public function create_new_class(){
         $data =[
             'class_name' =>$this->request->getVar('class_name')
         ];
         $model = new ClassModel();
-        
         $add_data = $model->insert($data);
 
         if($add_data){
-            $all_class = $model->orderby('id', "DESC")->findAll();
+            $new_data = $this->_get_new_class_list();
             $response = [
                 'status'   => 201,
                 'error'    => null,
-                'data' => $all_class,
-                'html' => view("Widgets/View_Cells/class_table", ['data' => $all_class]),
+                'data' => $new_data,
+                'html' => view("Widgets/View_Cells/class_table", ['data' => $new_data]),
                 'messages' => "Kelas {$data['class_name']} Berhasil di tambah"
             ];
             return $this->respond($response,200);
@@ -351,13 +365,14 @@ class OperatorApi extends BaseController
          
     }
 
+  
     public function delete_class($id = null){
         $model = new ClassModel();
         
         $delete = $model->where('id', $id)->delete();
 
         if($delete){
-            $all_class = $model->orderby('id', "DESC")->findAll();
+            $all_class = $this->_get_new_class_list();
             $response = [
                 'status'   => 201,
                 'error'    => null,
@@ -904,4 +919,6 @@ class OperatorApi extends BaseController
         }
 
     }
+
+
 }

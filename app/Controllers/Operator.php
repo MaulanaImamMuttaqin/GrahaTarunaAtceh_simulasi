@@ -85,17 +85,15 @@ class Operator extends BaseController
     }
     public function class_list(){
         $model = new ClassModel();
-        $participants_list = new ParticipantsListsModel();
-        $test_list = new TestListModel();
-        $data = $model->orderBy('id', 'DESC')->findAll();
-        $participant_total = $participants_list->select("class_id, COUNT(*) as `total`")->groupBy('class_id')->orderBy('class_id', 'DESC')->findAll();
-        $tests_total = $test_list->select("class_id, COUNT(*) as `total`")->groupBy('class_id')->orderBy('class_id', 'DESC')->findAll();
-        foreach($data as $key => $value){
-            
-
-            $data[$key]['participant_total'] =  $participant_total[$key]['total'];
-            $data[$key]['test_total'] =  $tests_total[$key]['total'];
-        }
+        $data = $model->select("class_list.id, class_list.class_name, p.participant_total, t.test_total")
+                        ->join("(
+                            SELECT class_id, COUNT(*) as participant_total FROM participants_lists GROUP BY class_id
+                        ) p", "class_list.id = p.class_id", "left")
+                        ->join("(
+                            SELECT class_id, COUNT(*) as test_total FROM test_list GROUP BY class_id
+                        ) t", "class_list.id = t.class_id", "left")
+                        ->orderBy("class_list.id", "DESC")
+                        ->findAll();
         return view('operator/class_list', ['data'=> $data]);
     }
 
