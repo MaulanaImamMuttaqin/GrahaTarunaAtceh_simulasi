@@ -387,18 +387,36 @@ class OperatorApi extends BaseController
 
     public function add_new_participant_class(){
         $model = new ParticipantsListsModel();
+        $test_list = new TestListModel();
+        $test_result = new TestsResultsModel();
         $post_data = json_decode($this->request->getVar('data'), true);
         $id = $this->request->getVar('id');
         $all_participant_exist = $model->select('user_id')->where('class_id', $id)->find();
         $difference = $this->filter_data_2($post_data, $all_participant_exist, 'user_id');
-        
+        $test_list_in_class = $test_list->select('test_id')->where('class_id', $id)->find();
+        $new_test_results_list = [];
+
+       
+
         $response = [
             "data"=>$post_data,
-            "message" => count($difference)." peserta berhasil di tambah"
+            "message" => count($difference)." peserta berhasil di tambah",
+            'test_results_list' => $new_test_results_list
         ];
+        
         try {
             if(count($difference) > 0 ){
                 if($model->insertBatch($difference)){
+                    if(count($test_list_in_class) > 0){
+                        foreach($test_list_in_class as $a =>$b){
+                            foreach($difference as $c => $d ){
+                                $d['test_id'] = $b['test_id'];
+                                array_push($new_test_results_list, $d);
+                            }
+                        }
+                        $test_result->insertbatch($new_test_results_list);
+                    }
+                    
                     return $this->respond($response,200);
                 }
             }else{
@@ -411,12 +429,15 @@ class OperatorApi extends BaseController
     }
     public function delete_participant_in_class($class_id, $user_id){
         $model = new ParticipantsListsModel();
+        $tests_results = new TestsResultsModel();
+
         $args = [
             'class_id' => $class_id,
             'user_id' => $user_id
         ];
         $delete_data = $model->where($args)->delete();
         if($delete_data){
+            $tests_results->where($args)->delete();
             return $this->respondDeleted(["message" => "User dengan id '{$user_id}' berhasil dihapus"]);
         }else{
             return $this->fail(["error" => true], 400);
@@ -456,6 +477,10 @@ class OperatorApi extends BaseController
         ];
 
         $get_participant_list = $participant_list->where(['class_id'=> $class_id])->findAll();
+
+        if(!(count($get_participant_list) > 0)){
+            return $this->respond(["message"=> "Silahkan tambahkan peserta terlebih dahulu",  "list"=> $get_participant_list]);
+        }
         foreach($get_participant_list as $key=>$value){
             $get_participant_list[$key]['test_id'] = $id;
         }
@@ -474,6 +499,7 @@ class OperatorApi extends BaseController
 
     public function delete_class_test($class_id, $test_id){
         $model = new TestListModel();
+        $tests_results = new TestsResultsModel();
         $args = [
             'class_id' => $class_id,
             'test_id' => $test_id
@@ -481,6 +507,7 @@ class OperatorApi extends BaseController
 
         $delete_data = $model->where($args)->delete();
         if($delete_data){
+            $tests_results->where($args)->delete();
             $test_list = $model->where('class_id', $class_id)->orderBy('id', 'DESC')->findAll();
             $test_list_html = view('widgets/view_cells/class_detail/class_test_list', ['data' => $test_list]);  
             return $this->respondDeleted(["message" => "Test dengan id '{$test_id}' berhasil dihapus", "html"=>$test_list_html]);

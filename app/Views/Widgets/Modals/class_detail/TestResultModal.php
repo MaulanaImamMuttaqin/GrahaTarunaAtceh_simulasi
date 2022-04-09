@@ -1,7 +1,7 @@
 <div id="test_result_modal" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center h-modal md:h-full md:inset-0">
             <div class="relative px-4 w-[840px] transition h-full md:h-auto ">
 
-                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 h-max-[500px]  overflow-y-auto ">
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 max-h-[500px]  overflow-y-auto ">
 
                     <div class="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600">
                         <div class="flex gap-5 items-center">

@@ -83,14 +83,15 @@ export class Test {
     stopTest() {
         var _a;
         clearInterval(this.interval);
-        this.test_cache = {
-            is_start: false,
-            is_finish: false,
-            current_time: this.duration,
-            question_index: 0,
-            numbers_list: this.numbers_list
-        };
-        this.storeTestCache();
+        // this.test_cache = {
+        //     is_start: false,
+        //     is_finish: false,
+        //     current_time: this.duration,
+        //     question_index: 0,
+        //     numbers_list: this.numbers_list
+        // }
+        // this.storeTestCache()
+        this.cleanCache();
         this.calculateTestResult();
         Render.showElement("#message", true);
         Render.showElement("#pertanyaan", false);
@@ -182,6 +183,10 @@ export class Test {
     }
     getTestCache() {
         return Utility.storage("get", "test_cache") || null;
+    }
+    cleanCache() {
+        Utility.storage("delete", "test_cache");
+        Utility.storage("delete", "score");
     }
     shuffleChar(string) {
         var a = string.split(""), n = a.length, rand;

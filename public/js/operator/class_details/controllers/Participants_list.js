@@ -28,6 +28,7 @@ Participants_list.import_file = () => {
     if (!(read_participants_list_file.getData().length > 0))
         return alert("silahkan import file excel terlebih dahulu");
     (_b = document.querySelector("#import_table")) === null || _b === void 0 ? void 0 : _b.classList.remove("hidden");
+    console.log(read_participants_list_file.getData());
     Render_participants_list.render_import_file_table(read_participants_list_file.getData());
 };
 Participants_list.upload_data = async () => {
@@ -44,6 +45,7 @@ Participants_list.upload_data = async () => {
     formData.append('id', classID);
     formData.append('data', JSON.stringify(user_list));
     let data = await Participants_list_API.upload_data(formData);
+    console.log(data);
     Render_participants_list.render_import_file_table([]);
     Render.showMessage(true, data.message);
     Render.showModal("classParticipantModal", false);

@@ -52,14 +52,7 @@ export class Test_Kecerdasan {
     }
     finishTest() {
         clearInterval(this.interval);
-        this.test_cache = {
-            is_start: false,
-            is_finish: false,
-            current_time: this.duration,
-            question_index: 0,
-            questions_list: this.questions_list
-        };
-        this.storeTestKecerdasanCache();
+        this.cleanCache();
         this.resetTimer();
         this.uploadResult();
         Render.showElement("#question_controller", false);
@@ -112,6 +105,10 @@ export class Test_Kecerdasan {
                 this.answers[this.question_index].answer = answer;
             }
         });
+    }
+    cleanCache() {
+        Utility.storage("delete", "answers");
+        Utility.storage("delete", "test_kecerdasan_cache");
     }
     RerenderContent() {
         console.log("re rendering", this.answers, this.question_index);

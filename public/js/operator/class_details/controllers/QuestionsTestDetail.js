@@ -7,6 +7,7 @@ import { Render_question_detail } from "../views/Render_question_detail.js";
 import { Render_test_kecerdasan } from "../views/Render_test_kecerdasan.js";
 import { Render_test_kepribadian } from "../views/Render_test_kepribadian.js";
 import { testKecerdasan } from "./Test_kecerdasan.js";
+import { testKecermatanModal } from "./Test_kecermatan.js";
 import { testKepribadian } from "./Test_kepribadian.js";
 export let question_detail_modal = new QuestionDetails();
 export class QuestionTestDetail {
@@ -16,19 +17,31 @@ QuestionTestDetail.openModal = (test_name) => {
     Render.showElement(`#${test_name}DetailModal #questions_details`, true);
     Render.showElement(`#${test_name}DetailModal #question_editor`, false);
     question_detail_modal.set_test_name(test_name);
+    let test_end_at = 0;
+    let test_start_at = 0;
+    let now = Math.round(Date.now() / 1000);
     switch (test_name) {
         case "kecerdasan":
             console.log(testKecerdasan.modal_data);
             question_detail_modal.set_test_id(testKecerdasan.test_id);
             question_detail_modal.set_modal_data(JSON.parse(testKecerdasan.modal_data.questions_list));
+            test_end_at = Math.round(new Date(testKecerdasan.modal_data.test_end_at).getTime() / 1000);
+            test_start_at = Math.round(new Date(testKecerdasan.modal_data.test_start_at).getTime() / 1000);
             break;
         case "kepribadian":
             question_detail_modal.set_test_id(testKepribadian.test_id);
             question_detail_modal.set_modal_data(JSON.parse(testKepribadian.modal_data.questions_list));
+            test_end_at = Math.round(new Date(testKecermatanModal.modal_data.test_end_at).getTime() / 1000);
+            test_start_at = Math.round(new Date(testKecermatanModal.modal_data.test_start_at).getTime() / 1000);
             break;
         default:
             return;
     }
+    let test_is_start = ((test_start_at < now) && (now < test_end_at)) ? true : false;
+    if (test_is_start)
+        question_detail_modal.set_allow_edit(false);
+    else
+        question_detail_modal.set_allow_edit(true);
     if (question_detail_modal.modal_data.length === 0)
         return alert('tidak ada soal yang akan ditampilkan');
     console.log(question_detail_modal.index);
@@ -38,6 +51,11 @@ QuestionTestDetail.closeModal = (test_name) => {
     Render.showElement(`#${test_name}DetailModal #questions_details`, false);
 };
 QuestionTestDetail.update_question = async () => {
+    console.log(question_detail_modal.allow_edit);
+    if (!question_detail_modal.allow_edit)
+        QuestionTestDetail.openModal(question_detail_modal.test_name);
+    if (!question_detail_modal.allow_edit)
+        return alert("Anda tidak boleh mengedit test ketika test sedang berlansung");
     let q_i = $$(`#${question_detail_modal.test_name}DetailModal #questions_details .editor_questions_input`);
     let question_input = Array.from(q_i);
     let old_data = question_detail_modal.modal_data[question_detail_modal.index];

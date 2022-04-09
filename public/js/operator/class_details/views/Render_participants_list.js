@@ -29,7 +29,7 @@ export class Render_participants_list {
         datas.forEach((data, index) => {
             let tr = _("tr", { class: "bg-white border-b dark:bg-gray-800 dark:border-gray-700" }, [
                 _("td", { class: "py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400" }, String(index + 1)),
-                _("td", { class: "py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400" }, data.user_id),
+                _("td", { class: "py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400" }, String(data.user_id)),
                 _("td", { class: "py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400" }, data.nama),
             ]);
             fragment.appendChild(tr);

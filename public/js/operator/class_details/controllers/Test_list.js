@@ -27,8 +27,9 @@ Test_List.add_new_test = async (form) => {
     formData.append("test_id", uid);
     formData.append("class_id", classID);
     let data = await Test_list_API.add_test(formData);
+    if (data.list.length !== 0)
+        Render_test_list.render_class_test_list(data.html);
     Render.showMessage(true, data.message);
-    Render_test_list.render_class_test_list(data.html);
     Render.resetFormValue("#add_new_test_form");
     Render.showModal("addNewTest", false);
 };

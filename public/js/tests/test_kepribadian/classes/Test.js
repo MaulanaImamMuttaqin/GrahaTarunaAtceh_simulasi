@@ -48,14 +48,7 @@ export class Test_Kepribadian {
     }
     stopTest() {
         clearInterval(this.interval);
-        this.test_cache = {
-            is_start: false,
-            is_finish: false,
-            current_time: this.duration,
-            question_index: 0,
-            questions_list: this.questions_list
-        };
-        this.storeTestKepribadianCache();
+        this.cleanCache();
         this.resetTimer();
         this.uploadResult();
         Render.showElement("#question_controller", false);
@@ -77,6 +70,10 @@ export class Test_Kepribadian {
         Render.showElement("#options_soal", true);
         Render.showElement("#start_test_button", false);
         this.startTest();
+    }
+    cleanCache() {
+        Utility.storage("delete", "answers");
+        Utility.storage("delete", "test_kepribadian_cache");
     }
     storeAnswers() {
         Utility.storage("set", "answers", this.answers);
