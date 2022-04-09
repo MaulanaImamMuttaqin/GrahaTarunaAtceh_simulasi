@@ -5,8 +5,9 @@ use App\Models\TestModel;
 use App\Models\ParticipantModel;
 use App\Models\AdminUser;
 use App\Models\ClassModel;
-
+use App\Models\ParticipantsListsModel;
 use App\Models\TestListModel;
+
 class Operator extends BaseController
 {
     protected $session;
@@ -84,8 +85,17 @@ class Operator extends BaseController
     }
     public function class_list(){
         $model = new ClassModel();
-        $data['data'] = $model->orderBy('id', 'DESC')->findAll();
-        return view('operator/class_list', $data);
+        $participants_list = new ParticipantsListsModel();
+        $test_list = new TestListModel();
+        $data = $model->orderBy('id', 'DESC')->findAll();
+        $participant_total = $participants_list->select("class_id, COUNT(*) as `total`")->groupBy('class_id')->findAll();
+        $tests_total = $test_list->select("class_id, COUNT(*) as `total`")->groupBy('class_id')->findAll();
+        foreach($data as $key => $value){
+            
+            $data[$key]['participant_total'] =  $participant_total[$key]['total'];
+            $data[$key]['test_total'] =  $tests_total[$key]['total'];
+        }
+        return view('operator/class_list', ['data'=> $data]);
     }
 
     public function class_detail($id){
