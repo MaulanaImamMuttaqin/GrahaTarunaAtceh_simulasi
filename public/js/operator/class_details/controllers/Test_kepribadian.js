@@ -51,7 +51,7 @@ Test_kepribadian.read_question_file = () => {
             delete d.a, d.b, d.c, d.d, d.e;
             return {
                 question: d.soal,
-                q_id: d.no,
+                q_id: Utility.GenerateID(5),
                 options: pilihan,
                 answer: d.jawaban
             };
@@ -190,6 +190,9 @@ Test_kepribadian.upload_file_question = async () => {
     testKepribadian.set_modal_data(data.data);
     Render_test_kepribadian.test_detail(data.data);
     Render.showMessages(`q_add_kepribadian_modal_message`, 'Pertanyaan berhasil di tambah', true);
+    Render.showElement("#fileQuestionKepribadianUpload_result small", false);
+    Render.resetFormValue("#kepribadian_question_upload_file");
+    Render.showElement("#submit_question_kepribadian_file_button", false);
 };
 Test_kepribadian.test_is_start = () => {
     let test_end_at = Math.round(new Date(testKepribadian.modal_data.test_end_at).getTime() / 1000);

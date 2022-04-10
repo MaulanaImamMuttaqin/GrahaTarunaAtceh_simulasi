@@ -14,8 +14,6 @@ export class QuestionTestDetail {
 }
 _a = QuestionTestDetail;
 QuestionTestDetail.openModal = (test_name) => {
-    Render.showElement(`#${test_name}DetailModal #questions_details`, true);
-    Render.showElement(`#${test_name}DetailModal #question_editor`, false);
     question_detail_modal.set_test_name(test_name);
     let test_end_at = 0;
     let test_start_at = 0;
@@ -44,6 +42,8 @@ QuestionTestDetail.openModal = (test_name) => {
         question_detail_modal.set_allow_edit(true);
     if (question_detail_modal.modal_data.length === 0)
         return alert('tidak ada soal yang akan ditampilkan');
+    Render.showElement(`#${test_name}DetailModal #questions_details`, true);
+    Render.showElement(`#${test_name}DetailModal #question_editor`, false);
     console.log(question_detail_modal.index);
     Render_question_detail.open_modal(question_detail_modal.modal_data, test_name, question_detail_modal.index);
 };
