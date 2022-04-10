@@ -341,6 +341,7 @@ class OperatorApi extends BaseController
         return $data;
     }
 
+    
 
     public function create_new_class(){
         $data =[
@@ -684,7 +685,7 @@ class OperatorApi extends BaseController
             'duration' => $this->request->getVar('duration'),//
             'test_start_at' =>$this->request->getVar('test_start_at'),//
             'test_end_at' => $this->request->getVar('test_end_at'),//
-            'questions_list' => $this->request->getVar('questions_list'),
+            // 'questions_list' => $this->request->getVar('questions_list'),
         ];
 
         // $update_test_list = $test_list->update(['kecermatan' => true], ['test_id' => $data['test_id']]);
@@ -776,12 +777,13 @@ class OperatorApi extends BaseController
         $test_data = $model->where('test_id', $test_id)->first();
         $current_question_list = json_decode($test_data['questions_list'], true);
 
-        array_push($current_question_list, $data);
+        
+        $new_data = array_merge($current_question_list, $data);
 
-        $update = $model->set('questions_list', json_encode($current_question_list))->where('test_id', $test_id)->update();
+        $update = $model->set('questions_list', json_encode($new_data))->where('test_id', $test_id)->update();
 
-        $test_data['questions_list'] = json_encode($current_question_list);
-        $test_data["total_question"] = count($current_question_list);
+        $test_data['questions_list'] = json_encode($new_data);
+        $test_data["total_question"] = count($new_data);
         if($update){
             return $this->respond(["message" => "soal berhasil di tambah", 'data' => $test_data ], 200);
         }else{

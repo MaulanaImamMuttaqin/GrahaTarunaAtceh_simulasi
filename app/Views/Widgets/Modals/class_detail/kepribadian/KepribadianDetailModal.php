@@ -140,8 +140,8 @@
                     <button id="single_upload" onclick="open_kepribadian_question_editor('single')"  class="relative z-20 bg-gray-100 shadow-2xl p-2 rounded-t-lg text-normal font-thin text-gray-900  dark:text-white">
                         Single
                     </button>
-                    <button id="batch_upload" onclick="open_kepribadian_question_editor('batch')"  class="relative z-10 -ml-1 shadow-lg p-2 bg-gray-300 rounded-t-lg text-normal font-thin text-gray-900  dark:text-white">
-                        Batch
+                    <button id="file_upload" onclick="open_kepribadian_question_editor('file')"  class="relative z-10 -ml-1 shadow-lg p-2 bg-gray-300 rounded-t-lg text-normal font-thin text-gray-900  dark:text-white">
+                        File
                     </button>
                 </div>
                 <div class="flex gap-5">
@@ -160,7 +160,7 @@
             </div>
             <div id="participants_result_modal_body" class="p-5">
                 <?= $this->include("Widgets/Modals/class_detail/kepribadian/KepribadianQuestionEditorSingle")?>
-                <?= $this->include("Widgets/Modals/class_detail/kepribadian/KepribadianQuestionEditorBatch")?>
+                <?= $this->include("Widgets/Modals/class_detail/kepribadian/KepribadianQuestionEditorFile")?>
             </div>
         </div>
         <?= view_cell('\App\Libraries\Widget::question_detail', ['test_name'=> 'kepribadian']) ?>

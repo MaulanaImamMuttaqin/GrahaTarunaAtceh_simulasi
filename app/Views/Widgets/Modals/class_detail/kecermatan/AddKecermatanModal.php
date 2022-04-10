@@ -6,7 +6,7 @@
                     <div class="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600">
                         <div class="flex gap-5 items-center">
                             <h3 class="text-xl font-semibold text-gray-900 lg:text-2xl dark:text-white">
-                            Buat Test Baru <span class="text-gray-400 font-bold text-xs" id="test_id"></span>
+                            Buat Test Kecermatan Baru <span class="text-gray-400 font-bold text-xs" id="test_id"></span>
                             </h3>
                             <div id="loading" class="text-center hidden">
                                 <svg role="status" class="inline mr-2 w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

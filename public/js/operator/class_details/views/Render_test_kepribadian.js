@@ -44,10 +44,10 @@ export class Render_test_kepribadian {
     }
     static show_question_editor(mode) {
         Render.showElement("#kepribadianDetailModal #question_editor", true);
-        Render.showElement("#kepribadianDetailModal #batch_question_editor", false);
+        Render.showElement("#kepribadianDetailModal #file_question_editor", false);
         Render.showElement("#kepribadianDetailModal #single_question_editor", false);
         $("#kepribadianDetailModal #question_editor #single_upload").classList.add("bg-gray-300");
-        $("#kepribadianDetailModal #question_editor #batch_upload").classList.add("bg-gray-300");
+        $("#kepribadianDetailModal #question_editor #file_upload").classList.add("bg-gray-300");
         if (mode === "")
             return;
         $(`#kepribadianDetailModal #question_editor #${mode}_upload`).classList.remove("bg-gray-300");

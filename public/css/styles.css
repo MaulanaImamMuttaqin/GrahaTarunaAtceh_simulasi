@@ -747,6 +747,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .max-h-\[800px\] {
   max-height: 800px;
 }
+.max-h-\[600px\] {
+  max-height: 600px;
+}
 .min-h-\[300px\] {
   min-height: 300px;
 }
@@ -1796,6 +1799,10 @@ body{
 .hover\:bg-blue-300:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(147 197 253 / var(--tw-bg-opacity));
+}
+.hover\:bg-gray-300:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
 .hover\:text-gray-900:hover {
   --tw-text-opacity: 1;

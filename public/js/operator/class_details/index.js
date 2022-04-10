@@ -27,6 +27,8 @@ $("#close_participant_modal").onclick = () => Participants_list.close_modal();
 // kepribadian
 let add_test_kepribadian_form = $("#add_test_kepribadian_form");
 let test_detail_kepribadian_update_form = $("#test_detail_kepribadian_update_form");
+let kepribadian_question_upload_file = $("#kepribadian_question_upload_file");
+kepribadian_question_upload_file.onsubmit = () => Test_kepribadian.upload_file_question();
 add_test_kepribadian_form.onsubmit = () => Test_kepribadian.add_test_kepribadian(add_test_kepribadian_form);
 test_detail_kepribadian_update_form.onsubmit = () => Test_kepribadian.upload_edit(test_detail_kepribadian_update_form);
 $("#read_question_kepribadian_file_button").onclick = () => Test_kepribadian.read_question_file();

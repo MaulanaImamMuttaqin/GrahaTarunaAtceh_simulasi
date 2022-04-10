@@ -58,6 +58,7 @@ Test_kepribadian.read_question_file = () => {
         });
         read_xlsx_kepribadian_question.setNewData(new_data);
         console.log(read_xlsx_kepribadian_question.getNewData());
+        Render.showElement("#submit_question_kepribadian_file_button", true);
         Render.Text("#fileQuestionKepribadianUpload_result small", "data berhasil di import");
     }
     else {
@@ -73,7 +74,7 @@ Test_kepribadian.add_test_kepribadian = async (form) => {
     formData.append("duration", String(seconds_total));
     formData.append("class_id", classID);
     formData.append("test_id", testKepribadian.test_id);
-    formData.append("questions_list", JSON.stringify(read_xlsx_kepribadian_question.getNewData()));
+    // formData.append("questions_list", JSON.stringify(read_xlsx_kepribadian_question.getNewData()))
     let data = await Test_Kepribadian_API.add_test(formData);
     Render.showMessage(true, data.message);
     Render.resetFormValue("#add_test_kepribadian_form");
@@ -147,7 +148,7 @@ Test_kepribadian.upload_kepribadian_question = async () => {
     });
     let formData = new FormData();
     formData.append('test_id', testKepribadian.test_id);
-    formData.append('data', JSON.stringify(val));
+    formData.append('data', JSON.stringify([val]));
     for (const data of formData.values()) {
         console.log(data);
     }
@@ -175,6 +176,20 @@ Test_kepribadian.remove_kepribadian_question_options = () => {
     // console.log(el.childNodes[el.childNodes.length-1])
     console.log(el.lastChild);
     el.removeChild(el.lastChild);
+};
+Test_kepribadian.upload_file_question = async () => {
+    let formData = new FormData();
+    formData.append('test_id', testKepribadian.test_id);
+    formData.append('data', JSON.stringify(read_xlsx_kepribadian_question.getNewData()));
+    const data = await Test_Kepribadian_API.upload_question(formData);
+    $$("#kepribadianDetailModal .editor_questions_input").forEach(el => {
+        if (el.tagName.toLocaleLowerCase() === "select")
+            return;
+        el.innerHTML = "";
+    });
+    testKepribadian.set_modal_data(data.data);
+    Render_test_kepribadian.test_detail(data.data);
+    Render.showMessages(`q_add_kepribadian_modal_message`, 'Pertanyaan berhasil di tambah', true);
 };
 Test_kepribadian.test_is_start = () => {
     let test_end_at = Math.round(new Date(testKepribadian.modal_data.test_end_at).getTime() / 1000);

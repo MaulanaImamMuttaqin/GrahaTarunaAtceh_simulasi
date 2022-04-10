@@ -13,6 +13,7 @@ export class Test_results_API {
             method: 'GET',
         });
         const json = await response.json();
+        console.log(json.data);
         return json.data;
     }
     static async delete_result(test_name, user_id) {
