@@ -2,69 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
+body {
     counter-reset: number-counter;
 }
-.soal-counter::before{
+
+.soal-counter::before {
     counter-increment: number-counter;
     content: counter(number-counter);
 }
 
-.kecerdasan_options{
+.options {
     counter-reset: letter-counter 0;
 }
-.kecerdasan_options>div{
+
+.options>div {
     counter-increment: letter-counter 1;
 }
-.kecerdasan_options>div::before{
+
+.options>div::before {
     content: counter(letter-counter, upper-alpha) '. '
 }
-.yes{
+
+.yes {
     @apply border border-black;
 }
-.center{
+
+.center {
     @apply flex justify-center items-center
 }
-.numbers-container{
-    @apply h-52 w-52 border border-gray-400  overflow-hidden text-center leading-5
+
+.numbers-container {
+    @apply h-52 w-52 border border-gray-400 overflow-hidden text-center leading-5
 }
-.numbers{
+
+.numbers {
     @apply text-[150px] border-b border-gray-400 h-4/5 center font-semibold center
 }
-.numbers + h1{
+
+.numbers+h1 {
     @apply text-3xl font-bold
 }
-.soal{
+
+.soal {
     @apply text-xl font-semibold text-gray-600
 }
-.total, .correct, .wrong{
+
+.total,
+.correct,
+.wrong {
     @apply text-sm font-bold text-white p-1 px-3 m-1 rounded-lg
 }
 
-.total{
+.total {
     @apply bg-blue-600
 }
-.correct{
+
+.correct {
     @apply bg-green-600
 }
-.wrong{
+
+.wrong {
     @apply bg-red-600
 }
-.items-center-v{
+
+.items-center-v {
     @apply flex flex-col justify-center
 }
-.items-center-h{
+
+.items-center-h {
     @apply flex flex-col items-center
 }
 
-.tkm-highlight{
+.tkm-highlight {
     @apply bg-yellow-400 text-white
 }
-.tkm-filled{
+
+.tkm-filled {
     @apply bg-green-800 text-white
 }
-.tkm-not-filled{
+
+.tkm-not-filled {
     @apply bg-white text-gray-500
 }
-
-
