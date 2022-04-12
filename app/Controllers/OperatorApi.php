@@ -922,5 +922,29 @@ class OperatorApi extends BaseController
 
     }
 
-
+    public function dashboard() {
+        $model = new TestsResultsModel();
+        $data = $model->select('
+                            tests_results.id,
+                            t.total_participant, 
+                            r.total_class, 
+                            m.max_score, 
+                            a.avg_score
+                           ')
+                        ->join("(
+                            SELECT id, COUNT(DISTINCT id) as total_participant FROM tests_results
+                        ) t", "tests_results.id = t.id")
+                        ->join("(
+                            SELECT id, COUNT(DISTINCT class_id) as total_class FROM tests_results
+                        ) r", "tests_results.id = r.id")
+                        ->join('(
+                            SELECT id,CONCAT("[", MAX(score_kecermatan), ", ", MAX(score_kecerdasan), ", ", MAX(score_kepribadian), "]") as max_score FROM tests_results
+                        ) m', "tests_results.id = m.id")
+                        ->join('(
+                            SELECT id,CONCAT("[", AVG(score_kecermatan), ", ", AVG(score_kecerdasan), ", ", AVG(score_kepribadian), "]") as avg_score FROM tests_results
+                        ) a', "tests_results.id = a.id")
+                        ->findAll();
+        
+        return $this->respond( $data, 200);
+    }   
 }
