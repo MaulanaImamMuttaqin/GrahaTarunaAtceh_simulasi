@@ -15,12 +15,12 @@ class Operator extends BaseController
 
 
     function __construct()
+    
     {
-
         $this->session = \Config\Services::session();
         $this->session->start();
-
     }
+
     // public function index()
     // {   
     //     $model = new TestModel();
@@ -52,7 +52,7 @@ class Operator extends BaseController
                             a.avg_score
                            ')
                         ->join("(
-                            SELECT id, COUNT(DISTINCT id) as total_participant FROM tests_results
+                            SELECT id, COUNT(DISTINCT user_id) as total_participant FROM tests_results
                         ) t", "tests_results.id = t.id")
                         ->join("(
                             SELECT id, COUNT(DISTINCT class_id) as total_class FROM tests_results
@@ -95,8 +95,8 @@ class Operator extends BaseController
                                 ->find());
         }                   
         
-        $data['max_score'] = json_decode($data["max_score"], true);
-        $data['avg_score'] = json_decode($data["avg_score"], true);
+        $data['max_score'] = isset($data["max_score"]) ? json_decode($data["max_score"], true) : [0,0,0];
+        $data['avg_score'] = isset($data["avg_score"]) ? json_decode($data["avg_score"], true) : [0,0,0];
         return view('Operator/home', $data);
     }   
 
