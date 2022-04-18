@@ -61,7 +61,7 @@ class Operator extends BaseController
                             SELECT id,CONCAT("[", MAX(score_kecermatan), ", ", MAX(score_kecerdasan), ", ", MAX(score_kepribadian), "]") as max_score FROM tests_results
                         ) m', "tests_results.id = m.id")
                         ->join('(
-                            SELECT id,CONCAT("[", AVG(score_kecermatan), ", ", AVG(score_kecerdasan), ", ", AVG(score_kepribadian), "]") as avg_score FROM tests_results
+                            SELECT id,CONCAT("[", ROUND(AVG(score_kecermatan), 2), ", ", ROUND(AVG(score_kecerdasan), 2), ", ", ROUND(AVG(score_kepribadian),2), "]") as avg_score FROM tests_results
                         ) a', "tests_results.id = a.id")
                         ->findAll();
         $data = $d[0];

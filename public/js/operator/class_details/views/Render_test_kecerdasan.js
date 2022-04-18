@@ -11,6 +11,10 @@ export class Render_test_kecerdasan {
                     el.innerText = Utility.convertToHM(parseInt(value));
                     return;
                 }
+                if (key === "sorted") {
+                    el.innerText = value === "0" ? "Teracak" : "Berurut";
+                    return;
+                }
                 el.innerText = value;
             }
         });
@@ -26,6 +30,10 @@ export class Render_test_kecerdasan {
                 `;
             $(`#detail_kecerdasan_test_start_at`).innerHTML = `<input name="test_start_at" id="edit_test_start_at" type='datetime-local' class='rounded-lg border border-gray-200 w-40 text-xs px-0 pl-2 text-black h-full' value='${(_a = data.test_start_at) === null || _a === void 0 ? void 0 : _a.replace(" ", "T")}'>`;
             $(`#detail_kecerdasan_test_end_at`).innerHTML = `<input name="test_end_at" id="edit_test_end_at" type='datetime-local' class='rounded-lg border border-gray-200 w-40 text-xs px-0 pl-2 text-black h-full' value='${(_b = data.test_end_at) === null || _b === void 0 ? void 0 : _b.replace(" ", "T")}'>`;
+            $(`#detail_kecerdasan_sorted`).innerHTML = `<select name="sorted" class="rounded-lg border border-gray-200 w-20 text-xs px-0 pl-2 text-black h-8" >
+                                                            <option value="true" ${data.sorted === "1" && 'selected="selected"'}>Berurut</option>
+                                                            <option value="false" ${data.sorted === "0" && 'selected="selected"'}>Teracak</option>
+                                                        </select>`;
             $("#upload_edited_test_kecerdasan").classList.remove("hidden");
         }
         else {

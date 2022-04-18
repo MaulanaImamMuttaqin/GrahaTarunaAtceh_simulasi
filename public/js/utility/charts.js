@@ -42,3 +42,42 @@ export function renderDonutChart(data_ratio, selector) {
     //@ts-ignore
     const myChart = new Chart(document.getElementById(selector), config);
 }
+export function renderBarChart(data_chart, selector) {
+    console.log(data_chart);
+    const labels = [];
+    const backgroundColor = [];
+    const borderColor = [];
+    const scores = [];
+    data_chart.forEach((d) => {
+        labels.push(d.test_id);
+        backgroundColor.push('rgba(54, 83, 209, 0.2)');
+        borderColor.push('rgb(48, 22, 242)');
+        scores.push(parseFloat(d.score));
+    });
+    console.log(scores);
+    const data = {
+        labels: labels,
+        datasets: [{
+                label: 'Nilai Rata-Rata Tes',
+                data: scores,
+                backgroundColor,
+                borderColor,
+                borderWidth: 1
+            }]
+    };
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        },
+    };
+    //@ts-ignore
+    const myChart = new Chart(document.getElementById('selector'), config);
+}
