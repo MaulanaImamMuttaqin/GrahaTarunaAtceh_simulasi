@@ -1,0 +1,15 @@
+{
+  "imports": {
+    "/index.html": {
+      "entry": [
+        "/index.js"
+      ],
+      "css": [],
+      "js": [
+        "/_snowpack/pkg/xlsx.js",
+        "/index.js"
+      ]
+    }
+  },
+  "generated": {}
+}

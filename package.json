@@ -1,0 +1,27 @@
+{
+  "name": "simulasi-cat",
+  "version": "1.0.0",
+  "description": "## What is CodeIgniter?",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "postcss ./tailwind/app.css -o ./public/css/styles.css --watch --verbose",
+    "prod": "postcss --env production ./tailwind/app.css -o ./public/css/styles.css --verbose"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.7",
+    "tailwindcss": "^3.0.23"
+  },
+  "dependencies": {
+    "@types/jquery": "^3.5.14",
+    "jquery": "^3.6.0",
+    "postcss-cli": "^9.1.0",
+    "read-excel-file": "^5.2.28"
+  }
+}

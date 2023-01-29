@@ -1,0 +1,5 @@
+{
+  "imports": {
+    "xlsx": "./xlsx.js"
+  }
+}

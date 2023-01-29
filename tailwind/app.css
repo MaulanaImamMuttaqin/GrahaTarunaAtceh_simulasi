@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    counter-reset: number-counter;
+}
+
+.soal-counter::before {
+    counter-increment: number-counter;
+    content: counter(number-counter);
+}
+
+.options {
+    counter-reset: letter-counter 0;
+}
+
+.options>div {
+    counter-increment: letter-counter 1;
+}
+
+.options>div::before {
+    content: counter(letter-counter, upper-alpha) '. '
+}
+
+.yes {
+    @apply border border-black;
+}
+
+.center {
+    @apply flex justify-center items-center
+}
+
+.numbers-container {
+    @apply h-52 w-52 border border-gray-400 overflow-hidden text-center leading-5
+}
+
+.numbers {
+    @apply text-[150px] border-b border-gray-400 h-4/5 center font-semibold center
+}
+
+.numbers+h1 {
+    @apply text-3xl font-bold
+}
+
+.soal {
+    @apply text-xl font-semibold text-gray-600
+}
+
+.total,
+.correct,
+.wrong {
+    @apply text-sm font-bold text-white p-1 px-3 m-1 rounded-lg
+}
+
+.total {
+    @apply bg-blue-600
+}
+
+.correct {
+    @apply bg-green-600
+}
+
+.wrong {
+    @apply bg-red-600
+}
+
+.items-center-v {
+    @apply flex flex-col justify-center
+}
+
+.items-center-h {
+    @apply flex flex-col items-center
+}
+
+.tkm-highlight {
+    @apply bg-yellow-400 text-white
+}
+
+.tkm-filled {
+    @apply bg-green-800 text-white
+}
+
+.tkm-not-filled {
+    @apply bg-white text-gray-500
+}
