@@ -1,7 +1,6 @@
 #-------------------------
 # Operating Specific Junk Files
 #-------------------------
-typescripts/
 node_modules/
 # OS X
 .DS_Store
