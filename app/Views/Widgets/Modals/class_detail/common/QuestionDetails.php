@@ -60,7 +60,7 @@
 
                 </div>
             </div>
-            <div class=" pl-10 flex flex-col gap-2">
+            <div class="options pl-10 flex flex-col gap-2">
                 <div class="flex gap-2 items-center">
                     <div class="editor_questions_input kecerdasan_options_input w-full py-2 px-1 border border-gray-300 shadow-lg text-gray-700 rounded-lg" ></div>
                 </div>

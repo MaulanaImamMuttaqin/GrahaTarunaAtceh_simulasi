@@ -650,9 +650,9 @@ class OperatorApi extends BaseController
                                 ->first();
         
         if($get_participant_test_result){
-            $get_participant_test_result["kecermatan"] = json_decode( $get_participant_test_result["kecermatan"], true);
-            $get_participant_test_result["kecerdasan"] = json_decode( $get_participant_test_result["kecerdasan"], true);
-            $get_participant_test_result["kepribadian"] = json_decode( $get_participant_test_result["kepribadian"], true);
+            $get_participant_test_result["kecermatan"] = isset($get_participant_test_result["kecermatan"]) ?  json_decode( $get_participant_test_result["kecermatan"] , true) : NULL;
+            $get_participant_test_result["kecerdasan"] = isset($get_participant_test_result["kecerdasan"]) ?  json_decode( $get_participant_test_result["kecerdasan"] , true) : NULL;
+            $get_participant_test_result["kepribadian"] = isset($get_participant_test_result["kepribadian"] )? json_decode(  $get_participant_test_result["kepribadian"], true) : NULL;
             return $this->respond(["data"=> $get_participant_test_result]);
         }else{
             return $this->fail(["error" => true], 400);
@@ -754,6 +754,7 @@ class OperatorApi extends BaseController
         $test_id = $this->request->getVar('test_id');
 
         $data = [
+            'sorted' => $this->request->getVar('sorted') == "true" ? true: false ,
             'duration' => $this->request->getVar('duration'),
             'test_start_at' => $this->request->getVar('test_start_at'),
             'test_end_at' =>$this->request->getVar('test_end_at'),
@@ -866,6 +867,7 @@ class OperatorApi extends BaseController
         $test_id = $this->request->getVar('test_id');
 
         $data = [
+            'sorted' => $this->request->getVar('sorted') == "true" ? true: false,
             'duration' => $this->request->getVar('duration'),
             'test_start_at' => $this->request->getVar('test_start_at'),
             'test_end_at' =>$this->request->getVar('test_end_at'),
@@ -922,5 +924,9 @@ class OperatorApi extends BaseController
 
     }
 
+    public function class_statistic_detail(){
+        
+    }
 
+  
 }

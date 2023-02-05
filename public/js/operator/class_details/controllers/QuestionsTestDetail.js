@@ -7,7 +7,6 @@ import { Render_question_detail } from "../views/Render_question_detail.js";
 import { Render_test_kecerdasan } from "../views/Render_test_kecerdasan.js";
 import { Render_test_kepribadian } from "../views/Render_test_kepribadian.js";
 import { testKecerdasan } from "./Test_kecerdasan.js";
-import { testKecermatanModal } from "./Test_kecermatan.js";
 import { testKepribadian } from "./Test_kepribadian.js";
 export let question_detail_modal = new QuestionDetails();
 export class QuestionTestDetail {
@@ -29,13 +28,15 @@ QuestionTestDetail.openModal = (test_name) => {
         case "kepribadian":
             question_detail_modal.set_test_id(testKepribadian.test_id);
             question_detail_modal.set_modal_data(JSON.parse(testKepribadian.modal_data.questions_list));
-            test_end_at = Math.round(new Date(testKecermatanModal.modal_data.test_end_at).getTime() / 1000);
-            test_start_at = Math.round(new Date(testKecermatanModal.modal_data.test_start_at).getTime() / 1000);
+            test_end_at = Math.round(new Date(testKepribadian.modal_data.test_end_at).getTime() / 1000);
+            test_start_at = Math.round(new Date(testKepribadian.modal_data.test_start_at).getTime() / 1000);
             break;
         default:
             return;
     }
+    console.log(testKepribadian.modal_data);
     let test_is_start = ((test_start_at < now) && (now < test_end_at)) ? true : false;
+    console.log(test_start_at, now, test_end_at);
     if (test_is_start)
         question_detail_modal.set_allow_edit(false);
     else

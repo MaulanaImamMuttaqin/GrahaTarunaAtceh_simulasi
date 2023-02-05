@@ -1,4 +1,5 @@
 import { $ } from "../../utility/doms.js";
+import { Class_statistics } from "./controllers/Class_statistics.js";
 import { Participants_list } from "./controllers/Participants_list.js";
 import { QuestionTestDetail } from "./controllers/QuestionsTestDetail.js";
 import { Test_kecerdasan } from "./controllers/Test_kecerdasan.js";
@@ -87,5 +88,7 @@ window.copy_test_id = Test_List.copy_test_id_to_clipboard;
 window.id_copied = Test_List.id_copied;
 window.export_to_spreadsheet = Test_results.export_to_excel;
 window.open_question_test_detail = QuestionTestDetail.openModal;
+// class statistics
+$("#open_class_statistic").onclick = () => Class_statistics.open_modal();
 // (window as any).openParticipantsTestResult = openParticipantsTestResult;
 // (window as any).deleteParticipantClass = deleteParticipantClass;

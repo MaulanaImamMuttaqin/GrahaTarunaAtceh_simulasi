@@ -37,29 +37,37 @@
                 <div class= "p-6 ">
                     
                         <div class="grid grid-cols-2 gap-4">
-                            <div class="flex justify-between h-16 py-1 px-4 mb-1 text-sm  text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800  items-center gap-5" role="alert">
+                            <!-- <div class="flex justify-between h-16 py-1 px-4 mb-1 text-sm  text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800  items-center gap-5" role="alert">
                                 <div class=" flex gap-5">
                                     <div>
                                         <i class="fa-solid fa-key"></i>
                                     </div>
                                     <div class="flex  items-center gap-3">
-                                            ID : <div id="detail_kepribadian_test_id" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div> 
+                                            ID : <div id="detail_kepribadian_test_id" class="h-8 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div> 
                                     </div>
                                 </div>    
-                                <!-- <div class="">
+                                 <div class="">
                                     <button id="copy_kepribadian_id_button"  data-tooltip-target="tooltip_kepribadian_id_button" type="button" class="text-blue-500 font-medium rounded-lg text-sm p-2 text-center hover:bg-blue-400 hover:text-white"><i class="fa-solid fa-copy"></i></button>
                                     <div id="tooltip_kepribadian_id_button" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
                                         Salin ID Tes
                                         <div class="tooltip-arrow" data-popper-arrow></div>
                                     </div>
-                                </div> -->
-                            </div>
+                                </div>
+                            </div> -->
                             <div class="h-16 py-1 px-4 mb-1 text-sm  text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800 flex items-center gap-5" role="alert">
                                 <div>
                                     <i class="fa-solid fa-clock"></i>
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    <div id="detail_kepribadian_duration" class="h-6 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>
+                                    Durasi tes selama <div id="detail_kepribadian_duration" class="h-8 px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>
+                                </div>
+                            </div>
+                            <div class="h-16 py-1 px-4 mb-1 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800  flex items-center gap-5" role="alert">
+                                <div>
+                                <i class="fa-solid fa-arrow-down-short-wide"></i>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    Soal disusun secara <div id="detail_kepribadian_sorted" class="h-8 p-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div> 
                                 </div>
                             </div>
                             
@@ -70,10 +78,10 @@
                                 <i class="fa-solid fa-calendar"></i>
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    dimulai dari <div id="detail_kepribadian_test_start_at" class="h-6  px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  
+                                    dimulai dari <div id="detail_kepribadian_test_start_at" class="h-8  px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    hingga <div id="detail_kepribadian_test_end_at" class="h-6  px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  
+                                    hingga <div id="detail_kepribadian_test_end_at" class="h-8  px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div>  
                                 </div>
                             </div>
                            
@@ -84,7 +92,7 @@
                                     </div>
                                     
                                     <div class="flex items-center gap-3">
-                                        <div id="detail_kepribadian_total_question" class="h-6  px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div> 
+                                        <div id="detail_kepribadian_total_question" class="h-8  px-2  center text-white rounded-lg text-sm bg-blue-500 font-semibold"></div> 
                                         total pertanyaan 
                                     </div>
                                 </div>

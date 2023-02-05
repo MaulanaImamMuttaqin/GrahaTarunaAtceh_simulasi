@@ -2,10 +2,11 @@
 
 <?= $this->section("body")?>
 <div class="h-screen w-screen flex flex-col">
-    <?= $this->include("Widgets/Modals/test/kepribadian/infoModal")?>
+    <?= $this->include("Widgets/Modals/test/infoModal")?>
+    <?= $this->include("Widgets/Modals/test/resultModal")?>
     <div class="w-full h-16 bg-gray-900 flex justify-between items-center px-5 text-gray-200 shadow-lg">
         <div>
-            TES KEcerdasan
+            TES KECERDASAN
         </div>
         <div>
             <?= session()->get("participant_data")['name']?> ( <?= session()->get("participant_data")['user_id']?> )
@@ -73,18 +74,18 @@
                 </div>
             </div>
             <div class="w-2/5 p-5">
-                <div class="h-52  grid grid-cols-2 gap-2">
-                    <div class="border border-black col-span-2 flex flex-col items-center justify-center bg-yellow-300">
+                <div class="flex flex-col gap-2">
+                    <div class="border border-black h-20 flex flex-col items-center justify-center bg-yellow-300">
                         <p>sisa waktu</p>
                         <p id="test_timer" class="font-bold text-xl"></p>
                     </div>
-                    <div class="border border-black  col-span-2 bg-blue-500 text-white flex flex-col items-center justify-center">
-                        <p class="font-bold text-sm">TEST KEcerdasan</p>
+                    <div class="border border-black h-20  bg-blue-500 text-white flex flex-col items-center justify-center">
+                        <p class="font-bold text-sm">TES KEPRIBADIAN</p>
                         <button class="text-xs" type="button" data-modal-toggle="infoModal">
                             Baca Instruksi Selengkapnya
                         </button>
                     </div>
-                    <div id="question_controller" class="hidden col-span-2 row-span-2 flex gap-2">
+                    <div id="question_controller" class="hidden h-12 row-span-2 flex gap-2">
                         <button id="prev" class="flex-1 border border-black text-white bg-red-600 center uppercase text-sm">
                             < Back
                         </button>
@@ -92,19 +93,22 @@
                             Next >
                         </button>
                     </div>
-                    <div id="start_test_button" class=" col-span-2 flex gap-2">
+                    <div id="start_test_button" class="h-12  flex gap-2">
                         <button class="flex-1 border border-black text-white bg-blue-600 center uppercase text-sm">
                             MULAI TEST
                         </button>
                     </div>
-                    <div id="stop_test_button" class="hidden col-span-2 flex gap-2">
+                    <div id="stop_test_button" class="h-12 hidden flex gap-2">
                         <button class="flex-1 border border-black text-white bg-blue-600 center uppercase text-sm">
                             AKHIRI TEST
                         </button>
                     </div>
-                    <div id="test_finish_message" class="hidden col-span-2 flex gap-2">
-                        <div class="flex-1 borcer border-black text-white bg-blue-700 center uppercase text-sm">
-                            test sudah berakhir
+                    <div id="test_finish_message" class="hidden h-24 flex gap-2">
+                        <div class="flex-1  text-white bg-green-700 flex flex-col justify-center items-center gap-2 uppercase text-sm">
+                            <span>test sudah berakhir</span> 
+                            <button class="text-xs px-3 py-2 rounded-lg bg-green-500" type="button" data-modal-toggle="resultModal">
+                                Tampilkan Hasil
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -130,7 +134,8 @@
             test_id: "<?= $data['test_id']?>",
             test_start_at: "<?= $data['test_start_at']?>",
             result_test_id : "<?= $data['result_test_id']?>",
-            questions_list : JSON.parse(`<?= $data['questions_list']?>`)
+            questions_list : JSON.parse(`<?= $data['questions_list']?>`),
+            sorted : "<?= $data['sorted']?>" === "0" ? false : true
         }
 
     </script>

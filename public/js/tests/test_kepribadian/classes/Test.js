@@ -13,7 +13,7 @@ export class Test_Kepribadian {
         this.current_time = parseInt(config.duration);
         this.duration = parseInt(config.duration);
         this.result_test_id = config.result_test_id;
-        this.questions_list = Utility.shuffleArray(config.questions_list);
+        this.questions_list = config.sorted ? config.questions_list : Utility.shuffleArray(config.questions_list);
         this.total_question = config.questions_list.length;
         this.test_cache = (!this.getTestKepribadianCache()) ? {
             is_start: false,
@@ -147,6 +147,7 @@ export class Test_Kepribadian {
         formData.append('result_test_id', this.result_test_id);
         formData.append('result', JSON.stringify(this.answers));
         let data = await Test_Kepribadian_API.submit_result(formData);
+        Render.Text("#final_result", data.final_result);
         console.log(data);
     }
     resetTimer() {

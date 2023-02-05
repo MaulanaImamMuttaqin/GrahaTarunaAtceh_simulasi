@@ -28,6 +28,9 @@
             </div>
         </div>
         <div class="flex gap-2">
+            <!-- <button id="open_class_statistic" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm h-10 w-10 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                <i class="fa-solid fa-chart-column"></i>
+            </button> -->
             <button id="open_add_new_test_modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm h-10 w-10 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 <i class="fa-solid fa-plus"></i>
             </button>
@@ -46,13 +49,13 @@
                     No
                 </div>
                 <div class="flex-1  py-3 px-6 text-xs font-medium tracking-wider text-center text-gray-700 uppercase dark:text-gray-400">
-                    <a href="">Nama</a>
+                    <span>Nama</span>
                 </div>
                 <div class="flex-1  py-3 px-6 text-xs font-medium tracking-wider text-center text-gray-700 uppercase dark:text-gray-400">
-                    <a href="">ID Tes</a>
+                    <span>ID Tes</span>
                 </div>
                 <div class="flex-1  py-3 px-6 text-xs font-medium tracking-wider text-center text-gray-700 uppercase dark:text-gray-400">
-                    <a href="">Tanggal Dibuat</a>
+                    <span>Tanggal Dibuat</span>
                 </div>
             </div>
 
@@ -127,6 +130,7 @@
 
     <?= $this->include("Widgets/Modals/class_detail/classParticipantModal")?>
     <?= $this->include("Widgets/Modals/class_detail/addNewTest")?>
+    <?= $this->include("Widgets/Modals/class_detail/classStatistic")?>
     <?= $this->include("Widgets/Modals/class_detail/TestResultModal")?>
 </div>
 

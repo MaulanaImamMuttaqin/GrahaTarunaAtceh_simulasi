@@ -55,6 +55,10 @@ class TestApi extends BaseController
 
     }
 
+
+    // private function calculate_test_result($data){}
+
+
     public function submit_kepribadian_result(){
         if ($this->request->getMethod() != "post"){
             $error = [
@@ -105,11 +109,17 @@ class TestApi extends BaseController
 
         $update = $model->update($id, $data);
         if($update){
-            return $this->respond(["message" => "success", "data" =>$data]);
+            return $this->respond(["message" => "success", "final_result" =>$data["score_kepribadian"]]);
         }else{
             return $this->fail(["message"=> "error"], 400);
         }
     }
+
+
+
+
+
+
 
     public function submit_kecerdasan_result(){
         if ($this->request->getMethod() != "post"){
@@ -161,7 +171,7 @@ class TestApi extends BaseController
 
         $update = $model->update($id, $data);
         if($update){
-            return $this->respond(["message" => "success", "data" =>$data]);
+            return $this->respond(["message" => "success", "final_result" =>$data["score_kecerdasan"]]);
         }else{
             return $this->fail(["message"=> "error"], 400);
         }
