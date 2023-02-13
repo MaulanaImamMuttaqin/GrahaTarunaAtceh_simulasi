@@ -1,7 +1,6 @@
 #-------------------------
 # Operating Specific Junk Files
 #-------------------------
-node_modules/
 # OS X
 .DS_Store
 .AppleDouble
@@ -9,7 +8,7 @@ node_modules/
 
 # OS X Thumbnails
 ._*
-tsconfig.json
+# tsconfig.json
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -126,3 +125,5 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
+
+node_modules/
