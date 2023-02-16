@@ -35,5 +35,6 @@ export class Test_Controller {
         }
         test.setQuestion()
 
+        console.log(val);
     }
 }

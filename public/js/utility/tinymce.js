@@ -1,4 +1,5 @@
 import { $$ } from "./doms.js";
+import { base_url } from "../app_const.js";
 export class TinyMCE {
     constructor(selector, inline) {
         this.selector = selector;
@@ -18,7 +19,7 @@ export class TinyMCE {
                 console.log(blobInfo, success, failure);
                 let formData = new FormData();
                 formData.append('file', blobInfo.blob(), blobInfo.filename());
-                const response = await fetch('http://localhost:8080/TinyMCEApi/image/', {
+                const response = await fetch(`${base_url}/TinyMCEApi/image/`, {
                     method: 'POST',
                     body: formData,
                 });
@@ -27,7 +28,7 @@ export class TinyMCE {
                 success(data.location);
                 // setTimeout(function () {
                 //     /* no matter what you upload, we will turn it into TinyMCE logo :)*/
-                //     success('http://moxiecode.cachefly.net/tinymce/v9/images/logo.png');
+                //     success(`http://moxiecode.cachefly.net/tinymce/v9/images/logo.png`);
                 // }, 2000);
             },
             setup: function (ed) {

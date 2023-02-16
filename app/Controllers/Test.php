@@ -20,7 +20,6 @@ class Test extends BaseController
     }
     public function kecermatan($id = null)
     {   
-        
         if(!$this->session->has('participant_data')){
             $this->session->setFlashdata('test_id', $id);
             $this->session->setFlashdata('msg', "error occured");
@@ -73,7 +72,6 @@ class Test extends BaseController
         
         if (!$allowed){
             $this->session->setFlashdata('test_id', $id);
-            $this->session->setFlashdata('msg', "error occured");
             return redirect()->to(base_url("authtest"));
         }
         return view("Test/kecermatan/home3", $data);

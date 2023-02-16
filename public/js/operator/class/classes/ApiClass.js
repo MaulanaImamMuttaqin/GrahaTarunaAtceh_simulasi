@@ -1,7 +1,8 @@
 import { RenderClass } from "./RenderClass.js";
+import { base_url } from "../../../app_const.js";
 export class ApiClass {
     static addNewClass(formData) {
-        fetch('http://localhost:8080/operatorApi/create_new_class/', {
+        fetch(`${base_url}/operatorApi/create_new_class/`, {
             method: 'POST',
             body: formData
         })
@@ -15,7 +16,7 @@ export class ApiClass {
     static deleteClass(id) {
         let confirm_delete = confirm("Yakin Hapus Kelas");
         if (confirm_delete) {
-            fetch(`http://localhost:8080/operatorApi/delete_class/${id}`, {
+            fetch(`${base_url}/operatorApi/delete_class/${id}`, {
                 method: 'DELETE',
             })
                 .then(response => response.json())

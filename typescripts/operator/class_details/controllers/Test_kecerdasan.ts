@@ -103,7 +103,6 @@ export class Test_kecerdasan {
         formData.delete("duration")
         formData.append("duration", String(seconds_total))
         formData.append("test_id", testKecerdasan.test_id)
-
         let data = await Test_Kecerdasan_API.update_test(formData)
         Render.showElement("#upload_edited_test_kecerdasan", false)
         Render.showModal("kecerdasanDetailModal", false)

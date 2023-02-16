@@ -1,7 +1,6 @@
 import { $ } from "../../../utility/doms.js";
 import { _ } from "../../../utility/jml.js";
 import { Render } from "../../../utility/render.js";
-import Utility from "../../../utility/Utility.js";
 import { Test_results } from "../controllers/Test_results.js";
 export class Render_test_results {
     static results_table(data) {
@@ -82,8 +81,7 @@ export class Render_test_results {
         $("#participant_result_accuracy_final").innerText = data_test.test_final_score.ketelitian_final;
         $("#participant_result_endurance").innerText = data_test.test_final_score.ketahanan;
         $("#participant_result_endurance_final").innerText = data_test.test_final_score.ketahanan_final;
-        console.log(data_test.test_final_score.ketahanan + data_test.test_final_score.ketelitian + data_test.test_final_score.kecepatan);
-        $("#participant_result_factor_total").innerText = String(Utility.roundNumber(data_test.test_final_score.ketahanan + data_test.test_final_score.ketelitian + data_test.test_final_score.kecepatan, 2));
+        $("#participant_result_factor_total").innerText = data_test.test_final_score.ketahanan + data_test.test_final_score.ketelitian + data_test.test_final_score.kecepatan;
         $("#participant_result_final_result_total").innerText = data_test.test_final_score.final_result;
         Render_test_results.render_kecermatan_result_table(data_test.detail);
     }

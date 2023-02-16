@@ -17,6 +17,7 @@ class Auth extends Controller
     }
     public function index()
     {
+        
         helper(['form']);
         return view('Auth/auth_operator');
     } 
@@ -28,7 +29,6 @@ class Auth extends Controller
         $password = $this->request->getVar('password');
         
         $data = $adminUser->where('username', $username)->first();
-        
         if($data){
             $pass = $data['password'];
             $authenticatePassword = password_verify($password, $pass);

@@ -34,9 +34,8 @@ class AuthTest extends Controller
             'user_id'=> $user_id   
         ];
         $data = $model->select("id, user_id, name, class_id, test_id, kecermatan, kepribadian, kecerdasan")->where($user_data)->first();
-        
         if(!empty($data)){
-            if(!isset($data[$test_name])){
+            if(empty($data[$test_name])){
                 $this->session->set(['participant_data'=>$data]);
                
                 return redirect()->to(base_url("test/{$test_name}/{$data['test_id']}"));

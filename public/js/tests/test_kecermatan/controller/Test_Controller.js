@@ -29,4 +29,5 @@ Test_Controller.choose_answer = (val) => {
         return;
     }
     test.setQuestion();
+    console.log(val);
 };

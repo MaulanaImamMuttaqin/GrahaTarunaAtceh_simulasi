@@ -13,10 +13,10 @@
                 <div id="timer" class="p-5 bg-gray-300"></div>
             </div>
             <div class="w-screen h-[500px] border-y-8  border-black items-center-v px-20">
-                <div id="soal" class="h-3/5  flex items-center justify-end hidden">
+                <div id="soal" class="h-3/5  flex items-center justify-center hidden">
                     <!-- di render secara dinamis lewat js -->
                 </div>
-                <div id="pertanyaan"  class="h-1/5 flex hidden">
+                <div id="pertanyaan"  class="h-1/5 flex hidden justify-center items-center">
                     <div class="flex flex-col text-center font-semibold ">
                         <div class="question w-full h-12 border border-gray-400 font-bold  center text-4xl">0000</div>
                         <div id="choices" class=" flex gap-3 p-2 px-5 ">

@@ -4,6 +4,9 @@ namespace Config;
 
 use CodeIgniter\Database\Config;
 
+define('MYSQL_HOST', getenv('MYSQL_HOST') ?: 'localhost');
+define('MYSQL_ROOT_PASSWORD', getenv('MYSQL_ROOT_PASSWORD') ?: '');
+define('MYSQL_DATABASE', getenv('MYSQL_DATABASE') ?: 'simulasi-cat');
 /**
  * Database Configuration
  */
@@ -32,10 +35,10 @@ class Database extends Config
      */
     public $default = [
         'DSN'      => '',
-        'hostname' => 'localhost',
+        'hostname' => MYSQL_HOST,
         'username' => 'root',
-        'password' => '',
-        'database' => 'simulasi-cat',
+        'password' => MYSQL_ROOT_PASSWORD,
+        'database' => MYSQL_DATABASE,
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
