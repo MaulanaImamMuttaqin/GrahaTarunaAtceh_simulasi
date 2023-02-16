@@ -48,12 +48,11 @@ export class Render_test {
                 _("div", {},
                     [
                         _("label", {
-                            class: "flex w-[80px] overflow-hidden bg-blue-400 hover:bg-blue-500 text-white transition-colors hover:cursor-pointer duration-400 rounded-lg border border-gray-300 mr-2",
+                            class: "flex  overflow-hidden bg-blue-400 hover:bg-blue-500 text-white transition-colors hover:cursor-pointer duration-400 rounded-lg border border-gray-300 mr-2",
                             for: "o_" + n
                         },
                             [
-                                _("span", { class: "w-1/6 border-right border-white bg-blue-500 center px-3" }, String((i + 10).toString(36))),
-                                _("span", { class: "w-5/6 text-center my-1 center" }, n)
+                                _("span", { class: "px-7 border-right border-white bg-blue-500 hover:bg-blue-600 hover:cursor-pointer center" }, String((i + 10).toString(36)).toUpperCase()),
                             ]
                         ),
                         _("input", {
