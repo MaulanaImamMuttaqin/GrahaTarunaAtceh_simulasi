@@ -17,6 +17,7 @@ export class TinyMCE {
         // @ts-ignore
         tinymce.init({
             selector: this.selector,
+            forced_root_block: false,
             inline: this.inline,
             toolbar_location: 'bottom',
             plugins: 'image code',

@@ -32,14 +32,20 @@ Render_question_detail.open_question = (data, test_name, index) => {
     });
     if (q_list[index])
         q_list[index].classList.add("bg-gray-300");
+    console.log(data);
     $$(`#${test_name}DetailModal #questions_details .editor_questions_input`).forEach((el, i) => {
         if (i === 0)
             el.innerHTML = data.question;
         else if (i === 1) {
             let input_el = el;
-            input_el.value = data.answer.toUpperCase();
+            input_el.value = data.max_value ? data.max_value : data.answer.toUpperCase();
         }
-        else if (i > 1)
+        else if (i > 1) {
             el.innerHTML = data.options[i - 2];
+            if (data.options_score) {
+                let score_el = el.nextElementSibling.getElementsByClassName("options_score")[0];
+                score_el.value = data.options_score[i - 2];
+            }
+        }
     });
 };

@@ -57,5 +57,7 @@ export type questionTypes = {
     q_id: string,
     question: string,
     options: any,
+    max_value?: string,
+    options_score?: any,
     answer: string
 }

@@ -21,6 +21,9 @@ class Widget
     }
 
     public function question_detail(array $params){
-        return view('widgets/Modals/class_detail/common/QuestionDetails', $params);
+        if($params['type'] == 'normal'){
+            return view('widgets/Modals/class_detail/common/QuestionDetails', $params);
+        }
+        return view('widgets/Modals/class_detail/common/QuestionDetailsScore', $params);
     }
 }

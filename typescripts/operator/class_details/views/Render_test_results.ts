@@ -146,6 +146,7 @@ export class Render_test_results {
 
     static render_kepribadian_result_data(data: any): void {
         let data_test = data["kepribadian"]
+        console.log(data_test);
         Render.TextAll(".participant_result_name", data.name)
         Render.TextAll(".participant_result_id", data.user_id)
         $("#participant_kepribadian_final_result").innerText = data_test.final_score
@@ -169,11 +170,11 @@ export class Render_test_results {
         let fragment = document.createDocumentFragment();
         data.forEach((d: any, i: number) => {
             let tr =
-                _("tr", { class: `bg-white border-b dark:bg-gray-800 dark:border-gray-700 ${(d.answer.toLowerCase() != d.answered.toLowerCase()) && 'bg-red-400'}` },
+                _("tr", { class: `bg-white border-b dark:bg-gray-800 dark:border-gray-700 ${(d.answer) && (d.answer.toLowerCase() != d.answered.toLowerCase()) && 'bg-red-400'}` },
                     [
                         _("td", { class: "py-1 text-center text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white" }, String(i + 1)),
                         _("td", { class: "py-1 text-center px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400" }, "/*html*/" + d.question),
-                        _("td", { class: "py-1 text-center px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400" }, String(d.answer).toUpperCase()),
+                        _("td", { class: "py-1 text-center px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400" }, String(d.answer || '-').toUpperCase()),
                         _("td", { class: "py-1 text-center px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400" }, String(d.answered).toUpperCase()),
                     ]
                 );

@@ -171,5 +171,5 @@
                 <?= $this->include("Widgets/Modals/class_detail/kepribadian/KepribadianQuestionEditorFile")?>
             </div>
         </div>
-        <?= view_cell('\App\Libraries\Widget::question_detail', ['test_name'=> 'kepribadian']) ?>
+        <?= view_cell('\App\Libraries\Widget::question_detail', ['test_name'=> 'kepribadian', 'type' => 'score']) ?>
     </div>

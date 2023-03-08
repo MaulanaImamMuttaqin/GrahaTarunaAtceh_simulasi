@@ -167,6 +167,6 @@
                 <?= $this->include("Widgets/Modals/class_detail/kecerdasan/KecerdasanQuestionEditorBatch")?>
             </div>
         </div>
-        <?= view_cell('\App\Libraries\Widget::question_detail', ['test_name'=> 'kecerdasan']) ?>
+        <?= view_cell('\App\Libraries\Widget::question_detail', ['test_name'=> 'kecerdasan', 'type'=> 'normal']) ?>
         
 </div>

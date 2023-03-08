@@ -136,32 +136,54 @@ Test_kepribadian.upload_kepribadian_question = async () => {
     let question = $$("#kepribadianDetailModal #single_question_editor .editor_questions_input");
     let val = {
         q_id: Utility.GenerateID(5),
-        options: []
+        options: [],
+        options_score: []
     };
-    question.forEach((q, i) => {
-        if (i === 0)
-            val.question = q.innerHTML;
-        else if (i === 1)
-            val.answer = q.value;
-        else if (i > 1)
-            val.options.push(q.innerHTML);
-    });
-    let formData = new FormData();
-    formData.append('test_id', testKepribadian.test_id);
-    formData.append('data', JSON.stringify([val]));
-    for (const data of formData.values()) {
+    try {
+        question.forEach((q, i) => {
+            if (i === 0) {
+                console.log(q.innerHTML);
+                if (!q.hasChildNodes())
+                    throw "Pertanyaan Tidak Boleh Kosong";
+                val.question = q.innerHTML;
+            }
+            else if (i === 1) {
+                if (q.value == "0" || q.value == "")
+                    throw "Nilai tidak boleh kosong atau 0";
+                val.max_value = q.value;
+            }
+            else if (i > 1) {
+                if (!q.hasChildNodes())
+                    throw "Opsi tidak boleh kosong";
+                val.options.push(q.innerHTML);
+                let score_el = q.nextElementSibling.getElementsByClassName("options_score")[0];
+                if (score_el.value == "")
+                    throw "Nilai Opsi tidak boleh kosong atau 0";
+                if (parseInt(score_el.value) < 0 || parseInt(score_el.value) > 100)
+                    throw "Nilai Opsi Tidak Lebih dari 100 atau kecil dari 0";
+                val.options_score.push(score_el.value);
+            }
+        });
+        let formData = new FormData();
+        formData.append('test_id', testKepribadian.test_id);
+        formData.append('data', JSON.stringify([val]));
+        for (const data of formData.values()) {
+            console.log(data);
+        }
+        const data = await Test_Kepribadian_API.upload_question(formData);
         console.log(data);
+        $$("#kepribadianDetailModal .editor_questions_input").forEach(el => {
+            if (el.tagName.toLocaleLowerCase() === "select")
+                return;
+            el.innerHTML = "";
+        });
+        testKepribadian.set_modal_data(data.data);
+        Render_test_kepribadian.test_detail(data.data);
+        Render.showMessages(`q_add_kepribadian_modal_message`, 'Pertanyaan berhasil di tambah', true);
     }
-    const data = await Test_Kepribadian_API.upload_question(formData);
-    console.log(data);
-    $$("#kepribadianDetailModal .editor_questions_input").forEach(el => {
-        if (el.tagName.toLocaleLowerCase() === "select")
-            return;
-        el.innerHTML = "";
-    });
-    testKepribadian.set_modal_data(data.data);
-    Render_test_kepribadian.test_detail(data.data);
-    Render.showMessages(`q_add_kepribadian_modal_message`, 'Pertanyaan berhasil di tambah', true);
+    catch (error) {
+        alert(error);
+    }
 };
 // static add_kepribadian_question_options = (): void => {
 //     // question_editor.increment()

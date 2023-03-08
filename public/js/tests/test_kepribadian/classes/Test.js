@@ -9,6 +9,7 @@ export class Test_Kepribadian {
         this.question_index = 0;
         this.interval = 0;
         this.answers = [];
+        this.final_result = 0;
         this.test_id = config.test_id;
         this.current_time = parseInt(config.duration);
         this.duration = parseInt(config.duration);
@@ -46,16 +47,17 @@ export class Test_Kepribadian {
             this.startTimer();
         this.RerenderContent();
     }
-    stopTest() {
+    async stopTest() {
         clearInterval(this.interval);
         this.cleanCache();
         this.resetTimer();
-        this.uploadResult();
+        await this.uploadResult();
         Render.showElement("#question_controller", false);
         Render.showElement("#test_finish_message", true);
         Render.showElement("#stop_test_button", false);
         Render.TextAll(".nomor_soal", "");
         Render.Text("#soal", "");
+        Render.Text("#final_result", String(this.final_result));
         Render.showElement("#options_soal", false);
         Render.showElementAll(".bars", true);
         Render.Text("#test_timer", Utility.convertHMS(this.duration, "verbose"));
@@ -147,6 +149,7 @@ export class Test_Kepribadian {
         formData.append('result_test_id', this.result_test_id);
         formData.append('result', JSON.stringify(this.answers));
         let data = await Test_Kepribadian_API.submit_result(formData);
+        this.final_result = data.final_result;
         console.log(data);
     }
     resetTimer() {

@@ -74,24 +74,39 @@ class TestApi extends BaseController
         $result = json_decode($this->request->getVar('result'), true);
         $total_correct  = 0;
         $total_wrong = 0;
+        $total_score = 0;
+        $max_score = 0;
         $question_list = json_decode($answers['questions_list'], true);
+        // print_r($question_list);
+        // print_r($result);
+        // die;
         foreach($question_list as $key =>$value){
             foreach($result as  $q => $v){
                 if($value["q_id"] == $v["q_id"]){
                     $question_list[$key]['answered'] = $v["answer"];
-                    if(strtolower($value["answer"]) == strtolower($v["answer"])){
+                    $score_q =((int)$question_list[$key]['options_score'][ord($v['answer'])-65] / 100) * (int)$question_list[$key]['max_value'];
+                    $max_score+=(int)$question_list[$key]['max_value'];
+                    $question_list[$key]['score'] = $score_q;
+                    $total_score+=(int)$score_q;
+                    if($score_q == $question_list[$key]['max_value']){
                         $total_correct++;
                         $question_list[$key]['correct'] = true;
-                    }else{
+                    }else if($score_q === 0){
                         $total_wrong++;
-                        $question_list[$key]['correct'] = false ;
+                        $question_list[$key]['wrong'] = true;
                     }
+                    // if(strtolower($value["answer"]) == strtolower($v["answer"])){
+                    //     $total_correct++;
+                    //     $question_list[$key]['correct'] = true;
+                    // }else{
+                    //     $total_wrong++;
+                    //     $question_list[$key]['correct'] = false ;
+                    // }
                 }
-            }
-            
+            }  
         }
 
-        $final_score = round(($total_correct / count($question_list)) * 100, 2);
+        $final_score = round(($total_score / $max_score) * 100, 2);
         
         $test_result  = array();
         $test_result["overall"] = array(
@@ -102,11 +117,13 @@ class TestApi extends BaseController
         $test_result["detail"] = $question_list;
         $test_result["final_score"] = $final_score;
 
+        // print_r($test_result);
+        // print_r($final_score);
+        // die;
         $data = [
             'kepribadian' =>json_encode($test_result),
             'score_kepribadian' => $final_score
         ];
-
         $update = $model->update($id, $data);
         if($update){
             return $this->respond(["message" => "success", "final_result" =>$data["score_kepribadian"]]);

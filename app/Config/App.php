@@ -4,6 +4,7 @@ namespace Config;
 
 use CodeIgniter\Config\BaseConfig;
 
+define('PROJECT_BASE_URL', getenv('PROJECT_BASE_URL') ?: 'http://localhost:8080');
 class App extends BaseConfig
 {
     /**
@@ -24,7 +25,7 @@ class App extends BaseConfig
      * @var string
      */
     
-    public $baseURL = 'http://localhost:8080/';
+    public $baseURL = PROJECT_BASE_URL;
     // public $baseURL = 'http://GrahaTarunaAtceh.com';  //pake virtualhost
     /**
      * --------------------------------------------------------------------------

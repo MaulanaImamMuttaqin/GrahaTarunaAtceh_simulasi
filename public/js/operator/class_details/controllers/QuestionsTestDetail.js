@@ -57,12 +57,17 @@ QuestionTestDetail.update_question = async () => {
     if (!question_detail_modal.allow_edit)
         return alert("Anda tidak boleh mengedit test ketika test sedang berlansung");
     let q_i = $$(`#${question_detail_modal.test_name}DetailModal #questions_details .editor_questions_input`);
+    let q_scores = $$(`#${question_detail_modal.test_name}DetailModal .options .options_score`);
+    let question_scores = Array.from(q_scores);
     let question_input = Array.from(q_i);
     let old_data = question_detail_modal.modal_data[question_detail_modal.index];
     let new_data = {
         q_id: old_data.q_id,
         options: question_input.slice(2).map(q => {
             return q.innerHTML;
+        }),
+        options_score: question_scores.map(qs => {
+            return qs.value;
         }),
         question: question_input[0].innerHTML,
         answer: question_input[1].value,

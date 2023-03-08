@@ -20,6 +20,7 @@ export class Test_Kepribadian {
     interval: number = 0;
     questions_list: Array<question_list_type>;
     answers: Answers = []
+    final_result: number = 0;
 
     constructor(config: Test_Kepribadian_Config) {
         this.test_id = config.test_id
@@ -67,16 +68,17 @@ export class Test_Kepribadian {
 
         this.RerenderContent()
     }
-    stopTest(): void {
+    async stopTest(): Promise<void> {
         clearInterval(this.interval)
         this.cleanCache()
         this.resetTimer()
-        this.uploadResult()
+        await this.uploadResult()
         Render.showElement("#question_controller", false)
         Render.showElement("#test_finish_message", true)
         Render.showElement("#stop_test_button", false)
         Render.TextAll(".nomor_soal", "")
         Render.Text("#soal", "")
+        Render.Text("#final_result", String(this.final_result))
         Render.showElement("#options_soal", false)
         Render.showElementAll(".bars", true)
         Render.Text("#test_timer", Utility.convertHMS(this.duration, "verbose"))
@@ -181,6 +183,7 @@ export class Test_Kepribadian {
         formData.append('result_test_id', this.result_test_id)
         formData.append('result', JSON.stringify(this.answers))
         let data = await Test_Kepribadian_API.submit_result(formData)
+        this.final_result = data.final_result;
         console.log(data)
     }
     private resetTimer(): void {

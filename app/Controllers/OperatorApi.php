@@ -872,7 +872,6 @@ class OperatorApi extends BaseController
             'test_start_at' => $this->request->getVar('test_start_at'),
             'test_end_at' =>$this->request->getVar('test_end_at'),
         ];
-        
         $update = $model->set($data)->where('test_id', $test_id)->update();
         // $new_data['data'] = $model->orderBy('id', 'DESC')->findAll();
         
@@ -909,7 +908,6 @@ class OperatorApi extends BaseController
         $test_id = $this->request->getVar('test_id');
         $test_name = $this->request->getVar('test_name');
         $data = $this->request->getVar('data');
-
         $model = $test_name == 'kecerdasan' ? new TestKecerdasanModel() : new TestKepribadianModel();
         $update_test_question = $model->set('questions_list', $data)->where('test_id', $test_id)->update();    
         $new_data = [
