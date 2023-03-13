@@ -5,7 +5,7 @@ import { TestResults } from "../types.js"
 
 export class Test_list_API {
     static async add_test(formData: BodyInit): Promise<any> {
-        const response = await fetch(`${base_url}/operatorApi/add_new_test_in_class/`, {
+        const response = await fetch(`${base_url}/operatorApi/add_new_test_in_class`, {
             method: 'POST',
             body: formData
         })

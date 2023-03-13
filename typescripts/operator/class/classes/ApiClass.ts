@@ -4,7 +4,7 @@ import { base_url } from "../../../app_const.js";
 export class ApiClass {
 
     static addNewClass(formData: BodyInit) {
-        fetch(`${base_url}/operatorApi/create_new_class/`, {
+        fetch(`${base_url}/operatorApi/create_new_class`, {
             method: 'POST',
             body: formData
         })

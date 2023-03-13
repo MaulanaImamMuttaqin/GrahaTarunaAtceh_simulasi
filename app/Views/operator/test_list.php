@@ -82,9 +82,9 @@
     </div>
 
     
-    <?= $this->include("Widgets/Modals/addModal")?>
-    <?= $this->include("Widgets/Modals/detailModal")?>
-    <?= $this->include("Widgets/Modals/pesertaModal")?>
+    <?= $this->include("widgets/modals/addModal")?>
+    <?= $this->include("widgets/modals/detailModal")?>
+    <?= $this->include("widgets/modals/pesertaModal")?>
     
 </div>
 

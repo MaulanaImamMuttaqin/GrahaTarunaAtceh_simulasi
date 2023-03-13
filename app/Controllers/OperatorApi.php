@@ -28,7 +28,7 @@ class OperatorApi extends BaseController
     public function test_table_list(){
         $model = new TestModel();
         $data['data'] = $model->orderBy('id', 'DESC')->findAll();
-        return view("Widgets/View_Cells/test_table", $data);
+        return view("widgets/view_cells/test_table", $data);
     }
 
     public function add_test()
@@ -60,7 +60,7 @@ class OperatorApi extends BaseController
             'status'   => 201,
             'error'    => null,
             'data' => $data,
-            'html' => view("Widgets/View_Cells/test_table", ['data' => $table]),
+            'html' => view("widgets/view_cells/test_table", ['data' => $table]),
             'messages' => [
                 'success' => 'Employee created successfully'
             ]
@@ -95,7 +95,7 @@ class OperatorApi extends BaseController
             'status'   => 201,
             'error'    => null,
             'data' => $data,
-            'html' => view("Widgets/View_Cells/test_table", $table),
+            'html' => view("widgets/view_cells/test_table", $table),
             'messages' => [
                 'success' => 'Employee created successfully'
             ]
@@ -120,7 +120,7 @@ class OperatorApi extends BaseController
             $response = [
                 'status'   => 200,
                 'error'    => null,
-                'html' => view("Widgets/View_Cells/test_table", $table),
+                'html' => view("widgets/view_cells/test_table", $table),
                 'messages' => [
                     'success' => 'row successfully deleted'
                 ]
@@ -301,7 +301,7 @@ class OperatorApi extends BaseController
 
         $new_data['data'] = $model->orderBy('id', 'DESC')->findAll();
         if($update){
-            return $this->respond(["html" => view("Widgets/View_Cells/test_table", $new_data)], 200);
+            return $this->respond(["html" => view("widgets/view_cells/test_table", $new_data)], 200);
         }else{
             return $this->fail(["message"=> "error"], 400);
         }
@@ -356,7 +356,7 @@ class OperatorApi extends BaseController
                 'status'   => 201,
                 'error'    => null,
                 'data' => $new_data,
-                'html' => view("Widgets/View_Cells/class_table", ['data' => $new_data]),
+                'html' => view("widgets/view_cells/class_table", ['data' => $new_data]),
                 'messages' => "Kelas {$data['class_name']} Berhasil di tambah"
             ];
             return $this->respond($response,200);
@@ -378,7 +378,7 @@ class OperatorApi extends BaseController
                 'status'   => 201,
                 'error'    => null,
                 'data' => $all_class,
-                'html' => view("Widgets/View_Cells/class_table", ['data' => $all_class]),
+                'html' => view("widgets/view_cells/class_table", ['data' => $all_class]),
                 'messages' => "Kelas Berhasil di Hapus"
             ];
             return $this->respond($response,200);
@@ -622,7 +622,6 @@ class OperatorApi extends BaseController
         $model = new TestKecermatanModel();
 
         $test_id = $this->request->getVar('test_id');
-
         $data = [
             'question_total' => $this->request->getVar('question_total'),
             'duration' => $this->request->getVar('duration'),

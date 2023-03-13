@@ -104,6 +104,7 @@ export class Test_kecermatan {
         testKecermatanModal.toggle_edit_mode()
         let formData = new FormData(form)
         formData.append("test_id", testKecermatanModal.test_id)
+        
         let data = await Test_Kecermatan_API.update_test(formData)
         Render.showElement("#upload_edited_test_kecermatan", false)
         Render.showModal("kecermatanDetailModal", false)

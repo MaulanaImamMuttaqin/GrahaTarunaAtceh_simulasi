@@ -39,7 +39,7 @@ class Operator extends BaseController
     //     $avg_score_list = $participant_model->select('test_id ,CAST(AVG(score) as DECIMAL(10,2)) as score')->where('result !=', NULL)->groupBy('test_id')->orderBy('id', 'ASC')->limit(7)->find();
     //     $data['avg_score_list'] = $avg_score_list;
         
-    //     return view('Operator/home', $data);
+    //     return view('operator/home', $data);
     // }
 
     public function index() {
@@ -97,7 +97,7 @@ class Operator extends BaseController
         
         $data['max_score'] = isset($data["max_score"]) ? json_decode($data["max_score"], true) : [0,0,0];
         $data['avg_score'] = isset($data["avg_score"]) ? json_decode($data["avg_score"], true) : [0,0,0];
-        return view('Operator/home', $data);
+        return view('operator/home', $data);
     }   
 
 

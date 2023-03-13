@@ -20,7 +20,7 @@ export class TinyMCE {
                 console.log(blobInfo, success, failure);
                 let formData = new FormData();
                 formData.append('file', blobInfo.blob(), blobInfo.filename());
-                const response = await fetch(`${base_url}/TinyMCEApi/image/`, {
+                const response = await fetch(`${base_url}/TinyMCEApi/image`, {
                     method: 'POST',
                     body: formData,
                 });

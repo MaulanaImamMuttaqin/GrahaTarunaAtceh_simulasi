@@ -19,7 +19,7 @@ class Auth extends Controller
     {
         
         helper(['form']);
-        return view('Auth/auth_operator');
+        return view('auth/auth_operator');
     } 
     
     public function loginAuth()

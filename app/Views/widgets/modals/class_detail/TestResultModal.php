@@ -107,9 +107,9 @@
                         </div>
                         <div id="participants_result_modal_body">
                             
-                            <?= $this->include("Widgets/Modals/class_detail/kecermatan/KecermatanResultModal")?>
-                            <?= $this->include("Widgets/Modals/class_detail/kecerdasan/KecerdasanResultModal")?>
-                            <?= $this->include("Widgets/Modals/class_detail/kepribadian/KepribadianResultModal")?>
+                            <?= $this->include("widgets/modals/class_detail/kecermatan/KecermatanResultModal")?>
+                            <?= $this->include("widgets/modals/class_detail/kecerdasan/KecerdasanResultModal")?>
+                            <?= $this->include("widgets/modals/class_detail/kepribadian/KepribadianResultModal")?>
                             <div id="test_result_not_available" class="hidden center h-32 my-2 p-5 w-full border border-gray-200 rounded-lg ">
                                 Peserta Belum mengerjakan Test ini
                             </div>

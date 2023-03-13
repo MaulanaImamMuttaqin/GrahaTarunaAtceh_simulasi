@@ -69,7 +69,7 @@
     </div>
 
     
-    <?= $this->include("Widgets/Modals/class_list/addModal")?>
+    <?= $this->include("widgets/modals/class_list/addModal")?>
     
 </div>
 

@@ -33,7 +33,7 @@
                 </div>
             </form>
             <div>
-                <a  href="<?=base_url('/authtest')?>" target="_blank"  class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-semibold mr-2 px-3 py-1 rounded dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300">Masuk Sebagai Peserta</a>
+                <a  href="<?=base_url('/authTest')?>" target="_blank"  class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-semibold mr-2 px-3 py-1 rounded dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300">Masuk Sebagai Peserta</a>
             </div>
             <div>
               <?php if(session()->getFlashdata('msg')):?>
