@@ -9,6 +9,7 @@ export class Test_Kecerdasan {
         this.question_index = 0;
         this.interval = 0;
         this.answers = [];
+        this.final_result = 0;
         this.test_id = config.test_id;
         this.current_time = parseInt(config.duration);
         this.duration = parseInt(config.duration);
@@ -50,11 +51,11 @@ export class Test_Kecerdasan {
             this.startTimer();
         this.RerenderContent();
     }
-    finishTest() {
+    async finishTest() {
         clearInterval(this.interval);
         this.cleanCache();
         this.resetTimer();
-        this.uploadResult();
+        await this.uploadResult();
         Render.showElement("#question_controller", false);
         Render.showElement("#test_finish_message", true);
         Render.showElement("#stop_test_button", false);
@@ -63,6 +64,7 @@ export class Test_Kecerdasan {
         Render.showElement("#options_soal", false);
         Render.showElementAll(".bars", true);
         Render.Text("#test_timer", Utility.convertHMS(this.duration, "verbose"));
+        Render.Text("#final_result", String(this.final_result));
     }
     continueTest() {
         this.question_index = this.test_cache.question_index;
@@ -151,7 +153,7 @@ export class Test_Kecerdasan {
         formData.append('result_test_id', this.result_test_id);
         formData.append('result', JSON.stringify(this.answers));
         let data = await Test_Kecerdasan_API.submit_result(formData);
-        console.log(data);
+        this.final_result = data.final_result;
     }
     resetTimer() {
         this.current_time = this.duration;

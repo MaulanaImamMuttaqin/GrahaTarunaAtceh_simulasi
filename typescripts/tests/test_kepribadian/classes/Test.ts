@@ -82,7 +82,7 @@ export class Test_Kepribadian {
         Render.showElement("#options_soal", false)
         Render.showElementAll(".bars", true)
         Render.Text("#test_timer", Utility.convertHMS(this.duration, "verbose"))
-
+        localStorage.clear()
     }
 
     continueTest(): void {

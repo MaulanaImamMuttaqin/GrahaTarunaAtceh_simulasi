@@ -59,7 +59,6 @@ export class Test {
             numbers_list: this.numbers_list
         } : this.getTestCache()!
 
-        console.log(this.test_cache)
         if (!this.getTestCache()) {
             this.storeTestCache()
         }
@@ -85,7 +84,6 @@ export class Test {
 
 
     continueTest(): void {
-        console.log("test is continue")
         this.question_index = this.test_cache.question_index
         this.score = this.getScore()
         this.numbers_list = this.test_cache.numbers_list
@@ -98,7 +96,6 @@ export class Test {
     }
 
     startTest(): void {
-        console.log("start test")
         this.test_cache = {
             ...this.test_cache,
             is_start: true,
@@ -116,7 +113,6 @@ export class Test {
 
     stopTest(): void {
         clearInterval(this.interval)
-
 
 
 
@@ -139,19 +135,16 @@ export class Test {
         Render.showModal("resultModal", true)
         Render_test.result(this.score.test_final_score?.final_result!)
 
-        console.log(this.score)
         this.uploadTestResult()
 
     }
 
 
     async uploadTestResult(): Promise<void> {
-        console.log(this.score)
         let formData = new FormData()
         formData.append('result_test_id', this.result_test_id)
         formData.append('result', JSON.stringify(this.score))
         let data = await Test_API.submit_result(formData)
-        console.log(data)
     }
 
 
@@ -200,13 +193,11 @@ export class Test {
     answerCorrect(): void {
         this.score.detail[this.question_index].correct++
         this.score.overall.correct++
-        console.log("correct")
     }
 
     anwerWrongly(): void {
         this.score.detail[this.question_index].wrong++
         this.score.overall.wrong++
-        console.log("wrong")
     }
 
     incrementQuestionAnswered(): void {
@@ -273,7 +264,6 @@ export class Test {
         this.test_is_started = true
         this.interval = setInterval(() => {
             --this.current_time;
-            // console.log(this.current_time)
             this.test_cache = {
                 ...this.test_cache,
                 current_time: this.current_time,

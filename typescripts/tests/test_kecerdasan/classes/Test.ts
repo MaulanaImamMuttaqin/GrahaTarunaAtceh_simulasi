@@ -20,6 +20,7 @@ export class Test_Kecerdasan {
     interval: number = 0;
     questions_list: Array<question_list_type>;
     answers: Answers = []
+    final_result: number = 0;
 
     constructor(config: Test_Kecerdasan_Config) {
         this.test_id = config.test_id
@@ -73,11 +74,11 @@ export class Test_Kecerdasan {
         this.RerenderContent()
     }
 
-    finishTest(): void {
+    async finishTest(): Promise<void> {
         clearInterval(this.interval)
         this.cleanCache()
         this.resetTimer()
-        this.uploadResult()
+        await this.uploadResult()
         Render.showElement("#question_controller", false)
         Render.showElement("#test_finish_message", true)
         Render.showElement("#stop_test_button", false)
@@ -86,6 +87,7 @@ export class Test_Kecerdasan {
         Render.showElement("#options_soal", false)
         Render.showElementAll(".bars", true)
         Render.Text("#test_timer", Utility.convertHMS(this.duration, "verbose"))
+        Render.Text("#final_result", String(this.final_result))
     }
     continueTest(): void {
         this.question_index = this.test_cache.question_index
@@ -187,7 +189,7 @@ export class Test_Kecerdasan {
         formData.append('result_test_id', this.result_test_id)
         formData.append('result', JSON.stringify(this.answers))
         let data = await Test_Kecerdasan_API.submit_result(formData)
-        console.log(data)
+        this.final_result = data.final_result
     }
     private resetTimer(): void {
         this.current_time = this.duration
