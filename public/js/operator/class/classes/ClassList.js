@@ -5,7 +5,7 @@ export class ClassList {
         this.currentClassId = "";
     }
     addNewClass(formData) {
-        fetch('http://localhost:8080/operatorApi/create_new_class/', {
+        fetch(base_url+'/operatorApi/create_new_class/', {
             method: 'POST',
             body: formData
         })
@@ -19,7 +19,7 @@ export class ClassList {
     deleteClass(id) {
         let confirm_delete = confirm("Yakin Hapus Kelas");
         if (confirm_delete) {
-            Api.ClassListData(`http://localhost:8080/operatorApi/delete_class/${id}`, 'DELETE');
+            Api.ClassListData(base_url+`/operatorApi/delete_class/${id}`, 'DELETE');
         }
     }
 }

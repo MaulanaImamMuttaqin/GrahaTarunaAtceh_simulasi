@@ -13,7 +13,7 @@ export class Api {
         });
     }
     static addNewClass(formData) {
-        fetch('http://localhost:8080/operatorApi/create_new_class/', {
+        fetch(base_url+'/operatorApi/create_new_class/', {
             method: 'POST',
             body: formData
         })
@@ -27,11 +27,11 @@ export class Api {
     static deleteClass(id) {
         let confirm_delete = confirm("Yakin Hapus Kelas");
         if (confirm_delete) {
-            Api.ClassListData(`http://localhost:8080/operatorApi/delete_class/${id}`, 'DELETE');
+            Api.ClassListData(base_url+`/operatorApi/delete_class/${id}`, 'DELETE');
         }
     }
     static UploadParticipantClass(id, formData) {
-        fetch('http://localhost:8080/operatorApi/add_new_participant_class/', {
+        fetch(base_url+'/operatorApi/add_new_participant_class/', {
             method: 'POST',
             body: formData
         })
@@ -44,7 +44,7 @@ export class Api {
         });
     }
     static getParticipantClassList(id) {
-        fetch(`http://localhost:8080/operatorApi/get_participant_class_list/${id}`, {
+        fetch(base_url+`/operatorApi/get_participant_class_list/${id}`, {
             method: 'GET',
         })
             .then(response => response.json())

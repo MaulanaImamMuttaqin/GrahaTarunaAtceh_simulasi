@@ -3,7 +3,7 @@ export class Test_API {
 }
 _a = Test_API;
 Test_API.submit_result = async (formData) => {
-    const response = await fetch("http://localhost:8080/testApi/submit_result", {
+    const response = await fetch(base_url+"/testApi/submit_result", {
         method: "POST",
         body: formData
     });

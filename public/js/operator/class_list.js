@@ -4,5 +4,5 @@ let classForm = document.querySelector("#add_class_form");
 window.deleteRow = deleteRow;
 classForm.onsubmit = function () {
     const formData = new FormData(classForm);
-    Api.ClassListData('http://localhost:8080/operatorApi/create_new_class/', 'POST', formData);
+    Api.ClassListData(base_url+'/operatorApi/create_new_class/', 'POST', formData);
 };
