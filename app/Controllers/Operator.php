@@ -104,7 +104,7 @@ class Operator extends BaseController
     public function test_list(){
         $model = new TestModel();
         $data['data'] = $model->orderBy('id', 'DESC')->findAll();
-        return view("operator/test_list", $data);
+        return view("Operator/test_list", $data);
     }
     
     public function users(){
@@ -125,24 +125,24 @@ class Operator extends BaseController
                     'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT)
                 ];
                 $userModel->save($data);
-                return view('operator/users', ["success" => true]);
+                return view('Operator/users', ["success" => true]);
             }else{
                 $data['validation'] = $this->validator;
-                return view('operator/users', $data);
+                return view('Operator/users', $data);
             }
         }
 
-        return view('operator/users');
+        return view('Operator/users');
         
     }
 
     public function settings(){
     
-        return view('operator/settings');
+        return view('Operator/settings');
     }
 
     public function test_tkm_list(){
-        return view('operator/tkm_list');
+        return view('Operator/tkm_list');
     }
     public function class_list(){
         $model = new ClassModel();
@@ -155,7 +155,7 @@ class Operator extends BaseController
                         ) t", "class_list.id = t.class_id", "left")
                         ->orderBy("class_list.id", "DESC")
                         ->findAll();
-        return view('operator/class_list', ['data'=> $data]);
+        return view('Operator/class_list', ['data'=> $data]);
     }
 
     public function class_detail($id){
@@ -164,6 +164,6 @@ class Operator extends BaseController
 
         $data['data'] = $model->where('id', $id)->first();
         $data['data']['test_list'] = $test_list_model->where('class_id', $id)->orderBy('id', 'DESC')->findAll();
-        return view('class/class', $data);
+        return view('Class/class', $data);
     }
 }

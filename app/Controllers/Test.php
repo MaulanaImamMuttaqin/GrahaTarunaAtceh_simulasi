@@ -20,11 +20,10 @@ class Test extends BaseController
     }
     public function kecermatan($id = null)
     {   
-        
         if(!$this->session->has('participant_data')){
             $this->session->setFlashdata('test_id', $id);
-            $this->session->setFlashdata('msg', "error occured");
-            return redirect()->to(base_url("authtest"));
+            $this->session->setFlashdata('msg', "Anda Belum Login");
+            return redirect()->to(base_url("authTest"));
         }
 
         if(!($this->session->get('participant_data')['test_id'] == $id) ){
@@ -35,7 +34,7 @@ class Test extends BaseController
         $test_exist = $test_list->select("kecermatan")->where('test_id', $id)->first();
         if(!$test_exist["kecermatan"]){
             $this->session->setFlashdata('test_id', $id);
-            return redirect()->to(base_url("authtest"));
+            return redirect()->to(base_url("authTest"));
         }
 
         $test_results_model = new TestsResultsModel();
@@ -73,8 +72,7 @@ class Test extends BaseController
         
         if (!$allowed){
             $this->session->setFlashdata('test_id', $id);
-            $this->session->setFlashdata('msg', "error occured");
-            return redirect()->to(base_url("authtest"));
+            return redirect()->to(base_url("authTest"));
         }
         return view("Test/kecermatan/home3", $data);
     }
@@ -83,7 +81,7 @@ class Test extends BaseController
     public function kepribadian($id = null){
         if(!$this->session->has('participant_data')){
             $this->session->setFlashdata('test_id', $id);
-            return redirect()->to(base_url("authtest"));
+            return redirect()->to(base_url("authTest"));
         }
 
         if(!($this->session->get('participant_data')['test_id'] == $id) ){
@@ -96,7 +94,7 @@ class Test extends BaseController
         if(!$test_exist["kepribadian"]){
             $this->session->setFlashdata('test_id', $id);
             $this->session->setFlashdata('msg', 'Tes ini belum tersedia');
-            return redirect()->to(base_url("authtest"));
+            return redirect()->to(base_url("authTest"));
         }
 
         $test_results_model = new TestsResultsModel();
@@ -139,7 +137,7 @@ class Test extends BaseController
         
         if (!$allowed){
             $this->session->setFlashdata('test_id', $id);
-            return redirect()->to(base_url("authtest"));
+            return redirect()->to(base_url("authTest"));
         }
         return view("Test/kepribadian/home" ,$data);
     }
@@ -147,7 +145,7 @@ class Test extends BaseController
     public function kecerdasan($id = null){
         if(!$this->session->has('participant_data')){
             $this->session->setFlashdata('test_id', $id);
-            return redirect()->to(base_url("authtest"));
+            return redirect()->to(base_url("authTest"));
         }
 
         if(!($this->session->get('participant_data')['test_id'] == $id) ){
@@ -160,7 +158,7 @@ class Test extends BaseController
         if(!$test_exist["kecerdasan"]){
             $this->session->setFlashdata('test_id', $id);
             $this->session->setFlashdata('msg', 'Tes ini belum tersedia');
-            return redirect()->to(base_url("authtest"));
+            return redirect()->to(base_url("authTest"));
         }
 
         $test_results_model = new TestsResultsModel();
@@ -203,7 +201,7 @@ class Test extends BaseController
         
         if (!$allowed){
             $this->session->setFlashdata('test_id', $id);
-            return redirect()->to(base_url("authtest"));
+            return redirect()->to(base_url("authTest"));
         }
         return view("Test/kecerdasan/home" ,$data);
     }

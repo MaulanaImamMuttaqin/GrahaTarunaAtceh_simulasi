@@ -41,7 +41,6 @@ $routes->group('operator',['filter' => 'authGuard'], function($routes){
     $routes->get("class_detail/(:num)", "Operator::class_detail/$1");
 });
 
-
 $routes->group('test',['filter' => 'authTestGuard'], function($routes){
     $routes->get("/", "Test::index");
     $routes->get("/(:any)/(:any)", "Test::index");

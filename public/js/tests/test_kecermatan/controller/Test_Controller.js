@@ -3,7 +3,6 @@ import { Render } from "../../../utility/render.js";
 import { Test } from "../classes/Test.js";
 import { TestConfiguration } from "../const.js";
 let test = new Test(TestConfiguration);
-console.log(TestConfiguration);
 export class Test_Controller {
 }
 Test_Controller.start_test = () => {
@@ -11,7 +10,6 @@ Test_Controller.start_test = () => {
     Render.showElement("#soal", true);
     Render.showElement("#start-test", false);
     Render.showElement("#pertanyaan", true);
-    console.log(test.current_time);
 };
 Test_Controller.choose_answer = (val) => {
     let current_number = test.current_question;

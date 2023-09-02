@@ -22,7 +22,7 @@ export class Test {
         };
         this.current_time = parseInt(config.duration);
         this.duration = parseInt(config.duration);
-        this.number_digits = config.auto ? parseInt(config.number_digits) : question_list[0].split("").length;
+        this.number_digits = config.auto ? parseInt(config.number_digits) : String(question_list[0]).split("").length;
         this.question_total = parseInt(config.question_total);
         this.numbers_list =
             config.auto ?

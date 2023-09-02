@@ -22,13 +22,14 @@ export class Test {
         };
         this.current_time = parseInt(config.duration);
         this.duration = parseInt(config.duration);
-        this.number_digits = config.auto ? parseInt(config.number_digits) : question_list[0].split("").length;
+        this.number_digits = config.auto ? parseInt(config.number_digits) : String(question_list[0]).split("").length;
         this.question_total = parseInt(config.question_total);
-        this.numbers_list =
-            config.auto ?
-                this.generateNumbers(this.number_digits, this.question_total) :
-                Utility.shuffleArray(question_list)
-                    .splice(this.question_total, question_list.length - this.question_total);
+
+        if(config.auto){
+            this.numbers_list = this.generateNumbers(this.number_digits, this.question_total);
+        }else{
+            this.numbers_list = Utility.shuffleArray(question_list).slice(0, this.question_total)
+        }
         this.result_test_id = config.result_test_id;
         this.test_cache = (!this.getTestCache()) ? {
             is_start: false,
@@ -37,7 +38,6 @@ export class Test {
             question_index: 0,
             numbers_list: this.numbers_list
         } : this.getTestCache();
-        console.log(this.test_cache);
         if (!this.getTestCache()) {
             this.storeTestCache();
         }
@@ -59,10 +59,10 @@ export class Test {
         }
     }
     continueTest() {
-        console.log("test is continue");
         this.question_index = this.test_cache.question_index;
         this.score = this.getScore();
         this.numbers_list = this.test_cache.numbers_list;
+        console.log(this.numbers_list)
         this.current_time = this.test_cache.current_time;
         Render.Text("#timer", Utility.convertHMS(this.current_time, "number"));
         Render.showElement("#pertanyaan", true);
@@ -71,7 +71,6 @@ export class Test {
         this.startTest();
     }
     startTest() {
-        console.log("start test");
         this.test_cache = Object.assign(Object.assign({}, this.test_cache), { is_start: true, is_finish: false });
         this.storeTestCache();
         if (!this.test_is_started)
@@ -98,16 +97,13 @@ export class Test {
         Render.showElement("#soal", false);
         Render.showModal("resultModal", true);
         Render_test.result((_a = this.score.test_final_score) === null || _a === void 0 ? void 0 : _a.final_result);
-        console.log(this.score);
         this.uploadTestResult();
     }
     async uploadTestResult() {
-        console.log(this.score);
         let formData = new FormData();
         formData.append('result_test_id', this.result_test_id);
         formData.append('result', JSON.stringify(this.score));
         let data = await Test_API.submit_result(formData);
-        console.log(data);
     }
     calculateTestResult() {
         let tot_diff_total = this.score.detail.reduce((total, each) => {
@@ -150,12 +146,10 @@ export class Test {
     answerCorrect() {
         this.score.detail[this.question_index].correct++;
         this.score.overall.correct++;
-        console.log("correct");
     }
     anwerWrongly() {
         this.score.detail[this.question_index].wrong++;
         this.score.overall.wrong++;
-        console.log("wrong");
     }
     incrementQuestionAnswered() {
         this.score.detail[this.question_index].total++;
@@ -169,7 +163,7 @@ export class Test {
         this.score.detail[this.question_index].stability = 100 - (Math.abs(tot_diff) * 5);
     }
     setQuestion() {
-        this.current_question = this.shuffleChar(this.numbers_list[this.question_index]).split("");
+        this.current_question = this.shuffleChar(String(this.numbers_list[this.question_index])).split("");
         Render.Text(".question", this.current_question.join(""));
     }
     storeScore(data) {
@@ -209,7 +203,6 @@ export class Test {
         this.test_is_started = true;
         this.interval = setInterval(() => {
             --this.current_time;
-            // console.log(this.current_time)
             this.test_cache = Object.assign(Object.assign({}, this.test_cache), { current_time: this.current_time, question_index: this.question_index });
             this.storeTestCache();
             if (this.current_time <= 0) {

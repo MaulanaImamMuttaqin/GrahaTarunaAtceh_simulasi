@@ -36,6 +36,7 @@ class AuthTest extends Controller
         $data = $model->select("id, user_id, name, class_id, test_id, kecermatan, kepribadian, kecerdasan")->where($user_data)->first();
         
         if(!empty($data)){
+            print_r($data);
             if(!isset($data[$test_name])){
                 $this->session->set(['participant_data'=>$data]);
                
@@ -43,12 +44,12 @@ class AuthTest extends Controller
             }else{
                 $this->session->setFlashdata('msg', 'Anda Sudah menyelesaikan Test Ini, silahkan hubungi Operator');
                 // echo "error";
-                return redirect()->to(base_url('authtest'));
+                return redirect()->to(base_url('authTest'));
             }
         }else{
             $this->session->setFlashdata('msg', 'User ID atau Token yang anda Masukkan tidak terdaftar');
             // echo "error";
-            return redirect()->to(base_url('authtest'));
+            return redirect()->to(base_url('authTest'));
         }
     }
     
@@ -56,7 +57,7 @@ class AuthTest extends Controller
     {
         $this->session = session();
         $this->session->destroy();
-        return redirect()->to(base_url('authtest'));
+        return redirect()->to(base_url('authTest'));
      
     }
 }

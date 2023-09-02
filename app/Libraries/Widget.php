@@ -5,22 +5,22 @@ class Widget
 
     public function test_list(array $params)
     {
-        return view('widgets/view_cells/test_table', $params);
+        return view('Widgets/View_Cells/test_table', $params);
     }
 
     public function title_header(array $params)
     {
-        return view('widgets/view_cells/headers', $params);
+        return view('Widgets/View_Cells/headers', $params);
     }
 
     public function class_list(array $params){
-        return view('widgets/view_cells/class_table', $params);
+        return view('Widgets/View_Cells/class_table', $params);
     }
     public function class_test_list(array $params){
-        return view('widgets/view_cells/class_detail/class_test_list', $params);
+        return view('Widgets/View_Cells/class_detail/class_test_list', $params);
     }
 
     public function question_detail(array $params){
-        return view('widgets/Modals/class_detail/common/QuestionDetails', $params);
+        return view('Widgets/Modals/class_detail/common/QuestionDetails', $params);
     }
 }

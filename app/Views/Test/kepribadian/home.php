@@ -15,7 +15,7 @@
             <div id="dropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                 <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown_profile">
                 <li>
-                    <a href="<?= base_url("authtest/logoutAuth")?>" class="py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white flex justify-between items-center"><span>Logout</span> <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                    <a href="<?= base_url("authTest/logoutAuth")?>" class="py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white flex justify-between items-center"><span>Logout</span> <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
                 </li>
                
                 </ul>

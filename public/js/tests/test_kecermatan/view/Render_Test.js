@@ -13,7 +13,7 @@ Render_test.render_number = (number) => {
     let parent = $("#soal");
     parent.innerHTML = "";
     let fragment = document.createDocumentFragment();
-    number.split("").forEach((n, i) => {
+    String(number).split("").forEach((n, i) => {
         let div = _("div", { class: "numbers-container" }, [
             _("h1", { class: "numbers" }, n),
             _("h1", {}, String((i + 10).toString(36)))
@@ -26,7 +26,7 @@ Render_test.render_choices = (number) => {
     let parent = $("#choices");
     parent.innerHTML = "";
     let fragment = document.createDocumentFragment();
-    number.split("").forEach((n, i) => {
+    String(number).split("").forEach((n, i) => {
         let div = _("div", { class: "flex flex-col text-center font-semibold" }, [
             _("p", { class: "" }, String((i + 10).toString(36))),
             _("input", {

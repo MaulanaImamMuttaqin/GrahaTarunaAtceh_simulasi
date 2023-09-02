@@ -47,8 +47,8 @@ export class Test_kecerdasan {
             if (!confirm_stop)
                 return;
             test_kecerdasan.stopTest();
-            return location.replace(base_url + "/authtest/logoutAuth");
+            return location.replace(base_url + "/authTest/logoutAuth");
         }
-        return location.replace(base_url + "/authtest/logoutAuth");
+        return location.replace(base_url + "/authTest/logoutAuth");
     }
 }

@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile 
+    container_name: gta
+    volumes:
+      - .:/var/www/html
+    ports:
+      - 8080:8080
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_DATABASE: simulasi-cat
+      COMPOSER_ALLOW_SUPERUSER: 1
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:latest
+    container_name: mariadb
+    ports:
+      - 3306:3306
+    volumes:
+      - /var/docker-data/mariadb-latest/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: simulasi-cat
+

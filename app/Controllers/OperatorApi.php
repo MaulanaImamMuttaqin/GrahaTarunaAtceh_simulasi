@@ -219,7 +219,7 @@ class OperatorApi extends BaseController
                 }
             }else{
                 $data['validation'] = $this->validator;
-                return view('operator/settings', $data);
+                return view('Operator/settings', $data);
             }
         }
     }
@@ -506,7 +506,7 @@ class OperatorApi extends BaseController
         if($data){
             $test_result->insertbatch($get_participant_list);
             $test_list = $model->where('class_id', $class_id)->orderBy('id', 'DESC')->findAll();
-            $test_list_html = view('widgets/view_cells/class_detail/class_test_list', ['data' => $test_list]);  
+            $test_list_html = view('Widgets/View_Cells/class_detail/class_test_list', ['data' => $test_list]);  
             return $this->respond(["message"=> "Test '{$test_name}' berhasil di tambah", "html"=>$test_list_html, "list"=> $get_participant_list]);
         }else{
             return $this->fail(["error"=>true]);
@@ -525,7 +525,7 @@ class OperatorApi extends BaseController
         if($delete_data){
             $tests_results->where($args)->delete();
             $test_list = $model->where('class_id', $class_id)->orderBy('id', 'DESC')->findAll();
-            $test_list_html = view('widgets/view_cells/class_detail/class_test_list', ['data' => $test_list]);  
+            $test_list_html = view('Widgets/View_Cells/class_detail/class_test_list', ['data' => $test_list]);  
             return $this->respondDeleted(["message" => "Test dengan id '{$test_id}' berhasil dihapus", "html"=>$test_list_html]);
         }else{
             return $this->fail(["error" => true], 400);
@@ -552,7 +552,7 @@ class OperatorApi extends BaseController
         $update_test_list = $test_list->set('kecermatan', true)->where('test_id', $data['test_id'])->update();    
         $model->insert($data);
         $test_list = $test_list->where('class_id', $data["class_id"])->orderBy('id', 'DESC')->findAll();
-        $test_list_html = view('widgets/view_cells/class_detail/class_test_list', ['data' => $test_list]);  
+        $test_list_html = view('Widgets/View_Cells/class_detail/class_test_list', ['data' => $test_list]);  
         $response = [
             'status'   => 201,
             'error'    => null,
@@ -574,7 +574,7 @@ class OperatorApi extends BaseController
             $update_test_list = $test_list->set('kecermatan', false)->where('test_id', $test_id)->update();
             if(!$update_test_list) return $this->fail(); 
             $tests = $test_list->where('class_id', $class_id)->orderBy('id', 'DESC')->findAll();
-            $test_list_html = view('widgets/view_cells/class_detail/class_test_list', ['data' => $tests]);
+            $test_list_html = view('Widgets/View_Cells/class_detail/class_test_list', ['data' => $tests]);
             $response = [
                 'status'   => 201,
                 'error'    => null,
@@ -692,7 +692,7 @@ class OperatorApi extends BaseController
         $update_test_list = $test_list->set('kepribadian', true)->where('test_id', $data['test_id'])->update();    
         $model->insert($data);
         $test_list = $test_list->where('class_id', $data['class_id'])->orderBy('id', 'DESC')->findAll();
-        $test_list_html = view('widgets/view_cells/class_detail/class_test_list', ['data' => $test_list]);  
+        $test_list_html = view('Widgets/View_Cells/class_detail/class_test_list', ['data' => $test_list]);  
         $response = [
             'status'   => 201,
             'error'    => null,
@@ -713,7 +713,7 @@ class OperatorApi extends BaseController
             $update_test_list = $test_list->set('kepribadian', false)->where('test_id', $test_id)->update();
             if(!$update_test_list) return $this->fail(); 
             $tests = $test_list->where('class_id', $class_id)->orderBy('id', 'DESC')->findAll();
-            $test_list_html = view('widgets/view_cells/class_detail/class_test_list', ['data' => $tests]);
+            $test_list_html = view('Widgets/View_Cells/class_detail/class_test_list', ['data' => $tests]);
             $response = [
                 'status'   => 201,
                 'error'    => null,
@@ -808,7 +808,7 @@ class OperatorApi extends BaseController
         $update_test_list = $test_list->set('kecerdasan', true)->where('test_id', $data['test_id'])->update();    
         $model->insert($data);
         $test_list = $test_list->where('class_id', $data['class_id'])->orderBy('id', 'DESC')->findAll();
-        $test_list_html = view('widgets/view_cells/class_detail/class_test_list', ['data' => $test_list]);  
+        $test_list_html = view('Widgets/View_Cells/class_detail/class_test_list', ['data' => $test_list]);  
         $response = [
             'status'   => 201,
             'error'    => null,
@@ -829,7 +829,7 @@ class OperatorApi extends BaseController
             $update_test_list = $test_list->set('kecerdasan', false)->where('test_id', $test_id)->update();
             if(!$update_test_list) return $this->fail(); 
             $tests = $test_list->where('class_id', $class_id)->orderBy('id', 'DESC')->findAll();
-            $test_list_html = view('widgets/view_cells/class_detail/class_test_list', ['data' => $tests]);
+            $test_list_html = view('Widgets/View_Cells/class_detail/class_test_list', ['data' => $tests]);
             $response = [
                 'status'   => 201,
                 'error'    => null,

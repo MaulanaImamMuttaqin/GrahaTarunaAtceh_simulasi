@@ -4,7 +4,7 @@
     <?= $this->include("Widgets/Modals/resultModal")?>
     <div id="test" class="h-screen w-screen center bg-gray-200">
         <div id="logout" class="absolute  top-0 left-0 p-5">
-            <a href="<?= base_url('authtest/logoutAuth')?>" class="text-blue-800 text-2xl hover:text-blue-600">
+            <a href="<?= base_url('authTest/logoutAuth')?>" class="text-blue-800 text-2xl hover:text-blue-600">
                 <i class="fa-solid fa-delete-left"></i>
             </a>
         </div>
